@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class princessFarida {
 	
-	static class FastReader
+		static class FastReader
     {
         BufferedReader br;
         StringTokenizer st;
@@ -88,43 +88,24 @@ public class princessFarida {
 	
 	private static long maxVal(long arr[],int n)
 	{
-		long val=0;
-		
-		for(int i=0;i<arr.length;i++)
+		long incl=arr[0];
+		long excl=0;
+		for(int i=1;i<n;i++)
 		{
-			val=arr[i];
+			long pst_excl=excl;
+			long pst_incl=incl;
+			
+			incl=max((arr[i]+pst_excl),pst_incl);
+			excl=pst_incl;
 		}
 		
-		return val;
 		
+		return max(incl,excl);
 	}
-
-//	private static long max(long maxcoinsE,long maxcoinsO) {
-//		// TODO Auto-generated method stub
-//		return (maxcoinsE>maxcoinsO?maxcoinsE:maxcoinsO);
-//	}
-//
-//	private static long maxcoinsO(long[] arr) {
-//		// TODO Auto-generated method stub
-//		long sum=0;
-//		
-//		for(int i=0;i<arr.length;i=i+2)
-//		{
-//			sum+=arr[i];
-//		}
-//		return sum;
-//	}
-//
-//	private static long maxcoinsE(long[] arr) {
-//		// TODO Auto-generated method stub
-//		long sum=0;
-//		
-//		for(int i=1;i<arr.length;i=i+2)
-//		{
-//			sum+=arr[i];
-//		}
-//		return sum;
-//	}
-
+	
+	private static long max(long x,long y)
+	{
+		return x>y?x:y;
+	}
 }
 
