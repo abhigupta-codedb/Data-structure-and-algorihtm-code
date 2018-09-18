@@ -1,0 +1,80 @@
+package Graphs;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class BFS_DFS {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		int n=sc.nextInt();
+		int e=sc.nextInt();
+		
+		int graph[][]=new int[n][n];
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			graph[x][y]=1;
+			graph[y][x]=1;
+		}
+		
+		int varr1[]=new int[n];
+		int varr2[]=new int[n];
+		Queue<Integer> q=new LinkedList<Integer>();
+		
+		System.out.println("DFS\n");
+		printDFS(graph,n,0,varr1);
+		System.out.println("BFS\n");
+		printBFS(graph,n,0,varr2,q);
+		
+		sc.close();
+	}
+
+	private static void printDFS(int[][] graph, int n, int s, int[] varr) {
+		// TODO Auto-generated method stub
+		System.out.println(s+" ");
+		varr[s]=1;
+		
+		for(int i=0;i<n;i++)
+			{
+				if(i==s)
+					continue;
+				
+				if(graph[s][i]==1 && varr[i]==0)
+					printDFS(graph, n, i, varr);
+				
+			}
+		
+		}
+	
+	private static void printBFS(int [][]graph,int n,int s,int[] varr,Queue<Integer> q)
+	{
+		System.out.println(s);
+		varr[s]=1;
+		
+		for(int i=0;i<n;i++)
+		{
+			if(i==s)
+				continue;
+			
+			if(graph[s][i]==1 && varr[i]==0)
+			{
+				if(!q.contains(i))
+					q.add(i);
+				
+			}
+			
+		}
+		
+		while(!q.isEmpty())
+		{
+			printBFS(graph, n, q.remove(), varr, q);
+		}
+		
+	}
+}
