@@ -1,0 +1,45 @@
+package Graphs;
+import java.util.Scanner;
+public class TraversalDFS {
+
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		int n=sc.nextInt();
+		int e=sc.nextInt();
+		
+		int graph[][]=new int[n][n];
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			graph[x][y]=1;
+			graph[y][x]=1;
+		}
+		
+		int varr[]=new int[n];
+		
+		printpath(graph,n,0,varr);
+	}
+
+	private static void printpath(int[][] graph, int n,int sv,int varr[]) {
+		// TODO Auto-generated method stub
+		System.out.println(sv);
+		varr[sv]=1;
+		
+		for(int i=0;i<n;i++)
+		{
+			if(sv==i)
+				continue;
+			
+			if(graph[sv][i]==1 && varr[i]==0)
+			{
+				
+				printpath(graph, n, i,varr);
+			}
+		}	
+	}
+}
