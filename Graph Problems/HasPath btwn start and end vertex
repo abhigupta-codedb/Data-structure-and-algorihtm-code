@@ -1,0 +1,52 @@
+package Graphs;
+import java.util.Scanner;
+public class HasPath {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int V = sc.nextInt();
+		int E = sc.nextInt();
+
+		int graph[][]=new int[V][V];
+		
+		for(int i=0;i<E;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			graph[x][y]=1;
+			graph[y][x]=1;
+		}
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		int varr[]=new int[V];
+		
+		System.out.println(hasPath(graph,V,varr,start,end));
+		
+		sc.close();
+	}
+
+	private static boolean hasPath(int[][] graph, int n,int[] varr,int start,int end) {
+		// TODO Auto-generated method stub
+		varr[start]=1;
+		
+		if(graph[start][end]==1)
+			return true;
+		
+		for(int i=0;i<n;i++)
+		{
+			if(start==i)
+				continue;
+			
+			if(graph[start][i]==1 && varr[i]==0)
+				hasPath(graph, n, varr,i, end);
+		}
+		
+		
+			return false;
+		
+	}
+	
+	
+}
