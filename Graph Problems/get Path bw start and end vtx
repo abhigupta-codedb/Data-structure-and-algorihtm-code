@@ -1,0 +1,61 @@
+package Graphs;
+import java.util.*;
+public class get_path_DFS {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int v=sc.nextInt();
+		
+		LinkedList<Integer> adjList[]=new LinkedList[v];
+		
+		for(int i=0;i<v;i++)
+			adjList[i]=new LinkedList();
+		
+		int e=sc.nextInt();
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			adjList[x].add(y);
+			
+		}
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		
+		ArrayList<Integer> in_ar=new ArrayList<Integer>();
+		getPath(adjList,v,start,end,in_ar);
+		
+		sc.close();
+	}
+
+	private static void getPath(LinkedList<Integer>[] adjList, int v, int start, int end,
+			ArrayList<Integer> in_ar) {
+		// TODO Auto-generated method stub
+		in_ar.add(start);
+		
+		if(in_ar.contains(end))
+		{
+			System.out.println("yes");
+			
+			Collections.reverse(in_ar);
+			
+			for(int a:in_ar)
+				System.out.print(a+" ");
+			
+			return;
+		}
+		
+		Iterator<Integer> itr=adjList[start].iterator();
+		
+		while(itr.hasNext())
+			getPath(adjList, v,itr.next(),end,in_ar);
+		
+		
+	}
+
+}
