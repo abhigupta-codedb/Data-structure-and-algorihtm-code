@@ -1,0 +1,71 @@
+package Graphs;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class hasPath_adjList {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int v=sc.nextInt();
+		
+		LinkedList<Integer> adjList []=new LinkedList[v];
+		
+		for(int i=0;i<v;i++)
+			adjList[i]=new LinkedList<Integer>();
+		
+		int e=sc.nextInt();
+		
+		for(int i=0;i<e;i++)
+		{
+			int start=sc.nextInt();
+			int end=sc.nextInt();
+			
+			adjList[start].add(end);
+		}
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		
+		hasPath(adjList,v,start,end);
+	}
+	
+	
+	private static void hasPath(LinkedList<Integer>[] adjList,int n, int start, int end) {
+		// TODO Auto-generated method stub
+		if(adjList[start].contains(end))
+		{
+			System.out.println("True");
+			return;
+		}
+		
+		
+		Iterator<Integer> itr=adjList[start].iterator();
+			
+		while(itr.hasNext())
+			hasPath(adjList, n,itr.next(), end);
+			
+		}
+
+
+	public static void printGraph(LinkedList<Integer> [] adjList,int v)
+	{
+		for(int i=0;i<v;i++)
+		{
+			System.out.print("\nHead "+i+"-->");
+//			Iterator itr=adjList.iterator();
+//					
+//			while(itr.hasNext())
+//				System.out.println(itr.next());
+			
+			Iterator<Integer> itr=adjList[i].iterator();
+			while(itr.hasNext())
+				System.out.print(itr.next()+",");
+			
+		}
+		
+	}
+}
