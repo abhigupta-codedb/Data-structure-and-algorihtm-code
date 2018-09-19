@@ -1,0 +1,59 @@
+package Graphs;
+import java.util.*;
+public class get_path_adjMatrix_DFS {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int v=sc.nextInt();
+		
+		int mat[][]=new int[v][v];
+		
+		int e=sc.nextInt();
+		
+		for(int i=0;i<e;i++)
+		{
+			int start=sc.nextInt();
+			int end=sc.nextInt();
+			
+			mat[start][end]=1;
+			mat[end][start]=1;
+		}
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		int varr[]=new int[v];
+		ArrayList<Integer> in_ar=new ArrayList<Integer>();
+		
+		printPath(mat,v,start,end,varr,in_ar);
+	}
+
+	private static void printPath(int[][] mat, int v, int start, int end,int []varr,ArrayList<Integer> in_ar) {
+		// TODO Auto-generated method stub
+		in_ar.add(start);
+		varr[start]=1;
+		
+		if(in_ar.contains(end))
+		{
+			
+			Collections.reverse(in_ar);
+			
+			for(int a:in_ar)
+				System.out.print(a+" ");
+			
+			return;
+		}
+		
+		for(int i=0;i<v;i++)
+		{
+			if(start==i)
+				continue;
+			
+			if(mat[start][i]==1 && varr[i]==0)
+				printPath(mat, v, i, end, varr, in_ar);
+				
+		}
+	}
+
+}
