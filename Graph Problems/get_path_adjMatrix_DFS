@@ -1,7 +1,10 @@
 package Graphs;
 import java.util.*;
 public class get_path_adjMatrix_DFS {
-
+	// we have added global arraylist and used System.exit() to terminate JVM just after first o/p
+	
+	static ArrayList<Integer> in_ar=new ArrayList<Integer>();
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
@@ -24,7 +27,7 @@ public class get_path_adjMatrix_DFS {
 		int start=sc.nextInt();
 		int end=sc.nextInt();
 		int varr[]=new int[v];
-		ArrayList<Integer> in_ar=new ArrayList<Integer>();
+		
 		
 		printPath(mat,v,start,end,varr,in_ar);
 	}
@@ -36,13 +39,7 @@ public class get_path_adjMatrix_DFS {
 		
 		if(in_ar.contains(end))
 		{
-			
-			Collections.reverse(in_ar);
-			
-			for(int a:in_ar)
-				System.out.print(a+" ");
-			
-			return;
+			display(in_ar);
 		}
 		
 		for(int i=0;i<v;i++)
@@ -54,6 +51,17 @@ public class get_path_adjMatrix_DFS {
 				printPath(mat, v, i, end, varr, in_ar);
 				
 		}
+	}
+	
+	private static void display(ArrayList<Integer> ar)
+	{
+		Collections.reverse(ar);
+		
+		for(int a:ar)
+			System.out.print(a+" ");
+		 
+		// Terminate JVM
+		System.exit(0);
 	}
 
 }
