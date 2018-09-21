@@ -23,7 +23,7 @@ public class get_Path_BFS {
 			
 			graph[x][y]=1;
 			graph[y][x]=1;
-			hm.put(x,y);
+			hm.put(y,x);
 		}
 		
 		int varr[]=new int[n];
@@ -54,20 +54,16 @@ public class get_Path_BFS {
 			System.out.println("No path");
 		else
 		{
-			for(Map.Entry<Integer,Integer> entry : hm.entrySet())
+			for(;;)
 			{
 				if(end==start)
-				{
-					System.out.print(end);;
-					break;
-				}
+					{
+						System.out.print(end);;
+						break;
+					}
+				System.out.print(end+" ");
+				end=hm.get(end);
 				
-				
-				else if(entry.getValue()==end)
-				{
-					System.out.print(end+" ");
-					end=entry.getKey();
-				}
 			}
 		}
 		
