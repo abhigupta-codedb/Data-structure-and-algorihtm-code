@@ -1,0 +1,110 @@
+package Graphs;
+
+import java.util.*;
+
+public class get_Path_BFS {
+	
+	static int set=0;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int n=sc.nextInt();
+		int e=sc.nextInt();
+		
+		int graph[][]=new int[n][n];
+		Map<Integer,Integer> hm=new HashMap<Integer,Integer>();
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			graph[x][y]=1;
+			graph[y][x]=1;
+			hm.put(x,y);
+		}
+		
+		int varr[]=new int[n];
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		
+		Queue<Integer> q = new LinkedList<>();
+		
+		
+//		printpath(graph,n,start,end,varr,q,ar);
+//		
+//		if(ar.contains(start) &&  ar.contains(end))
+//		{
+//			for(int a:ar)
+//				System.out.print(a+" ");
+//		}
+		
+		get_Path(graph, n, start, end, varr, q);
+		
+//for printing map		
+//		for(Map.Entry<Integer,Integer> entry : hm.entrySet())
+//		{
+//			System.out.println(entry.getKey()+"  "+entry.getValue());
+//		}
+		
+		if(set==0)
+			System.out.println("No path");
+		else
+		{
+			for(Map.Entry<Integer,Integer> entry : hm.entrySet())
+			{
+				if(end==start)
+				{
+					System.out.print(end);;
+					break;
+				}
+				
+				
+				else if(entry.getValue()==end)
+				{
+					System.out.print(end+" ");
+					end=entry.getKey();
+				}
+			}
+		}
+		
+	}
+	
+	private static void get_Path(int[][] graph, int n,int sv,int ev,int varr[],Queue<Integer> q) {
+		// TODO Auto-generated method stub
+		
+		varr[sv]=1;
+		
+		
+		for(int i=0;i<n;i++)
+		{
+			if(sv==i)
+				continue;
+			                                                                              
+			if(graph[sv][i]==1 && varr[i]==0)
+			{
+				if(!q.contains(i))
+					
+					{
+						q.add(i);
+						
+					}
+			}	
+			
+			if( q.contains(ev))
+				{
+					set=1;
+					return;
+				}
+		}
+		
+		while(!q.isEmpty())
+			get_Path(graph, n,q.remove(),ev,varr,q);
+		
+		
+	}
+	
+}
