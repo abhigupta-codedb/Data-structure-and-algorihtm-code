@@ -1,0 +1,81 @@
+package Graphs;
+
+import java.util.*;
+
+public class return_all_connc_comp {
+	
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		int n=sc.nextInt();
+		int e=sc.nextInt();
+		
+		int graph[][]=new int[n][n];
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			
+			graph[x][y]=1;
+			graph[y][x]=1;
+		}
+		
+		int varr[]=new int[n];
+		
+		ArrayList< ArrayList<Integer>> mar=new ArrayList< ArrayList<Integer>>(); 
+		
+		for(int i=0;i<n;i++)
+		{
+			
+			if(varr[i]==0)
+			{	
+				ArrayList<Integer> ar=new ArrayList<Integer>();
+				
+				printpath(graph,n,i,varr,ar);
+				
+				if(!ar.isEmpty())
+				{
+					//System.out.println("coming arlist\n");
+					
+//					for(int a:ar)
+//						System.out.println(a);
+					mar.add(ar);
+				}
+			}
+			
+		}
+		
+		
+		//System.out.println("final answer\n");
+		for(ArrayList<Integer> a :mar)
+		{
+			Collections.sort(a);
+			for(int b:a)
+				System.out.print(b+" ");
+			
+			System.out.println();
+		}
+			
+		sc.close();
+	}
+
+	private static void printpath(int[][] graph, int n,int sv,int varr[],ArrayList<Integer> ar) {
+		// TODO Auto-generated method stub
+		ar.add(sv);
+		varr[sv]=1;
+		
+		for(int i=0;i<n;i++)
+		{
+			if(sv==i)
+				continue;
+			
+			if(graph[sv][i]==1 && varr[i]==0)
+			{
+				
+				printpath(graph, n, i,varr,ar);
+			}
+		}	
+	}
+}
