@@ -4,6 +4,7 @@ public class get_path_adjMatrix_DFS {
 	// we have added global arraylist and used System.exit() to terminate JVM just after first o/p
 	
 	static ArrayList<Integer> in_ar=new ArrayList<Integer>();
+	static int set=0;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,12 +25,21 @@ public class get_path_adjMatrix_DFS {
 			mat[end][start]=1;
 		}
 		
+		
 		int start=sc.nextInt();
 		int end=sc.nextInt();
 		int varr[]=new int[v];
 		
-		
 		printPath(mat,v,start,end,varr,in_ar);
+		
+		if(set==1)
+		{
+			Collections.reverse(in_ar);
+			
+			for(int a:in_ar)
+				System.out.print(a+" ");
+		}
+		
 	}
 
 	private static void printPath(int[][] mat, int v, int start, int end,int []varr,ArrayList<Integer> in_ar) {
@@ -39,7 +49,9 @@ public class get_path_adjMatrix_DFS {
 		
 		if(in_ar.contains(end))
 		{
-			display(in_ar);
+			set=1;
+			return;
+			
 		}
 		
 		for(int i=0;i<v;i++)
@@ -48,20 +60,15 @@ public class get_path_adjMatrix_DFS {
 				continue;
 			
 			if(mat[start][i]==1 && varr[i]==0)
-				printPath(mat, v, i, end, varr, in_ar);
+				printPath(mat, v, i, end, varr,in_ar);
+			
+			if(set==1)
+				break;
 				
 		}
+		
+		return;
 	}
 	
-	private static void display(ArrayList<Integer> ar)
-	{
-		Collections.reverse(ar);
-		
-		for(int a:ar)
-			System.out.print(a+" ");
-		 
-		// Terminate JVM
-		System.exit(0);
-	}
 
 }
