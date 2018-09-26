@@ -1,0 +1,112 @@
+package Graphs;
+import java.util.*;
+
+public class kruskalAlgo {
+	
+	static class Edge implements Comparable<Edge>
+	{
+		public int source;
+		public int dest;
+		public int weight;
+		
+		@Override
+		public int compareTo(Edge edg) {
+			// TODO Auto-generated method stub
+			if(weight==edg.weight)
+				return 0;
+			
+			else if(weight>edg.weight)
+				return 1;
+			
+			else
+				return -1;
+		}
+	}
+	
+	
+	public static void main(String args[])
+	{
+		Scanner sc =new Scanner(System.in);
+		
+		int v=sc.nextInt();
+		int e=sc.nextInt();
+		
+		Edge input[]=new Edge[e];
+		
+		for(int i=0;i<e;i++)
+		{
+			input[i]=new Edge();
+			
+			input[i].source=sc.nextInt();
+			input[i].dest=sc.nextInt();
+			input[i].weight=sc.nextInt();
+		}
+		
+		Edge output[]=new Edge[v-1];
+		
+		int parr[]=new int[v];
+		
+		for(int i=0;i<v;i++)
+		{
+			parr[i]=i;
+		}
+		
+		Arrays.sort(input);
+		
+//		for(Edge edg:input)
+//		{
+//			System.out.println();
+//			System.out.print(" Source "+edg.source);
+//			System.out.print(" Dest "+edg.dest);
+//			System.out.print(" Weight "+edg.weight);
+//		}
+		
+		kruskal(input,output,v,0,parr);
+		
+		System.out.println("Kruskal algo....\n");
+		int min_sum=0;
+		for(Edge edg:output)
+		{
+			System.out.println();
+			System.out.print(" Source "+edg.source);
+			System.out.print(" Dest "+edg.dest);
+			System.out.print(" Weight "+edg.weight);
+			min_sum+=edg.weight;
+		}
+		
+		System.out.println("Sum "+min_sum);
+		sc.close();
+	}
+	
+	public static void kruskal(Edge [] input,Edge [] output,int vert,int count,int []parr)
+	{
+		for(Edge e:input)
+		{
+			if(count==vert-1)
+				break;
+			
+			if(is_Safe(e.source, e.dest, parr))
+			{
+				output[count]=new Edge();
+				output[count].source=e.source;
+				output[count].dest=e.dest;
+				output[count].weight=e.weight;
+				
+				count++;
+			}
+		}
+	}
+	
+	public static boolean is_Safe(int sv,int ev,int []parr)
+	{
+		boolean val=false;
+		
+		if(parr[sv]!=parr[ev])
+		{
+			parr[ev]=parr[sv];
+			val=true;
+		}	
+			
+		return val;
+	}
+}
