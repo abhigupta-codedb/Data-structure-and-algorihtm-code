@@ -1,0 +1,81 @@
+package DP;
+import java.util.*;
+public class HungryFish {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		String str="50#25,20,9,100";
+		
+		String [] inj=str.split("#");
+		String [] oth=inj[1].split(",");
+		int size=oth.length+1;
+		
+		int arr[]=new int[size];
+		
+		arr[0]=Integer.parseInt(inj[0]);
+		
+		int inj_fsh=arr[0];
+		
+		for(int i=1;i<size;i++)
+		{
+			arr[i]=Integer.parseInt(oth[i-1]);
+		}
+		
+		Arrays.sort(arr);
+		
+		for(int a :arr)
+			System.out.print(a+" ");
+		
+		ArrayList<Integer> arlist=new ArrayList<Integer>();
+		
+		for(int a:arr)
+			arlist.add(a);
+		
+		int count=0;
+		
+		while(arlist.size()>2)
+		{
+			int index=arlist.indexOf(inj_fsh);
+			
+			if(index>0)
+			{
+				while(index>0)
+				{
+					int nw_val=inj_fsh;
+					nw_val+=arlist.get(index-1);
+					//arlist.remove(inj_fsh);
+					arlist.remove(index-1);
+					arlist.remove(arlist.indexOf(inj_fsh));
+					inj_fsh=nw_val;
+					arlist.add(inj_fsh);
+					Collections.sort(arlist);
+					index=arlist.indexOf(inj_fsh);
+				}
+			}
+			
+			else
+			{
+				//index==0
+//				int low=arlist.get(index+1)-inj_fsh+1;
+//				int high=arlist.get(index)-1;
+//				int nw_val=(high+low)/2;
+				int nw_val=arlist.get(index)-1;
+				arlist.add(nw_val);
+				Collections.sort(arlist);
+				count++;
+			}
+		}
+		
+		System.out.println("ANS");
+		
+		if(arlist.size()==2)
+			System.out.println(count+1);
+		else
+			System.out.println(count);
+		
+		
+		
+	}
+
+}
