@@ -1,0 +1,94 @@
+package Graphs;
+
+import java.util.*;
+
+//import Graphs.kruskalAlgo.Edge;
+
+public class primsAlgo {
+	
+	public static void main(String args[])
+	{
+		Scanner sc =new Scanner(System.in);
+		
+		int v=sc.nextInt();
+		int e=sc.nextInt();
+		
+		int input[][]=new int[v][v];
+		
+		for(int i=0;i<e;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			int w=sc.nextInt();
+			
+			input[x][y]=w;
+			input[y][x]=w;
+		}
+		
+		prims(input,v);
+		
+		
+		
+		sc.close();
+	}
+	
+	
+	public static void prims(int input[][],int v)
+	{
+		boolean vr[]=new boolean[v];
+		int warr[]=new int[v];
+		int parr[]=new int[v];
+		
+		for(int i=0;i<v;i++)
+		{
+			vr[i]=false;
+			warr[i]=Integer.MAX_VALUE;
+		}
+		
+		parr[0]=-1;
+		warr[0]=0;
+		
+		for(int i=0;i<v;i++)
+		{
+			//find min vertex
+			int min_vtx=find_min_vtx(warr, vr, v );
+			vr[min_vtx]=true;
+			//explore unvisited neighbour
+			
+			for(int j=0;j<v;j++)
+			{
+				if(input[min_vtx][j]!=0 && !vr[j])
+				{
+					if(input[min_vtx][j]<warr[j])
+					{
+						warr[j]=input[min_vtx][j];
+						parr[j]=min_vtx;
+					}
+				}
+			}
+		}
+		
+		for(int i=1;i<v;i++)
+		{
+			if(parr[i]<i)
+				System.out.println(parr[i]+" "+i+" "+warr[i]);
+			else
+				System.out.println(i+" "+parr[i]+" "+warr[i]);
+				
+		}
+	}
+	
+	static int find_min_vtx(int warr[],boolean visited[],int v)
+	{
+		int min_vtx=-1;
+		int min_vl=Integer.MAX_VALUE;
+		
+		for(int i=0;i<v;i++)
+		{
+			if(warr[i]<min_vl && visited[i]==false)
+				min_vtx=i;
+		}
+		
+		return min_vtx;
+	}
+}
