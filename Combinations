@@ -1,0 +1,83 @@
+package Practice;
+import java.util.*;
+public class combinations {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc =new Scanner(System.in);
+		int max_sum=38;
+		int tl_ed=8;
+		
+		String str="?8?????";
+		
+		StringBuilder sbr=new StringBuilder(str);
+		
+		char ch[]=str.toCharArray();
+		
+		int i=0;
+		int elmt=0;
+		
+		for(char c:ch)
+		{
+			if(c!='?')
+			{
+				elmt=Integer.parseInt(String.valueOf(c));
+				break;
+			}
+			
+			i++;
+		}
+		
+		int arr[]=new int[7];
+		
+		arr[i]=elmt;
+		
+//		for(int a:arr)
+//			System.out.println(a+" ");
+		
+		combination(arr, max_sum,0, tl_ed);
+	}
+	
+	
+	static void combination(int arr[],int max_sum,int start,int tled)
+	{
+
+		
+		if(start==arr.length && max_sum==0)
+		{
+			for(int i=0;i<arr.length;i++)
+				System.out.print( arr[i]+" ");
+			
+			return;
+		}
+		
+		else
+		{
+			if(arr[start]==0)
+			{
+				arr[start]=tled;
+				int temp_sum= max_sum;
+				temp_sum-=tled;
+				
+				if(temp_sum>0)
+				{
+					max_sum=temp_sum;
+					combination(arr, max_sum, start+1, tled);
+					
+				}
+				
+				else
+				{
+					combination(arr, max_sum, start, tled-1);
+				}
+			}
+			
+			else
+			{
+				
+				combination(arr, max_sum-arr[start], start+1, tled);
+				
+			}
+		}
+	}
+}
