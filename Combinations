@@ -1,6 +1,7 @@
-package Practice;
+package BacktrackMergeBinarySearch;
+
 import java.util.*;
-public class combinations {
+public class comb_order {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -9,8 +10,6 @@ public class combinations {
 		int tl_ed=8;
 		
 		String str="?8?????";
-		
-		StringBuilder sbr=new StringBuilder(str);
 		
 		char ch[]=str.toCharArray();
 		
@@ -28,56 +27,68 @@ public class combinations {
 			i++;
 		}
 		
-		int arr[]=new int[7];
+//		int arr[]=new int[7];
+//		
+//		arr[i]=elmt;
 		
-		arr[i]=elmt;
+		ArrayList<List<Integer>> outlist=new ArrayList<List<Integer>>();
+		ArrayList<Integer> templist=new ArrayList<Integer>();
 		
-//		for(int a:arr)
-//			System.out.println(a+" ");
 		
-		combination(arr, max_sum,0, tl_ed);
+		int inarr []=new int [tl_ed];
+		
+		for(int j=0;j<tl_ed;j++)
+			inarr[j]=j+1;
+		
+		
+		combination(inarr, 0, max_sum-elmt, templist, outlist);
+		
+		for(List<Integer> list:outlist)
+		{
+			Iterator<Integer> itr=list.iterator();
+			int arr[]=new int[7];
+			arr[i]=elmt;
+			
+			for(int k=0;k<7;k++)
+			{
+				if(k==i)
+					continue;
+				
+				arr[k]=itr.next();
+			}
+			
+			for(int a:arr)
+				System.out.print(a+" ");
+			System.out.println();
+		}
+		
+		sc.close();
 	}
 	
 	
-	static void combination(int arr[],int max_sum,int start,int tled)
+	static void combination(int arr[],int start,int max_sum,ArrayList<Integer> templist,ArrayList<List<Integer>> outlist)
 	{
-
 		
-		if(start==arr.length && max_sum==0)
+		if(max_sum<0)
+			return;
+		
+		else if(max_sum==0 && templist.size()==6)
 		{
-			for(int i=0;i<arr.length;i++)
-				System.out.print( arr[i]+" ");
 			
+			outlist.add(new ArrayList<Integer>(templist));
 			return;
 		}
 		
-		else
+		while(start<arr.length && max_sum-arr[start]>=0)
 		{
-			if(arr[start]==0)
-			{
-				arr[start]=tled;
-				int temp_sum= max_sum;
-				temp_sum-=tled;
-				
-				if(temp_sum>0)
-				{
-					max_sum=temp_sum;
-					combination(arr, max_sum, start+1, tled);
-					
-				}
-				
-				else
-				{
-					combination(arr, max_sum, start, tled-1);
-				}
-			}
+			templist.add(arr[start]);
 			
-			else
-			{
-				
-				combination(arr, max_sum-arr[start], start+1, tled);
-				
-			}
+			combination(arr, start, max_sum-arr[start], templist,outlist);
+			start++;
+			
+			templist.remove(templist.size()-1);
 		}
+		
 	}
 }
+
