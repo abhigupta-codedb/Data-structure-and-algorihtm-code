@@ -1,0 +1,53 @@
+package recursion;
+import java.util.*;
+public class reverseSum {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int k=sc.nextInt();
+		String str=sc.next();
+		
+		revSum(str, k);
+		
+		sc.close();
+	}
+	
+	static void revSum(String str,int k)
+	{
+		StringBuilder sbr=new StringBuilder();
+		
+		while(k>0)
+		{
+			sbr.append(str);
+			k--;
+		}
+		
+		//System.out.println(sbr.toString());
+		
+		System.out.println(Sum(sbr.toString()));
+	}
+	
+	static int Sum(String str)
+	{
+		char ch[]=str.toCharArray();
+		int sum=0;
+		for(char c:ch)
+		{
+			sum+=Integer.parseInt(String.valueOf(c));
+		}
+		
+		String fsum=String.valueOf(sum);
+		int val=sum;
+		
+		while(fsum.length()>1)
+		{
+			val=Sum(fsum);
+			
+			if(val>=0 && val<=9)
+				break;
+		}
+		
+		return val;
+	}
+	
+}
