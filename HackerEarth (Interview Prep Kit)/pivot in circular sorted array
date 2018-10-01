@@ -1,0 +1,36 @@
+package Practice;
+import java.util.*;
+public class soretdRotated {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {8,9,10,11,12,2,3,4};
+		
+		int key=3;
+		
+		System.out.println(findpivot(arr,arr.length));
+	}
+
+	private static int findpivot(int[] arr,int n) {
+		// TODO Auto-generated method stub
+		int low=0, high=n-1;
+		
+		while(low<=high)
+		{
+			if(arr[low]<=arr[high])
+				return low;
+			int mid=(low+high)/2;
+			int next=(mid+1)%n ,prev=(mid-1+n)%n;
+			
+			if(arr[mid]<=arr[next] && arr[mid]<=arr[prev])
+				return mid;
+			else if(arr[mid]>=arr[low])
+				low=mid+1;
+			else if(arr[mid]<=arr[high])
+				high=mid-1;
+		}
+		
+		return -1;
+	}
+
+}
