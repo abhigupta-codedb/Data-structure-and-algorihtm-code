@@ -1,0 +1,75 @@
+package Strings;
+import java.util.*;
+public class subString {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		String str="abc";
+		
+		List<String> out1=new ArrayList<String>();
+		
+		subStr(str,out1);
+		
+		 for (String a:out1)
+		 {
+			 System.out.println(a);
+		 }
+		
+		 System.out.println("All possible permutations ----\n");
+		 List<String> out2=new ArrayList<String>(); 
+		 List<String> getlist=allPerm(str, out2);
+		 
+		 for(String st:getlist)
+			 System.out.println(st);
+		 
+		sc.close();
+	}
+
+	private static void subStr(String str,List<String> out) {
+		// TODO Auto-generated method stub
+		//out=new ArrayList<String>();
+		
+		for(int i=0;i<str.length();i++)
+			for(int len=i+1;len<=str.length();len++)
+			{
+				out.add(str.substring(i, len));
+			}
+	}
+	
+	private static List<String> allPerm(String s,List<String> outlist)
+	{
+		if(s.length()==1)
+		{
+			outlist.add(s);
+			return outlist;
+		}
+		
+		List<String> comList1=allPerm(s.substring(1), outlist);
+		String gstr=s.substring(0, 1);
+		
+		List<String> comList2=merge(comList1,gstr);
+		
+		return comList2;
+	}
+	
+	private static List<String> merge(List<String> list,String tomrg)
+	{
+		List<String> temp=new ArrayList<String>();
+		
+		for(String s:list)
+		{
+			
+			for(int i=0;i<=s.length();i++)
+			{
+				StringBuffer sb=new StringBuffer(s).insert(i, tomrg);
+				temp.add(sb.toString());
+			}
+		}
+		
+		return temp;
+		
+	}
+
+}
