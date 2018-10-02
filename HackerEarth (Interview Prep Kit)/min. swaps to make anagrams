@@ -1,0 +1,42 @@
+package Strings;
+import java.util.*;
+public class Anagrams {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		String str="xaxbbbxx";
+		
+		System.out.println(minAnagrams(str));
+		System.out.println((int)'a');
+	}
+
+	private static int minAnagrams(String s) {
+		// TODO Auto-generated method stub
+		if(s.length()%2==0)
+        {
+            int size=s.length()/2;
+            String st1=s.substring(0,size);
+            String st2=s.substring(size);
+            
+            char ch1[]=st1.toCharArray();
+            char ch2[]=st2.toCharArray();
+            int count=0;
+            for(int i=0;i<ch1.length;i++)
+            {
+                
+                for(int j=0;j<ch2.length;j++)
+                {
+                    if(ch1[i]==ch2[j])
+                    {
+                        ch2[j]='0';
+                        count++;
+                        break;
+                    }
+                }
+            }
+            
+            return ch1.length-count;
+        }
+    return -1;
+	}
+}
