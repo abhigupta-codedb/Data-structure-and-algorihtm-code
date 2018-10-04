@@ -7,7 +7,7 @@ public class n_queen {
 		Scanner sc=new Scanner(System.in);
 		int n=sc.nextInt();
 		
-		int arr[][]=new int[11][11];
+		int arr[][]=new int[6][6];
 		
 		placeQueen(arr,n,0);
 	}
@@ -17,6 +17,7 @@ public class n_queen {
 		if(row==n)
 		{
 			//some soln has reached just print it;
+			System.out.println("------------------");
 			for(int i=0;i<n;i++)
 			{
 				for(int j=0;j<n;j++)
@@ -31,26 +32,26 @@ public class n_queen {
 		else
 		{
 			
-			while(row<n)
+			for(int col=0;col<n;col++)
 			{
-				for(int col=0;col<n;col++)
+				if(isSafe(arr,row,col,n))
 				{
-					if(isSafe(arr,row,col,n))
-					{
-						arr[row][col]=1;
-						break;
-					}
+					arr[row][col]=1;
+					placeQueen(arr, n, row+1);
+					arr[row][col]=0;
 				}
-				row++;
 			}
+			
+			
 		}
 	}
 
-	private static boolean isSafe(int arr[][],int row, int col,int n) {
+	private static boolean isSafe(int arr[][],int x, int y,int n) {
 		// TODO Auto-generated method stub
 		boolean val=true;
 		
-		
+		int row=x;
+		int col=y;
 		//check along x axis + direction
 		while(col<n)
 		{
@@ -63,18 +64,23 @@ public class n_queen {
 			col++;
 		}
 		
+		row=x;
+		col=y;
 		//check along x axis - direction
-//		while(col>-1)
-//		{
-//			if(arr[row][col]==1)
-//			{
-//				val=false;
-//				return val;
-//			}
-//			
-//			col--;
-//		}
+		while(col>-1)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			
+			col--;
+		}
 		
+		
+		row=x;
+		col=y;
 		//check along y axis + direction
 		while(row<n)
 		{
@@ -86,18 +92,23 @@ public class n_queen {
 			row++;
 		}
 		
-		//check along y axis - direction
-//		while(row>-1)
-//		{
-//			if(arr[row][col]==1)
-//			{
-//				val=false;
-//				return val;
-//			}
-//			row--;
-//		}
 		
-		//check diagonally + direction
+		row=x;
+		col=y;
+		//check along y axis - direction
+		while(row>-1)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row--;
+		}
+		
+		row=x;
+		col=y;
+		//check left diagonally + direction
 		while(row<n && col<n)
 		{
 			if(arr[row][col]==1)
@@ -109,7 +120,24 @@ public class n_queen {
 			col++;
 		}
 		
+		row=x;
+		col=y;
+		//check keft diagonally - direction
+		while(row>-1 && col>-1)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row--;
+			col--;
+		}
 		
+		
+		row=x;
+		col=y;
+		//check right diagonally + direction
 		while(row<n && col>-1)
 		{
 			if(arr[row][col]==1)
@@ -119,6 +147,21 @@ public class n_queen {
 			}
 			row++;
 			col--;
+		}
+		
+		
+		row=x;
+		col=y;
+		//check right diagonally - direction
+		while(row>-1 && col<n)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row--;
+			col++;
 		}
 		
 		return val;
