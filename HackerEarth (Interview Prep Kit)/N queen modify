@@ -1,0 +1,130 @@
+package Practice;
+import java.util.*;
+public class n_queen {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		
+		int arr[][]=new int[11][11];
+		
+		placeQueen(arr,n,0);
+	}
+
+	private static void placeQueen(int[][] arr, int n,int row) {
+		// TODO Auto-generated method stub
+		if(row==n)
+		{
+			//some soln has reached just print it;
+			for(int i=0;i<n;i++)
+			{
+				for(int j=0;j<n;j++)
+					System.out.print(arr[i][j]+" ");
+				
+				System.out.println();
+			}
+			
+			return;
+		}
+		
+		else
+		{
+			
+			while(row<n)
+			{
+				for(int col=0;col<n;col++)
+				{
+					if(isSafe(arr,row,col,n))
+					{
+						arr[row][col]=1;
+						break;
+					}
+				}
+				row++;
+			}
+		}
+	}
+
+	private static boolean isSafe(int arr[][],int row, int col,int n) {
+		// TODO Auto-generated method stub
+		boolean val=true;
+		
+		
+		//check along x axis + direction
+		while(col<n)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			
+			col++;
+		}
+		
+		//check along x axis - direction
+//		while(col>-1)
+//		{
+//			if(arr[row][col]==1)
+//			{
+//				val=false;
+//				return val;
+//			}
+//			
+//			col--;
+//		}
+		
+		//check along y axis + direction
+		while(row<n)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row++;
+		}
+		
+		//check along y axis - direction
+//		while(row>-1)
+//		{
+//			if(arr[row][col]==1)
+//			{
+//				val=false;
+//				return val;
+//			}
+//			row--;
+//		}
+		
+		//check diagonally + direction
+		while(row<n && col<n)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row++;
+			col++;
+		}
+		
+		
+		while(row<n && col>-1)
+		{
+			if(arr[row][col]==1)
+			{
+				val=false;
+				return val;
+			}
+			row++;
+			col--;
+		}
+		
+		return val;
+	}
+	
+	
+	
+
+}
