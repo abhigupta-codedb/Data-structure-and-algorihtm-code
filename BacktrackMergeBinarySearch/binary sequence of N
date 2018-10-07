@@ -1,0 +1,18 @@
+'''
+Created on Oct 7, 2018
+
+@author: Abhishek Gupta
+'''
+def append(x,L):
+    return[x + element for element in L]
+
+def bit_string(n):
+    if(n==0):
+        return []
+    if(n==1):
+        return ["0","1"]
+    
+    else:
+        return (append("0", bit_string(n-1))+append("1", bit_string(n-1)))
+    
+print(bit_string(4))    
