@@ -7,8 +7,9 @@ public class rain_water {
 	
 	static class index
 	{
-		
-		
+		int lindex=0;
+		int rindex=0;
+			
 	}
 	
 	public static void main(String[] args) {
@@ -33,26 +34,35 @@ public class rain_water {
 	
 	static int wate_tapped(int arr[])
 	{
-		int felt=arr[0];
-		int lelt=arr[arr.length-1];
+		int vol=0;
 		
-		int selt=(lelt<felt)?lelt:felt;
-		
-		int vol=selt*(arr.length-2);
-		
-		for(int i=1;i<arr.length-1;i++)
+		for(int i=0;i<arr.length;i++)
 		{
-			if(arr[i]>selt)
-			{
-				vol-=selt;
-			}
 			
-			else
-			{
-				vol-=arr[i];
-			}
+		}
+	}
+	
+	static index getindex(int arr[],int index)
+	{
+		int lelt=0;
+		for(int i=0;i<index;i++)
+		{
+			if(arr[i]>lelt)
+				lelt=arr[i];
 		}
 		
-		return vol;
+		index i=new index();
+		i.lindex=lelt;
+		
+		int relt=0;
+		for(int j=index+1;j<arr.length;j++)
+		{
+			if(arr[j]>relt)
+				relt=arr[j];
+		}
+		
+		i.rindex=relt;
+		
+		return i;
 	}
 }
