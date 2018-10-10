@@ -1,0 +1,72 @@
+package Practice;
+
+import java.util.Scanner;
+
+public class rain_water {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc =new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t>0)
+		{
+			int n=sc.nextInt();
+			int arr[]=new int[n];
+			
+			for(int i=0;i<n;i++)
+				arr[i]=sc.nextInt();
+			
+			int larr[]=new int[arr.length];
+			int rarr[]=new int[arr.length];
+			
+			get_left_right(arr,larr,rarr);
+			int water_tap=0;
+			
+			for(int i=0;i<arr.length;i++)
+			{
+				int mval=larr[i]>=rarr[i]?rarr[i]:larr[i];
+				
+				water_tap+=mval-arr[i];
+			}
+			
+			System.out.println(water_tap);
+			
+			t--;
+		}
+		
+	}
+	
+	
+	
+	static void get_left_right(int arr[],int larr[],int rarr[])
+	{
+		larr[0]=arr[0];
+		int n=arr.length;
+		
+		for(int i=1;i<n;i++)
+		{
+			if(arr[i]>larr[i-1])
+			{
+				larr[i]=arr[i];
+			}
+			
+			else
+				larr[i]=larr[i-1];
+		}
+		
+		// filling right array
+		rarr[n-1]=arr[n-1];
+		
+		for(int i=n-2;i>=0;i--)
+		{
+			if(arr[i]>rarr[i+1])
+			{
+				rarr[i]=arr[i];
+			}
+			
+			else
+				rarr[i]=rarr[i+1];
+		}
+	
+	}
+}
