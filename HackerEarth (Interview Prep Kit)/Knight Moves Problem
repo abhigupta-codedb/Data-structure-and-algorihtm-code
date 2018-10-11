@@ -1,0 +1,101 @@
+package Practice;
+import java.util.*;
+public class Knight_Moves {
+	
+	static class Cord
+	{
+		int x;
+		int y;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int board[][]=new int[8][8];
+		
+		int startx=0;
+		int starty=0;
+		int endx=4;
+		int endy=4;
+		
+		ArrayList<Integer> steps=new ArrayList<Integer>();
+		ArrayList<Cord> vsteps=new ArrayList<Cord>();
+		
+//		ArrayList<Cord> arc=get_positions(startx,starty);
+//		
+//		for(Cord c:arc)
+//		{
+//			System.out.print(c.x+","+c.y+"||");
+//		}
+		
+		min_steps(startx,starty,endx,endy,steps,vsteps,0);
+		
+		
+		for(int s:steps)
+			{
+				System.out.print(s+" ");
+			}
+	
+	}
+
+	private static void min_steps(int startx, int starty, int endx, int endy,ArrayList<Integer> steps,ArrayList<Cord> vsteps,int count) {
+		// TODO Auto-generated method stub
+		Cord cadd=new Cord();
+		cadd.x=startx;
+		cadd.y=starty;
+		vsteps.add(cadd);
+		
+		if(startx==endx && starty==endy)
+		{
+			steps.add(count);
+			return;
+		}
+		
+		ArrayList<Cord> arc=get_positions(startx,starty,vsteps);
+		
+		for(Cord c:arc)
+		{
+			min_steps(c.x, c.y, endx, endy, steps, vsteps, count+1);
+		}
+	}
+
+	private static ArrayList<Cord> get_positions(int startx, int starty,ArrayList<Cord> vsteps) {
+		// TODO Auto-generated method stub
+		ArrayList<Cord> arc=new ArrayList<Cord>();
+		
+		int x[]= {1, 1, 2 , 2 ,-1 ,-1,-2, -2};
+		int y[]= {2,-2, 1 ,-1 ,-2 , 2, 1, -1};
+		
+		for(int i=0;i<8;i++)
+		{
+			if(startx+x[i]<8 && startx+x[i]>=0)
+			{
+				if(startx+y[i]<8 && startx+y[i]>=0)
+				{
+					Cord c=new Cord();
+					c.x=startx+x[i];
+					c.y=startx+y[i];
+					
+					if(!contains(c, vsteps))
+					{
+						arc.add(c);
+					}
+				}
+			}
+		}
+		
+		return arc;
+	}
+	
+	private static boolean contains(Cord c,ArrayList<Cord> vsteps)
+	{
+		for(Cord cv:vsteps)
+		{
+			if(cv.x==c.x && cv.y==c.y)
+				return true;
+			
+		}
+		
+		return false;
+	}
+
+}
