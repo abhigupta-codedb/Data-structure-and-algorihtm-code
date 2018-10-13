@@ -1,0 +1,63 @@
+package BacktrackMergeBinarySearch;
+public class warnsdorffsAlgo {
+			
+		static class Cord
+		{
+			int x;
+			int y;
+		}
+		
+		static int count=1;
+
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			int board[][]=new int[8][8];
+			
+			int startx=0;
+			int starty=0;
+					
+			fill_board(board,startx,starty);
+			
+			//print board
+			for(int i=0;i<8;i++)
+			{
+				for(int j=0;j<8;j++)
+					System.out.print(board[i][j]+"  ");
+				
+				System.out.println();
+			}
+			
+		}
+		
+		private static void fill_board(int [][]board,int startx,int starty)
+		{
+			if(board[startx][starty]==0)
+				board[startx][starty]=count++;
+			
+			int x[]= {1, 1, 2 , 2 ,-1 ,-1,-2, -2};
+			int y[]= {2,-2, 1 ,-1 ,-2 , 2, 1, -1};
+			
+			for(int i=0;i<8;i++)
+			{
+				if(startx+x[i]<8 && startx+x[i]>=0)
+				{
+					if(starty+y[i]<8 && starty+y[i]>=0)
+					{
+						Cord c=new Cord();
+						c.x=startx+x[i];
+						c.y=starty+y[i];
+						
+						if(board[c.x][c.y]==0)
+						{
+							fill_board(board,c.x, c.y);
+						}
+						
+						else
+							continue;
+					}
+				}
+			}
+			
+		}
+		
+}
