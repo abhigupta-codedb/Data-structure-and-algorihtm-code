@@ -1,0 +1,147 @@
+package Practice;
+
+import java.util.ArrayList;
+
+public class warnsdorffsAlgo {
+			
+		static class Cord
+		{
+			int x;
+			int y;
+		}
+		
+		static int count=1;
+		static int board[][]=new int[8][8];
+		
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			
+			int startx=0;
+			int starty=0;
+					
+			
+			ArrayList<Cord> vsteps=new ArrayList<Cord>();
+			
+			min_steps(0, 0, vsteps);
+			
+			//print board
+			for(int i=0;i<8;i++)
+			{
+				for(int j=0;j<8;j++)
+					System.out.print(board[i][j]+"  ");
+				
+				System.out.println();
+			}
+			
+		}
+		
+		
+		private static void min_steps(int startx, int starty,ArrayList<Cord> vsteps) {
+			// TODO Auto-generated method stub
+			//putting every visited point in visited list.
+			Cord cadd=new Cord();
+			cadd.x=startx;
+			cadd.y=starty;
+			vsteps.add(cadd);
+			
+			board[startx][starty]=count++;
+			
+			
+			ArrayList<Cord> arc=get_positions(startx,starty,vsteps);
+			
+			
+			// going to every cord. from every possible coordinate
+			for(Cord c:arc)
+			{
+//				Cord to_vis=get_max_deg(arc);
+				min_steps(c.x,c.y,vsteps);
+			}
+			
+			
+			//min_steps(to_vis.x, to_vis.y,vsteps);
+			
+		}
+		
+		
+		
+		private static ArrayList<Cord> get_positions(int startx, int starty,ArrayList<Cord> vsteps) {
+			// TODO Auto-generated method stub
+			ArrayList<Cord> arc=new ArrayList<Cord>();
+			
+			int x[]= {1, 1, 2 , 2 ,-1 ,-1,-2, -2};
+			int y[]= {2,-2, 1 ,-1 ,-2 , 2, 1, -1};
+			
+			for(int i=0;i<8;i++)
+			{
+				if(startx+x[i]<8 && startx+x[i]>=0)
+				{
+					if(starty+y[i]<8 && starty+y[i]>=0)
+					{
+						Cord c=new Cord();
+						c.x=startx+x[i];
+						c.y=starty+y[i];
+						
+						if(!contains(c, vsteps))
+						{
+							arc.add(c);
+						}
+					}
+				}
+			}
+			
+			return arc;
+		}
+		
+		
+		private static boolean contains(Cord c,ArrayList<Cord> vsteps)
+		{
+			for(Cord cv:vsteps)
+			{
+				if(cv.x==c.x && cv.y==c.y)
+					return true;
+				
+			}
+			
+			return false;
+		}
+		
+		
+		private static Cord get_max_deg(ArrayList<Cord> arc)
+		{
+			int x[]= {1,-1, 0 , 0 ,1 ,-1,-1, 1};
+			int y[]= {0, 0, 1 ,-1 ,1 ,-1, 1,-1};
+			
+			
+			Cord out_cord=new Cord();
+			
+			int out_size=0;
+			
+			for(Cord c:arc)
+			{
+				int startx=c.x;
+				int starty=c.y;
+				int count=0;
+				for(int i=0;i<8;i++)
+				{
+					if(startx+x[i]<8 && startx+x[i]>=0)
+					{
+						if(starty+y[i]<8 && starty+y[i]>=0)
+						{
+							if(board[startx+x[i]][starty+y[i]]==0)
+								count++;
+						}
+					}
+				}
+				
+				if(count>out_size)
+				{
+					out_cord=c;
+				}
+			}
+			
+			
+			return out_cord;
+		}
+		
+}
+
