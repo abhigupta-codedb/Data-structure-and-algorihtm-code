@@ -1,0 +1,43 @@
+package Practice;
+
+import java.util.*;
+
+public class wordBreakProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String dict[]= {"mobile","samsung","sam","sung", 
+                        "man","mango", "icecream","and", 
+                        "go","i","love","ice","cream"}; 
+		
+		String str="iloveicecreamandmango";
+	}
+	
+	
+	public static boolean get_val(String str,String dict[])
+	{
+		if(str.length()==0)
+			return true;
+		
+		
+		for(int i=0;i<str.length();i++)
+		{
+			
+			String val=str.substring(0,i);
+		}
+		
+		
+	}
+	
+	
+	public boolean contains(String str,String dict[])
+	{
+		ArrayList<String> ar=new ArrayList<String>(Arrays.asList(dict));
+		
+		if(ar.contains(str))
+			return true;
+		
+		return false;
+	}
+
+}
