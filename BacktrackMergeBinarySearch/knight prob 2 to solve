@@ -1,0 +1,111 @@
+package Practice;
+
+import java.util.*;
+
+public class knightProblem {
+
+	static class Cord
+	{
+		int x;
+		int y;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int board[][]=new int[8][8];
+		
+		int startx=7;
+		int starty=7;
+		int endx=0;
+		int endy=1;
+		
+		// storing steps reqd to reach destination
+		ArrayList<Integer> steps=new ArrayList<Integer>();
+		
+		// stores all visited steps
+		ArrayList<Cord> vsteps=new ArrayList<Cord>();
+		
+		min_steps(board,startx,starty,endx,endy,steps,vsteps,0);
+		
+		if(steps.size()==0)
+			System.out.println("NO SOL");
+		
+		else
+		{
+			int min=Integer.MAX_VALUE;
+			for(int s:steps)
+			{
+				
+				System.out.print(s+" ");
+//				if(s<min)
+//					min=s;
+			}
+			
+
+		}
+	
+	}
+
+	private static void min_steps(int board[][],int startx, int starty, int endx, int endy,ArrayList<Integer> steps,ArrayList<Cord> vsteps,int count) {
+		// TODO Auto-generated method stub
+		//putting every visited point in visited list.
+		
+		board[startx][starty]=1;
+		
+
+		//if we reach end points storing steps required in arrayList
+		if(startx==endx && starty==endy)
+		{
+			steps.add(count);
+			return;
+		}
+		
+		
+		
+		ArrayList<Cord> arc=get_positions(board,startx,starty,vsteps);
+		
+		
+		// going to end cord. from every possible coordinate
+		for(Cord c:arc)
+		{
+			min_steps(board,c.x, c.y, endx, endy, steps, vsteps, count+1);
+		}
+		
+	}
+	
+	// getting all reachable coordinate from given startx, starty
+	private static ArrayList<Cord> get_positions(int board[][],int startx, int starty,ArrayList<Cord> vsteps) {
+		// TODO Auto-generated method stub
+		ArrayList<Cord> arc=new ArrayList<Cord>();
+		
+		int x[]= {1, 1, 2 , 2 ,-1 ,-1,-2, -2};
+		int y[]= {2,-2, 1 ,-1 ,-2 , 2, 1, -1};
+		
+		for(int i=0;i<8;i++)
+		{
+			if(startx+x[i]<8 && startx+x[i]>=0)
+			{
+				int next_x=startx+x[i];
+				
+				if(starty+y[i]<8 && starty+y[i]>=0)
+				{
+					int next_y=starty+y[i];
+					
+					if(board[next_x][next_y]==0)
+					{
+						Cord c=new Cord();
+						c.x=startx+x[i];
+						c.y=starty+y[i];
+						
+						arc.add(c);
+					}
+				}
+			}
+		}
+		
+		return arc;
+	}
+	
+	
+
+}
