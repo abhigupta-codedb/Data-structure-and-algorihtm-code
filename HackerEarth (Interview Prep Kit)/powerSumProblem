@@ -1,0 +1,35 @@
+package Practice;
+
+public class powerSum {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int x=10;
+		int n=2;
+		
+		System.out.println(powerSum(x,n));
+	}
+	
+	static int powerSum(int X, int N) 
+	{
+		
+		return countSum(X, N, 1);
+
+    }
+	
+	static int countSum(int x, int n,int num) 
+	{
+		
+		int val=x-(int)Math.pow(num,n);
+		
+		if(val==0)
+			return 1;
+		if(val<0)
+			return 0;
+		
+		else
+			return countSum(val, n, num+1)+countSum(x, n, num+1);
+
+    }
+
+}
