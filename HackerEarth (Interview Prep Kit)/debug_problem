@@ -86,6 +86,7 @@ public class debug {
                     y1 =  y1 + 1;
                     m1 =  1;
                 }
+		
             }
         }
         return result;
