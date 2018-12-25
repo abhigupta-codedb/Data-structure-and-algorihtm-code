@@ -1,0 +1,128 @@
+package Practice;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+
+
+public class queensAttack2 {
+
+    // Complete the queensAttack function below.
+    static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles) {
+    	
+    	int at_bx=0;
+    	
+    	//for North
+    	for(int i=r_q;i<=n;i++)
+    	{
+    		at_bx+=1;
+    	}
+    	
+    	//for south
+    	for(int i=r_q;i>=1;i--)
+    	{
+    		at_bx+=1;
+    	}
+    	
+    	//for east
+    	for(int i=c_q;i<=n;i++)
+    	{
+    		at_bx+=1;
+    	}
+    	
+    	//for west
+    	for(int i=c_q;i>=1;i--)
+    	{
+    		at_bx+=1;
+    	}
+    	
+    	//for North-east
+    	int i=r_q;
+    	int j=c_q;
+    	while(i<=n && j<=n)
+    	{
+    		at_bx+=1;
+    		
+    		i++;
+    		j++;
+    	}
+    	
+    	//for south-east
+    	int a=r_q;
+    	int b=c_q;
+    	while(a<=n && b<=n)
+    	{
+    		at_bx+=1;
+    		
+    		a++;
+    		b--;
+    	}
+    	
+    	//for south-west
+    	int c=r_q;
+    	int d=c_q;
+    	while(c<=n && d<=n)
+    	{
+    		at_bx+=1;
+    		
+    		c--;
+    		d--;
+    	}
+    	
+    	//for north-west
+    	int e=r_q;
+    	int f=c_q;
+    	while(e<=n && f<=n)
+    	{
+    		at_bx+=1;
+    		
+    		e--;
+    		f++;
+    	}
+    	
+    	return at_bx-7;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+//
+//        String[] nk = scanner.nextLine().split(" ");
+//
+//        int n = Integer.parseInt(nk[0]);
+//
+//        int k = Integer.parseInt(nk[1]);
+//
+//        String[] r_qC_q = scanner.nextLine().split(" ");
+//
+//        int r_q = Integer.parseInt(r_qC_q[0]);
+//
+//        int c_q = Integer.parseInt(r_qC_q[1]);
+//
+    	  int k=0;
+    	  int[][] obstacles = new int[k][2];
+//
+//        for (int i = 0; i < k; i++) {
+//            String[] obstaclesRowItems = scanner.nextLine().split(" ");
+//            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+//
+//            for (int j = 0; j < 2; j++) {
+//                int obstaclesItem = Integer.parseInt(obstaclesRowItems[j]);
+//                obstacles[i][j] = obstaclesItem;
+//            }
+//        }
+
+        //int result = queensAttack(n, k, r_q, c_q, obstacles);
+        
+        System.out.println(queensAttack(8, 0, 4, 4, obstacles));
+
+//        bufferedWriter.write(String.valueOf(result));
+//        bufferedWriter.newLine();
+//
+//        bufferedWriter.close();
+//
+        scanner.close();
+    }
+}
+
