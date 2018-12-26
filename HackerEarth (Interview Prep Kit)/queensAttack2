@@ -9,78 +9,79 @@ public class queensAttack2 {
 
     // Complete the queensAttack function below.
     static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles) {
-    	
-    	int at_bx=0;
-    	
-    	//for North
-    	for(int i=r_q;i<=n;i++)
-    	{
-    		at_bx+=1;
-    	}
-    	
-    	//for south
-    	for(int i=r_q;i>=1;i--)
-    	{
-    		at_bx+=1;
-    	}
-    	
-    	//for east
-    	for(int i=c_q;i<=n;i++)
-    	{
-    		at_bx+=1;
-    	}
-    	
-    	//for west
-    	for(int i=c_q;i>=1;i--)
-    	{
-    		at_bx+=1;
-    	}
-    	
-    	//for North-east
-    	int i=r_q;
-    	int j=c_q;
-    	while(i<=n && j<=n)
-    	{
-    		at_bx+=1;
-    		
-    		i++;
-    		j++;
-    	}
-    	
-    	//for south-east
-    	int a=r_q;
-    	int b=c_q;
-    	while(a<=n && b<=n)
-    	{
-    		at_bx+=1;
-    		
-    		a++;
-    		b--;
-    	}
-    	
-    	//for south-west
-    	int c=r_q;
-    	int d=c_q;
-    	while(c<=n && d<=n)
-    	{
-    		at_bx+=1;
-    		
-    		c--;
-    		d--;
-    	}
-    	
-    	//for north-west
-    	int e=r_q;
-    	int f=c_q;
-    	while(e<=n && f<=n)
-    	{
-    		at_bx+=1;
-    		
-    		e--;
-    		f++;
-    	}
-    	
-    	return at_bx-7;
+		int bx=0;
+		
+		//north
+		for(int i=r_q;i<=n;i++)
+		{
+			bx+=1;
+		}
+		
+		//south
+		for(int i=r_q;i>=1;i--)
+		{
+			bx+=1;
+		}
+		
+		//east
+		for(int i=c_q;i<=n;i++)
+		{
+			bx+=1;
+		}
+		
+		//west
+		for(int i=c_q;i>=1;i--)
+		{
+			bx+=1;
+		}
+		
+		//north-east
+		int a=r_q;
+		int b=c_q;
+		while(a<=n && b<=n)
+		{
+			bx+=1;
+			
+			a++;
+			b++;
+		}		
+		
+		//north-west
+		int c=c_q;
+		int d=r_q;
+		while(c>=1 && d<=n)
+		{
+			bx+=1;
+					
+			c--;
+			d++;
+		}
+		
+		
+		//south-west
+		int e=c_q;
+		int f=r_q;
+		while(e>=1 && f>=1)
+		{
+			bx+=1;
+							
+			e--;
+			f--;
+		}
+		
+		
+		//south-west
+		int g=c_q;
+		int h=r_q;
+		while(g<=n && h>=1)
+		{
+			bx+=1;
+									
+			g++;
+			h--;
+		}
+		
+		return bx-7;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
