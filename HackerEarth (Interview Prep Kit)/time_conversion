@@ -1,0 +1,61 @@
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    /*
+     * Complete the timeConversion function below.
+     */
+    static String timeConversion(String s) {
+        /*
+         * Write your code here.
+         */
+        String ret_str="";
+        char ch[]=s.toCharArray();
+        String st=ch[8]+""+ch[9];
+        
+        if(st.equals("PM"))
+        {
+            int time=Integer.parseInt(s.substring(0, 2));
+            
+            if(time==12)
+                ret_str=s.substring(0, 8);
+                
+            else
+                ret_str=(String.valueOf((time+12))+ch[2]+ch[3]+ch[4]+ch[5]+ch[6]+ch[7]);
+        }
+        
+        else if(st.equals("AM"))
+        {
+            int time=Integer.parseInt(s.substring(0, 2));
+            
+            if(time==12)
+                ret_str=(String.valueOf(0)+String.valueOf(0)+ch[2]+ch[3]+ch[4]+ch[5]+ch[6]+ch[7]+"");
+            else
+                ret_str=s.substring(0, 8);
+
+                
+        }
+        
+        
+        return ret_str;
+    }
+
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scan.nextLine();
+
+        String result = timeConversion(s);
+
+        bw.write(result);
+        bw.newLine();
+
+        bw.close();
+    }
+}
