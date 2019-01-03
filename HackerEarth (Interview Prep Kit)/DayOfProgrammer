@@ -1,0 +1,51 @@
+package Practice;
+
+public class dayOfProgrammer {
+
+	static int month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("year 2017 "+get_date(2017));
+		System.out.println("year 2016 "+get_date(2016));
+		System.out.println("year 1800 "+get_date(1800));
+		System.out.println("year 1918 "+get_date(1918));
+		
+	}
+
+	private static String get_date(int year) {
+		// TODO Auto-generated method stub
+		
+		
+		String date = "";
+		int day = 13;
+		
+		if(year >1918)
+		{	
+			if (year % 400 == 0) {
+				day = day - 1;
+			}
+
+			else if (year % 4 == 0 && year % 100 != 0) {
+				day = day - 1;
+			}
+			
+		}
+		
+		if(year==1918)
+		{
+			day=26;
+		}
+		
+		if(year<=1917)
+		{
+			if(year%4==0)
+			{
+				day=day-1;
+			}
+		}
+
+		return String.valueOf(day) + ".09." + String.valueOf(year);
+	}
+
+}
