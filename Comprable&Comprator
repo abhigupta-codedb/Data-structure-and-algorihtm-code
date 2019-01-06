@@ -1,0 +1,80 @@
+package Practice;
+
+import java.util.Comparator;
+
+public class empComprable implements Comparable<empComprable> {
+	String name;
+	int dob;
+	
+	empComprable(String name,int dob)
+	{
+		name=this.name;
+		dob=this.dob;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getDob() {
+		return dob;
+	}
+
+	public void setDob(int dob) {
+		this.dob = dob;
+	}
+
+	@Override
+	public int compareTo(empComprable emp) {
+		// TODO Auto-generated method stub
+		return this.dob-emp.dob;
+	}
+	
+	public static Comparator<empComprable> dobComparator = new Comparator<empComprable>() {
+
+        @Override
+        public int compare(empComprable e1, empComprable e2) {
+            return (int) (e1.dob - e2.dob);
+        }
+    };
+    
+    
+	public static Comparator<empComprable> nameComparator = new Comparator<empComprable>() {
+
+        @Override
+        public int compare(empComprable e1, empComprable e2) {
+            return e1.name.compareTo(e2.name);
+        }
+    };
+    
+    public String toString() {
+        return "name=" + this.name + ", dob=" + this.dob;
+    }
+	
+
+}
+
+
+
+package Practice;
+import java.util.*;
+public class main {
+
+	public static void main(String[] args) {
+		List<empComprable> l=new ArrayList<empComprable>();
+		l.add(new empComprable("tom", 1963));
+		l.add(new empComprable("dick", 1983));
+		l.add(new empComprable("harry", 1993));
+		l.add(new empComprable("chutad", 1943));
+		
+		Collections.sort(l);
+		
+		System.out.println(l);
+
+	}
+
+}
