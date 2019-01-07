@@ -1,0 +1,95 @@
+package Practice;
+
+public class encryption {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String msg="chillout";
+		
+		System.out.println(encpMsg(msg.trim()));
+	}
+
+	private static String encpMsg(String msg) {
+		// TODO Auto-generated method stub
+		String[] str=msg.split(" ");
+		String fstr="";
+		
+		for(String st:str)
+		{
+			fstr+=st;
+		}
+		
+		int length=fstr.length();
+		
+		int row=(int)Math.floor(Math.sqrt(length));
+		int col=(int)Math.ceil(Math.sqrt(length));
+		
+		//checking
+		if(col<row)
+		{
+			int temp=row;
+			row=col;
+			col=temp;			
+		}
+				
+				
+		if(col*row<length)
+			row+=1;
+				
+		int size=row*col;		
+		
+		char arr[]=new char[size];
+		char fstrchar[]=fstr.toCharArray();
+		
+		int x=0;
+		for(char c:fstrchar)
+			arr[x++]=c;
+		
+		while(x<size)
+			arr[x++]=' ';
+		
+
+		char ch2[][]=new char[row][col];
+		int k=0;
+		for(int i=0;i<row;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				ch2[i][j]=arr[k++];
+			}
+				
+		}
+		
+		
+		//printing 
+				//String out=""; 
+		        for(int i=0;i<row;i++)
+		        {
+		            for(int j=0;j<col;j++)
+		                System.out.print(ch2[i][j]);
+		            
+		            System.out.println();
+		        }
+		
+		System.out.println();
+		
+		//printing 
+		String out=""; 
+        for(int i=0;i<col;i++)
+        {
+            for(int j=0;j<row;j++)
+            {
+            	char w=ch2[j][i];
+            	
+            	if(w!=' ')
+            	   out+=ch2[j][i];
+            }
+            
+            out+=" ";
+        }
+        
+        return out;
+	
+	}
+
+}
