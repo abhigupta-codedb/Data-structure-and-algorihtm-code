@@ -1,0 +1,77 @@
+package Practice;
+
+public class encryption {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String msg="chillout";
+		
+		System.out.println(encpMsg(msg.trim()));
+	}
+
+	private static String encpMsg(String msg) {
+		// TODO Auto-generated method stub
+		char ch[]=msg.toCharArray();
+		int words=0;
+		for(char c:ch)
+		{
+			if(c!=' ')
+				words++;
+		}
+		
+		char arr[]=new char[ch.length];
+		
+		int x=0;
+		for(char c:ch)
+		{
+			if(c!=' ')
+				arr[x++]=c;
+		}
+		
+		
+//		for(char c:arr)
+//			System.out.print(c);
+		
+		int row=(int)Math.floor(Math.sqrt(words));
+		int col=(int)Math.ceil(Math.sqrt(words));
+		
+		
+		
+		if(col<row)
+		{
+			int temp=row;
+				row=col;
+				col=temp;
+			
+		}
+		
+		System.out.println(row);
+		System.out.println(col);
+		
+		
+		char ch2[][]=new char[row][col];
+		int k=0;
+		for(int i=0;i<row;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				ch2[i][j]=arr[k++];
+			}
+				
+		}
+		
+		//printing 
+		String out=""; 
+        for(int i=0;i<col;i++)
+        {
+            for(int j=0;j<row;j++)
+                out+=ch2[j][i];
+            
+            out+=" ";
+        }
+        
+        return out;
+	
+	}
+
+}
