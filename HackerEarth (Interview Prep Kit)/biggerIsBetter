@@ -6,11 +6,11 @@ public class biggerIsGreater  {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		String str[]= {"lmno","dcba" ,"dcbb" ,"abdc" ,"abcd" ,"fedcbabcd"};
-//		for(String st:str)
-//			next_word(st);
+		String str[]= {"lmno","dcba" ,"dcbb" ,"abdc" ,"abcd" ,"fedcbabcd"};
+		for(String st:str)
+			next_word(st);
 		
-		next_word("lmno");
+		//next_word("fedcbabcd");
 
 	}
 
@@ -30,11 +30,23 @@ public class biggerIsGreater  {
 		
 	}
 	
-	System.out.println();
+	int out_arr[]=new int[arr.length];
+	
+	nextperm(arr,out_arr);
+	
+	String out="";
+	
+	for(int a:out_arr)
+	{
+		char c=(char)(a+96);
+		out+=c;
+	}
+	
+	System.out.println(out);
 	
 	}
 	
-	private static void nextperm(int[] arr) {
+	private static void nextperm(int[] arr,int out_arr[]) {
 		// TODO Auto-generated method stub
 		
 		//find p
@@ -75,7 +87,7 @@ public class biggerIsGreater  {
 					
 		}
 		
-		int out_arr[]=new int[arr.length];
+		//int out_arr[]=new int[arr.length];
 		
 		int k=0;
 		for(int i=0;i<=posp;i++)
@@ -84,11 +96,11 @@ public class biggerIsGreater  {
 		for(int j=arr.length-1;j>=posp+1;j--)
 			out_arr[j]=arr[k++];
 		
-		String str="";
-		for(int a:out_arr)
-			str+=a;
-		
-		System.out.println(str);
+//		String str="";
+//		for(int a:out_arr)
+//			str+=a;
+//		
+//		System.out.println(str);
 	}
 
 }
