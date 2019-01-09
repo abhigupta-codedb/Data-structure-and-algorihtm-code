@@ -1,14 +1,39 @@
 package Practice;
 
-public class nextPerm {
+import java.util.*;
 
+public class biggerIsGreater  {
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[]= {4,5,6,3,2,1};
+//		String str[]= {"lmno","dcba" ,"dcbb" ,"abdc" ,"abcd" ,"fedcbabcd"};
+//		for(String st:str)
+//			next_word(st);
 		
-		nextperm(arr);
+		next_word("lmno");
+
 	}
 
+	private static void next_word(String str) {
+		// TODO Auto-generated method stub
+	String num="";
+	
+	int arr[]=new int[str.length()];
+	int k=0;
+	for(char c:str.toCharArray())
+	{
+		
+		int val = c-96;
+		
+		arr[k]=val;
+		k++;
+		
+	}
+	
+	System.out.println();
+	
+	}
+	
 	private static void nextperm(int[] arr) {
 		// TODO Auto-generated method stub
 		
@@ -18,7 +43,7 @@ public class nextPerm {
 		
 		for(int i=arr.length-2;i>=0;i--)
 		{
-			if(arr[i]<arr[i-1])
+			if(arr[i]<arr[i+1])
 			{
 				posp=i;
 				p=arr[i];
@@ -42,6 +67,7 @@ public class nextPerm {
 		
 		
 		//swap
+		if(posp!=-1 && posq!=-1)
 		{
 			int temp=arr[posp];
 			arr[posp]=arr[posq];
@@ -52,11 +78,17 @@ public class nextPerm {
 		int out_arr[]=new int[arr.length];
 		
 		int k=0;
-		for(int i=0;i<posp;i++)
+		for(int i=0;i<=posp;i++)
 			out_arr[i]=arr[k++];
 		
 		for(int j=arr.length-1;j>=posp+1;j--)
-			out_arr[j]=arr[k];
+			out_arr[j]=arr[k++];
+		
+		String str="";
+		for(int a:out_arr)
+			str+=a;
+		
+		System.out.println(str);
 	}
 
 }
