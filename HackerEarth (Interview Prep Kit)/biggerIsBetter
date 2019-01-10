@@ -1,106 +1,105 @@
 package Practice;
 
-import java.util.*;
+public class biggerIsGreater {
 
-public class biggerIsGreater  {
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String str[]= {"lmno","dcba" ,"dcbb" ,"abdc" ,"abcd" ,"fedcbabcd"};
-		for(String st:str)
-			next_word(st);
+		String str[]= {"lmno","dcba","dcbb","abdc","abcd","fedcbabcd"};
 		
-		//next_word("fedcbabcd");
-
+		for(String s:str)
+		{
+			get_word(s);
+		}
+		
+		
+				
 	}
-
-	private static void next_word(String str) {
-		// TODO Auto-generated method stub
-	String num="";
 	
-	int arr[]=new int[str.length()];
-	int k=0;
-	for(char c:str.toCharArray())
+	
+	static void get_word(String str)
 	{
-		
-		int val = c-96;
-		
-		arr[k]=val;
-		k++;
-		
-	}
-	
-	int out_arr[]=new int[arr.length];
-	
-	nextperm(arr,out_arr);
-	
-	String out="";
-	
-	for(int a:out_arr)
-	{
-		char c=(char)(a+96);
-		out+=c;
-	}
-	
-	System.out.println(out);
-	
-	}
-	
-	private static void nextperm(int[] arr,int out_arr[]) {
-		// TODO Auto-generated method stub
-		
-		//find p
-		int p=0;
-		int posp=-1;
-		
-		for(int i=arr.length-2;i>=0;i--)
-		{
-			if(arr[i]<arr[i+1])
-			{
-				posp=i;
-				p=arr[i];
-				
-				break;
-			}
-				
-		}
-		
-		//find q
-		int posq=-1;
-		for(int i=0;i<arr.length;i++)
-		{
-			if(arr[i]>p)
-			{
-				posq=i;
-				break;
-			}
-				
-		}
-		
-		
-		//swap
-		if(posp!=-1 && posq!=-1)
-		{
-			int temp=arr[posp];
-			arr[posp]=arr[posq];
-			arr[posq]=temp;
-					
-		}
-		
-		//int out_arr[]=new int[arr.length];
-		
+		int arr[]=new int[str.length()];
 		int k=0;
-		for(int i=0;i<=posp;i++)
-			out_arr[i]=arr[k++];
-		
-		for(int j=arr.length-1;j>=posp+1;j--)
-			out_arr[j]=arr[k++];
-		
-//		String str="";
-//		for(int a:out_arr)
-//			str+=a;
-//		
-//		System.out.println(str);
+		for(char c:str.toCharArray())
+		{
+			int num=c-96;
+			arr[k]=num;
+			k++;
+		}
+				
+		int p=-1;            
+	    for(int i=arr.length-2; i>=0; i--){
+	        if(arr[i]<arr[i+1]){
+	            p=i;
+	            break;
+	        }    
+	    }
+	    
+	   // int nums[]=arr.clone();
+	    
+	    if(p==-1)
+	    {
+	    	System.out.println("no answer");
+	    }
+	    
+	    else
+	    {
+	    	nextPermutation(arr);
+	    	
+	    	String out="";
+	    	
+	    	for(int a:arr)
+	    	{
+	    		char c=(char)(a+96);
+	    		out+=c;
+	    	}
+	    	
+	    	System.out.println(out);
+	    }
+	}
+	
+	public static void nextPermutation(int[] nums) {
+	    if(nums == null || nums.length<2)
+	        return;
+	 
+	    int p=0;            
+	    for(int i=nums.length-2; i>=0; i--){
+	        if(nums[i]<nums[i+1]){
+	            p=i;
+	            break;
+	        }    
+	    }
+	 
+	    int q = 0;
+	    for(int i=nums.length-1; i>p; i--){
+	        if(nums[i]> nums[p]){
+	            q=i;
+	            break;
+	        }    
+	    }
+	 
+	    if(p==0 && q==0){
+	        reverse(nums, 0, nums.length-1);
+	        return;
+	    }
+	 
+	    int temp=nums[p];
+	    nums[p]=nums[q];
+	    nums[q]=temp;
+	 
+	    if(p<nums.length-1){
+	        reverse(nums, p+1, nums.length-1);
+	    }
+	}
+	 
+	public static void reverse(int[] nums, int left, int right){
+	    while(left<right){
+	        int temp = nums[left];
+	        nums[left]=nums[right];
+	        nums[right]=temp;
+	        left++;
+	        right--;
+	    }
 	}
 
 }
