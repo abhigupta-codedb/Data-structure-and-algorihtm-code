@@ -1,0 +1,29 @@
+package Practice;
+
+public class repeatedString {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(repeatedString("a",1000000000000L));
+	}
+	
+	public static long repeatedString(String s, long n) {
+		long num=0;
+		int size=s.length();
+		char ch[]=s.toCharArray();
+		
+		for(long i=0;i<n;i++)
+		{
+			long pos=(i+size)%size;
+			if(ch[(int)pos]=='a')
+				num++;
+			
+			
+		} 
+		
+		return num;
+		
+    }
+
+}
