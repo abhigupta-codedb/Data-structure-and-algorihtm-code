@@ -1,0 +1,45 @@
+package Practice;
+import java.util.*;
+public class pickingNumbers {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Integer> list=new LinkedList<>();
+		
+		list.add(4);
+		list.add(6);
+		list.add(5);
+		list.add(3);
+		list.add(3);
+		list.add(1);
+		
+		
+		System.out.println(pickingNumbers(list));
+	}
+	
+	public static int pickingNumbers(List<Integer> a) {
+	    // Write your code here
+		Stack<Integer> stk=new Stack<>();
+		
+		int val=0;
+		for(int i:a)
+		{
+			if(stk.isEmpty())
+				stk.push(i);
+			
+			else
+			{
+				int top=stk.peek();
+				
+				if(Math.abs(top-i)==1 || Math.abs(top-i)==0)
+					stk.push(i);
+			}
+		}
+		
+		
+		System.out.println(stk);
+		
+		return stk.size();
+	    }
+
+}
