@@ -1,0 +1,144 @@
+package Practice;
+
+public class magicSquare2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int s[][]= {{4,9,2},{3,5,7},{8,1,5}};
+		
+		System.out.println(formingMagicSquare(s));
+	}
+	
+	static int formingMagicSquare(int[][] s) {
+		int diff=Integer.MAX_VALUE;
+		
+		int mat1[][]= {{8,1,6},{3,5,7},{4,9,2}};
+		int mat2[][]= {{6,1,8},{7,5,3},{2,9,4}};
+		int mat3[][]= {{2,7,6},{9,5,1},{4,3,8}};
+		int mat4[][]= {{4,3,8},{9,5,1},{2,7,6}};
+		
+		int mat5[][]= {{2,9,4},{7,5,3},{6,1,8}};
+		int mat6[][]= {{4,9,2},{3,5,7},{8,1,6}};
+		int mat7[][]= {{6,7,2},{1,5,9},{8,3,4}};
+		int mat8[][]= {{8,3,4},{1,5,9},{6,7,2}};
+		
+			//mat1
+			int sum=0;
+			
+			for(int i=0;i<3;i++)
+			{
+				for(int j=0;j<3;j++)
+				{
+					 sum+=(int)Math.abs(mat1[i][j]-s[i][j]);
+				}
+			}
+			
+			if(sum<diff)
+				diff=sum;
+		
+			// mat2 
+			sum=0;
+			
+			for(int i=0;i<3;i++)
+			{
+				for(int j=0;j<3;j++)
+				{
+					 sum+=(int)Math.abs(mat2[i][j]-s[i][j]);
+				}
+			}
+			
+			if(sum<diff)
+				diff=sum;
+		
+				// mat3 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat3[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+				
+				// mat4 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat4[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+				
+				
+				// mat5 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat5[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+				
+				// mat6 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat6[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+				
+				// mat7 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat7[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+				
+				// mat8 
+				sum=0;
+				
+				for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+					{
+						 sum+=(int)Math.abs(mat8[i][j]-s[i][j]);
+					}
+				}
+				
+				if(sum<diff)
+					diff=sum;
+		
+		
+		
+		return diff;
+
+    }
+
+}
