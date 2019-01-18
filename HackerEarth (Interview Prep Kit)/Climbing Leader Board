@@ -6,8 +6,8 @@ public class climbingBoard {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int scores[]= {100,100,50,40,40,20,10};
-		int alice[]= {5,25,50,120};
+		int scores[]= {100,90,90,80,75,60};
+		int alice[]= {50,65,77,90,102};
 		
 		int output[]=climbingLeaderboard(scores, alice);
 		
@@ -42,44 +42,24 @@ public class climbingBoard {
 					
 					if(!ht.containsKey(a))
 					{
-						ht.put(key,val);
+						ht.put(a,val);
 						val++;
 					}
 				}
 				
-				System.out.println(ht);
+				//System.out.println(ht);
 				
 				output[l++]=ht.get(key);
 				
 				
 				
-				lb.remove(key);
+				lb.remove(lb.indexOf(key));
+				
+				ht.clear();
 		
 			}
 		
 		return output;
 	}
 	
-	
-	private static int binarsearch(int[] arr, int start, int end, int search) {
-		// TODO Auto-generated method stub
-		if(start>end)
-			return -1;
-		else
-		{
-			int mid=(start+end)/2;
-			
-			if(search==arr[mid])
-				return mid;
-			
-			else if(search<arr[mid])
-				end=mid-1;
-			
-			else
-				start=mid+1;
-		}
-		
-		return binarsearch(arr, start,end, search);
-	}
-
 }
