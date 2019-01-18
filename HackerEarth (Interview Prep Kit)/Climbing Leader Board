@@ -1,0 +1,85 @@
+package Practice;
+
+import java.util.*;
+
+public class climbingBoard {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int scores[]= {100,100,50,40,40,20,10};
+		int alice[]= {5,25,50,120};
+		
+		int output[]=climbingLeaderboard(scores, alice);
+		
+		for(int a:output)
+			System.out.print(a+" ");
+	}
+	
+	static int[] climbingLeaderboard(int[] scores, int[] alice) {
+		
+		int output[]=new int[alice.length];
+		
+		ArrayList<Integer> lb=new ArrayList<>();
+		
+		for(int a:scores)
+			lb.add(a);
+		
+		int l=0;
+		
+		for(int k=0;k<alice.length;k++)
+			{
+				int key=alice[k];
+				
+				lb.add(key);
+				Collections.sort(lb,Collections.reverseOrder());
+	
+				
+				Hashtable<Integer,Integer> ht=new Hashtable<>();
+				int val=1;
+				
+				for(int a:lb)
+				{
+					
+					if(!ht.containsKey(a))
+					{
+						ht.put(key,val);
+						val++;
+					}
+				}
+				
+				System.out.println(ht);
+				
+				output[l++]=ht.get(key);
+				
+				
+				
+				lb.remove(key);
+		
+			}
+		
+		return output;
+	}
+	
+	
+	private static int binarsearch(int[] arr, int start, int end, int search) {
+		// TODO Auto-generated method stub
+		if(start>end)
+			return -1;
+		else
+		{
+			int mid=(start+end)/2;
+			
+			if(search==arr[mid])
+				return mid;
+			
+			else if(search<arr[mid])
+				end=mid-1;
+			
+			else
+				start=mid+1;
+		}
+		
+		return binarsearch(arr, start,end, search);
+	}
+
+}
