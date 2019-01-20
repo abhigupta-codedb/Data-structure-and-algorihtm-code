@@ -2,12 +2,12 @@ package Practice;
 
 import java.util.*;
 
-public class climbingBoard {
+public class climbingLeaderBoard {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int scores[]= {100,90,90,80,75,60};
-		int alice[]= {50,65,77,90,102};
+		int scores[]= {100 ,100 ,50 ,40 ,40 ,20 ,10};
+		int alice[]= {5 ,25 ,50 ,120};
 		
 		int output[]=climbingLeaderboard(scores, alice);
 		
@@ -24,38 +24,53 @@ public class climbingBoard {
 		for(int a:scores)
 			lb.add(a);
 		
+		//Collections.sort(lb);
+		
+		Map<Integer,Integer> ht=new TreeMap<>();
+		int val=1;
+		
+		for(int a:lb)
+		{
+			
+			if(!ht.containsKey(a))
+			{
+				ht.put(a,val);
+				val++;
+			}
+		}
+		
+		//System.out.println(ht);
+		
 		int l=0;
 		
 		for(int k=0;k<alice.length;k++)
 			{
-				int key=alice[k];
-				
-				lb.add(key);
-				Collections.sort(lb,Collections.reverseOrder());
-	
-				
-				Hashtable<Integer,Integer> ht=new Hashtable<>();
-				int val=1;
-				
-				for(int a:lb)
+			
+			int key=alice[k];
+			int value=0;
+			
+			for(Map.Entry<Integer, Integer> entry:ht.entrySet())
+			{
+				if(entry.getKey()==key)
 				{
-					
-					if(!ht.containsKey(a))
-					{
-						ht.put(a,val);
-						val++;
-					}
+					value=entry.getValue();
+					break;
 				}
 				
-				//System.out.println(ht);
+				else if(entry.getKey()>key)
+				{
+					value=entry.getValue()+1;
+					break;
+				}
 				
-				output[l++]=ht.get(key);
-				
-				
-				
-				lb.remove(lb.indexOf(key));
-				
-				ht.clear();
+				else
+					continue;
+			}
+			
+			if(value==0)
+				value=1;
+			
+			output[l++]=value;
 		
 			}
 		
