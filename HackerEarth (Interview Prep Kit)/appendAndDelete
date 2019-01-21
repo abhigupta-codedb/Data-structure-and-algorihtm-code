@@ -1,0 +1,54 @@
+package Practice;
+
+import java.util.Arrays;
+
+public class appendAndDelete {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(appendAndDelete("aba", "aba", 7));
+	}
+	
+	static String appendAndDelete(String s, String t, int k) {
+		
+		char chs[]=s.toCharArray();
+		char cht[]=t.toCharArray();
+		
+		Arrays.sort(chs);
+		
+		Arrays.sort(cht);
+		
+		int i=0;
+		int j=0;
+		int diff=0;
+		
+		while(i<chs.length && j<cht.length)
+		{
+		
+		if(chs[i]!=chs[j])
+			diff++;
+		
+		i++; j++;
+		
+		}
+		
+		while(i<chs.length)
+		{
+			diff++;
+			
+			i++;
+		}
+		
+		
+		while(j<cht.length)
+		{
+			diff++;
+			
+			j++;
+		}
+
+		
+		return (2*diff)<=k?"Yes":"No";
+
+    }
+}
