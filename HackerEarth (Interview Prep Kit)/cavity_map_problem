@@ -1,0 +1,43 @@
+package Practice;
+
+public class cavityMap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String grid[]= {"1112","1912","1892","1234"};
+		
+		cavityMap(grid);
+	}
+	
+	static String[] cavityMap(String[] grid) {
+		String out[]= {};
+		int n=grid.length;
+		int arr[][]=new int[n][n];
+		
+		for(String a:grid)
+		{
+			int i=0;
+			for(char c:a.toCharArray())
+			{
+				int j=0;
+				//System.out.println(Integer.parseInt(String.valueOf(c)));
+				arr[i][j]=Integer.parseInt(String.valueOf(c));
+				System.out.println(arr[i][j]);
+				j++;
+			}
+			i++;
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+				System.out.print(arr[i][j]+" ");
+			
+			System.out.println();
+		}
+		
+		return out;
+
+    }
+
+}
