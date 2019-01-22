@@ -4,40 +4,66 @@ public class cavityMap {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String grid[]= {"1112","1912","1892","1234"};
+		String grid[]= {"1 2","1 2"};
 		
-		cavityMap(grid);
+		String out []=cavityMap(grid);
+		
+		for(String a:out)
+			System.out.println(a);
 	}
 	
 	static String[] cavityMap(String[] grid) {
-		String out[]= {};
-		int n=grid.length;
-		int arr[][]=new int[n][n];
 		
-		for(String a:grid)
+		int n=grid.length;
+		String out[]=new String[n];
+		int arr[][]=new int[n][n];
+	
+		for(int i=0;i<grid.length;i++)
 		{
-			int i=0;
-			for(char c:a.toCharArray())
-			{
-				int j=0;
-				//System.out.println(Integer.parseInt(String.valueOf(c)));
-				arr[i][j]=Integer.parseInt(String.valueOf(c));
-				System.out.println(arr[i][j]);
-				j++;
-			}
-			i++;
+			String str=grid[i];
+			
+				for(int j=0;j<n;j++)
+				{
+					
+					arr[i][j]=Integer.parseInt(str.substring(j, j+1));
+					
+				}
+				
+			
 		}
 		
-		for(int i=0;i<n;i++)
+		for(int i=1;i<n-1;i++)
 		{
-			for(int j=0;j<n;j++)
-				System.out.print(arr[i][j]+" ");
+			for(int j=1;j<n-1;j++)
+			{
+				int element=arr[i][j];
+				
+				if(element>arr[i][j+1] && element>arr[i][j-1] && element>arr[i+1][j] && element>arr[i-1][j])
+				{
+					arr[i][j]=-230;
+				}
+			}
+		}
+		
+		System.out.println("Aftre Operation ");
+		int f=0;
+		for(int k=0;k<n;k++)
+		{
+			String str="";
+			for(int l=0;l<n;l++)
+			{
+				String val=arr[k][l]+"";
+				
+				if(val.equals("-230"))
+					val="x";
+				
+				str+=val;
+			}
 			
-			System.out.println();
+			out[f++]=str;
 		}
 		
 		return out;
-
     }
 
 }
