@@ -1,80 +1,37 @@
 package Practice;
-
+import java.util.*;
 public class fairRations {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int B[]= {1,2};
-		int num=fairRations2(B);
+		Scanner sc =new Scanner(System.in);
 		
-		if(num==0)
-			System.out.println("No");
-		else
-			System.out.println(num);
+		int B[]= new int[971];
+		
+		for(int i=0;i<971;i++)
+			B[i]=sc.nextInt();
+		
+		fairRations2(B);
+		
 	}
 	
-	static int fairRations2(int[] B) {
-		int minloves=0;
+	static void fairRations2(int[] B) {
 		
-		int i=0;
+	int sum=0;
+	int count=0;
+	
+	for(int i=0;i<B.length;i++)
+	{
+		sum+=B[i];
 		
-		while(i<B.length)
+		if(sum%2==1)
 		{
-			int ele=B[i];		
-			if(ele%2!=0)
-			{
-				if((i+1)<B.length)
-				{
-					B[i]+=1;
-					B[i+1]+=1;
-					
-					minloves+=2;
-					
-					i=0;
-					continue;
-				}
-				
-				else if((i-1)>=0)
-				{
-					
-					B[i]+=1;
-					B[i-1]+=1;
-					
-					minloves+=2;
-					
-					i=0;
-					continue;
-				}
-				
-				else
-				{
-					minloves=0;
-					break;
-				}
-			}
-			
-			if(check(B))
-			{
-				minloves=0;
-				break;
-			}
-			i++;
+			count+=2;
 		}
-		
-		
-		return minloves;
-
+	}
+	
+	System.out.println((sum%2)==0?count:"NO");	
     }
 
-	private static boolean check(int[] b) {
-		// TODO Auto-generated method stub
-		
-		for(int a:b)
-		{
-			if(a>10)
-				return true;
-		}
-		return false;
-	}
-
+	
 }
