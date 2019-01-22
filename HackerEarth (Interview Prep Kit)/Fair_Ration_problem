@@ -1,0 +1,80 @@
+package Practice;
+
+public class fairRations {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int B[]= {1,2};
+		int num=fairRations2(B);
+		
+		if(num==0)
+			System.out.println("No");
+		else
+			System.out.println(num);
+	}
+	
+	static int fairRations2(int[] B) {
+		int minloves=0;
+		
+		int i=0;
+		
+		while(i<B.length)
+		{
+			int ele=B[i];		
+			if(ele%2!=0)
+			{
+				if((i+1)<B.length)
+				{
+					B[i]+=1;
+					B[i+1]+=1;
+					
+					minloves+=2;
+					
+					i=0;
+					continue;
+				}
+				
+				else if((i-1)>=0)
+				{
+					
+					B[i]+=1;
+					B[i-1]+=1;
+					
+					minloves+=2;
+					
+					i=0;
+					continue;
+				}
+				
+				else
+				{
+					minloves=0;
+					break;
+				}
+			}
+			
+			if(check(B))
+			{
+				minloves=0;
+				break;
+			}
+			i++;
+		}
+		
+		
+		return minloves;
+
+    }
+
+	private static boolean check(int[] b) {
+		// TODO Auto-generated method stub
+		
+		for(int a:b)
+		{
+			if(a>10)
+				return true;
+		}
+		return false;
+	}
+
+}
