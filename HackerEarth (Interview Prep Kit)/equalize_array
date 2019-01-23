@@ -4,9 +4,9 @@ public class equalizeArray {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[]= {8,8,8,8,8,2,3,2,1,1,1,4,6,8,8,8,8,8};
+		int arr[]= {3,3,2,1,3};
 		
-		equalizeArray(arr);
+		System.out.println(equalizeArray(arr));
 	}
 	
 	static int equalizeArray(int[] arr) {
@@ -22,22 +22,9 @@ public class equalizeArray {
 		{
 			nwarr[a]+=1;
 		}
+
 		
-//		Map<Integer,Integer> mp=new TreeMap<>();
-//		
-//		for(int i=0;i<101;i++)
-//		{
-//			int value=nwarr[i];
-//			
-//			if(value!=0)
-//			{
-//				mp.put(i, value);
-//			}
-//		}
-//		
-//		System.out.println(mp);
-		
-		int max=0;
+		int max=Integer.MIN_VALUE;
 		
 		for(int a:nwarr)
 		{
@@ -47,13 +34,24 @@ public class equalizeArray {
 		
 		int diff=0;
 		
-		for(int )
+		//if all distinct element
+		if(max==1)
 		{
-			
+			diff=arr.length-1;
+		}
+		
+		else
+		{
+			for(int a:nwarr)
+			{
+				if(a!=max)
+					diff+=a;
+				
+			}
 		}
 		
 		
-		return equal;
+		return diff;
     }
 
 }
