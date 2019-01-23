@@ -1,0 +1,59 @@
+package Practice;
+import java.util.*;
+public class equalizeArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {8,8,8,8,8,2,3,2,1,1,1,4,6,8,8,8,8,8};
+		
+		equalizeArray(arr);
+	}
+	
+	static int equalizeArray(int[] arr) {
+		int equal=0;
+		
+		// if all elements are diffrent.
+		// if few are same few are diffrent/
+		// if all are same.
+		
+		int nwarr[]=new int[101];
+		
+		for(int a:arr)
+		{
+			nwarr[a]+=1;
+		}
+		
+//		Map<Integer,Integer> mp=new TreeMap<>();
+//		
+//		for(int i=0;i<101;i++)
+//		{
+//			int value=nwarr[i];
+//			
+//			if(value!=0)
+//			{
+//				mp.put(i, value);
+//			}
+//		}
+//		
+//		System.out.println(mp);
+		
+		int max=0;
+		
+		for(int a:nwarr)
+		{
+			if(a>max)
+				max=a;
+		}
+		
+		int diff=0;
+		
+		for(int )
+		{
+			
+		}
+		
+		
+		return equal;
+    }
+
+}
