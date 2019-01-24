@@ -4,25 +4,19 @@ public class equalizeArray {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[]= {3,3,2,1,3};
-		
+		int arr[]= {10,27,9,10,100,38,30,32,45,29,27,29,32,38,32,38,14,38,29,30,63,29,63,91,54,10,63};
+		//System.out.println(arr.length);
 		System.out.println(equalizeArray(arr));
 	}
 	
 	static int equalizeArray(int[] arr) {
-		int equal=0;
-		
-		// if all elements are diffrent.
-		// if few are same few are diffrent/
-		// if all are same.
-		
+//		int equal=0;
 		int nwarr[]=new int[101];
 		
 		for(int a:arr)
 		{
 			nwarr[a]+=1;
 		}
-
 		
 		int max=Integer.MIN_VALUE;
 		
@@ -42,14 +36,8 @@ public class equalizeArray {
 		
 		else
 		{
-			for(int a:nwarr)
-			{
-				if(a!=max)
-					diff+=a;
-				
-			}
+			diff=arr.length-max;
 		}
-		
 		
 		return diff;
     }
