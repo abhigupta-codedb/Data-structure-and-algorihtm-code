@@ -1,0 +1,49 @@
+package Practice;
+import java.util.*;
+public class nonDivSubset {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int S[]= {1,7,2,4};
+		System.out.println(nonDivisibleSubset(3, S));
+	}
+	
+	static int nonDivisibleSubset(int k, int[] S) {
+		int length=0;
+		
+		for(int i=0;i<S.length;i++)
+		{
+			ArrayList<Integer> ar=new ArrayList<Integer>();
+			int num1=S[i];
+			ar.add(num1);
+			
+			for(int j=i+1;j<S.length;j++)
+			{
+				int num2=S[j];
+				boolean flag=false;
+				
+				for(int a:ar)
+				{
+					if((a+num2)%k==0)
+					{
+						flag=true;
+						break;
+					}
+						
+				}
+				
+				if(flag==false)
+				{
+					ar.add(num2);
+				}
+			}
+			
+			if(ar.size()>length)
+				length=ar.size();
+			
+		}
+
+		return length;
+    }
+
+}
