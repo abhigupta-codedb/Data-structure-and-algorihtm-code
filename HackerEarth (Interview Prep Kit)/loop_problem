@@ -2,7 +2,6 @@ package Practice;
 import java.util.*;
 public class loopProblem {
 
-
 	    public static void main(String[] args) {
 	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
 	        Scanner sc=new Scanner(System.in);
@@ -12,19 +11,27 @@ public class loopProblem {
 	        while(t>0)
 	        {
 	            String st=sc.next();
-	            char ch[]=st.t
+	            char ch[]=st.toCharArray();
+	            
 	            String even="";
-
 	            for(int i=0;i<st.length();i=i+2)
 	            {
+	            	even+=ch[i];
 
 	            }
+	            
+	            
+	            String odd="";
+	            for(int i=1;i<st.length();i=i+2)
+	            {
+	            	odd+=ch[i];
 
+	            }
+	            
+	            System.out.print(even+" "+odd);
 
 	            t--;
 	        }
-
 	    }
-	
 	
 }
