@@ -10,7 +10,7 @@ public class similarPairProblem {
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.in));
+		//BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.in));
 
         String[] nk = scanner.nextLine().split(" ");
 
@@ -42,29 +42,61 @@ public class similarPairProblem {
          * Write your code here.
          */
 		int num=0;
-		ArrayList<pairs> pair=new ArrayList<pairs>();
+		ArrayList<pairs> pair1=new ArrayList<pairs>();
 		
+		for(int i=0;i<n-1;i++)
+        {
+            int x=edges[i][0];
+            int y=edges[i][1];
+            
+            pairs pr=new pairs();
+            
+            pr.x=x;
+            pr.y=y;
+            
+            pair1.add(pr);
+        }
 		
-		for(int i=0;i<n;i++)
-		{
-			for(int j=0;j<n;j++)
-			{
-				if(edges[i][j]==1)
-				{
-					pairs pr=new pairs();
-					
-					pr.x=i+1;
-					pr.y=j+1;
-					
-					pair.add(pr);
-				}
-			}
-		}
-		
-		for(pairs p:pair)
-			System.out.println(p.x+" "+p.y);
-		
-		return num;
+		System.out.println("pair 1");
+		for(pairs p:pair1)
+			System.out.print(p.x+" "+p.y+",");
+        
+        ArrayList<pairs> pair2=new ArrayList<pairs>();
+        for(pairs p1:pair1)
+        {
+        	pairs q=p1;
+        	
+        	for(pairs p2:pair1)
+            {
+        		if(q.y==p2.x)
+        		{
+        			pairs pr=new pairs();
+        			pr.x=q.x;
+        			pr.y=p2.y;
+        			
+        			pair2.add(pr);
+        		}
+        		
+            }
+        }
+        
+        System.out.println("pair 2");
+        for(pairs p:pair2)
+			System.out.print(p.x+" "+p.y+",");
+        
+        for(pairs p:pair1)
+        {
+            if(Math.abs(p.x-p.y)<=k)
+                num++;
+        }
+        
+        for(pairs p:pair2)
+        {
+            if(Math.abs(p.x-p.y)<=k)
+                num++;
+        }
+        
+        return num;
 
     }
 
