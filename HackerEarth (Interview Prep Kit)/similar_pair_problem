@@ -1,0 +1,71 @@
+package Practice;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+public class similarPairProblem {
+
+	 private static final Scanner scanner = new Scanner(System.in);
+
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.in));
+
+        String[] nk = scanner.nextLine().split(" ");
+
+        int n = Integer.parseInt(nk[0].trim());
+
+        int k = Integer.parseInt(nk[1].trim());
+
+        int[][] edges = new int[n-1][2];
+
+        for (int edgesRowItr = 0; edgesRowItr < n-1; edgesRowItr++) {
+            String[] edgesRowItems = scanner.nextLine().split(" ");
+
+            for (int edgesColumnItr = 0; edgesColumnItr < 2; edgesColumnItr++) 
+            {
+                int edgesItem = Integer.parseInt(edgesRowItems[edgesColumnItr].trim());
+                edges[edgesRowItr][edgesColumnItr] = edgesItem;
+            }
+        }
+	}
+	
+	 static class pairs
+	{
+		int x;
+		int y;
+	}
+	
+	static int similarPair(int n, int k, int[][] edges) {
+        /*
+         * Write your code here.
+         */
+		int num=0;
+		ArrayList<pairs> pair=new ArrayList<pairs>();
+		
+		
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				if(edges[i][j]==1)
+				{
+					pairs pr=new pairs();
+					
+					pr.x=i+1;
+					pr.y=j+1;
+					
+					pair.add(pr);
+				}
+			}
+		}
+		
+		for(pairs p:pair)
+			System.out.println(p.x+" "+p.y);
+		
+		return num;
+
+    }
+
+}
