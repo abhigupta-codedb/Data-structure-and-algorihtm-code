@@ -1,0 +1,170 @@
+package Practice;
+
+public class timeInWords {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(timeInWords(5,47));
+	}
+	
+	static String timeInWords(int h, int m) {
+		
+		String out="";
+		String mtime="";
+		String htime="";
+        
+        if(m==0)
+        {
+        	mtime=" o' clock";
+        	htime=getTime(h);
+        	
+        	out+=htime+mtime;
+        }
+        
+        if(m>0 && m<15)
+        {
+        	if(m==1)
+        	{
+        		mtime="one minute";
+        	}
+        	
+        	else
+        		mtime=getTime(m)+" minutes";
+        	
+        	out+=mtime+" past "+getTime(h);
+        }
+        
+        if(m==15)
+        {
+        	out+="quarter past "+getTime(h);
+        }
+        
+        if(m>15 && m<30)
+        {
+        	out+=getTime(m)+" minutes past "+getTime(h);
+        }
+        
+        if(m==30)
+        {
+        	out+="half past "+getTime(h);
+        }
+        
+        if(m>30 && m<60)
+        {
+        	int diff=60-m;
+        	int nwhr=h+1;
+        	
+        	if(diff==15)
+        		out+="quarter to "+getTime(nwhr);
+        	
+        	else
+        		out+=getTime(diff)+" minutes to "+getTime(nwhr);
+        }
+        	
+        
+        return out;
+    }
+	
+	
+	static String getTime(int n)
+	{
+		String htime=""; 
+		  
+        // switch statement with int data type 
+        switch (n) { 
+        case 1: 
+            htime = "one"; 
+            break; 
+        case 2: 
+            htime = "two"; 
+            break; 
+        case 3: 
+            htime = "three"; 
+            break; 
+        case 4: 
+            htime = "four"; 
+            break; 
+        case 5: 
+            htime = "five"; 
+            break; 
+        case 6: 
+            htime = "six"; 
+            break; 
+        case 7: 
+            htime = "seven"; 
+            break; 
+        case 8: 
+            htime = "eight"; 
+            break;
+        case 9: 
+            htime = "nine"; 
+            break;    
+        case 10: 
+            htime = "ten"; 
+            break;
+        case 11: 
+            htime = "eleven"; 
+            break;
+        case 12: 
+            htime = "twelve"; 
+            break;
+        case 13: 
+            htime = "thirteen"; 
+            break;
+        case 14: 
+            htime = "fourteen"; 
+            break;
+        case 15: 
+            htime = "half past"; 
+            break;
+        case 16: 
+            htime = "sixteen"; 
+            break;
+        case 17: 
+            htime = "seventeen"; 
+            break;
+        case 18: 
+            htime = "eighteen"; 
+            break;
+        case 19: 
+            htime = "nineteen"; 
+            break;
+        case 20: 
+            htime = "twenty"; 
+            break;
+        case 21: 
+            htime = "twenty one"; 
+            break;
+        case 22: 
+            htime = "twenty two"; 
+            break;
+        case 23: 
+            htime = "twenty three"; 
+            break;
+        case 24: 
+            htime = "twenty four"; 
+            break;
+        case 25: 
+            htime = "twenty five"; 
+            break;
+        case 26: 
+            htime = "twenty six"; 
+            break;
+        case 27: 
+            htime = "twenty seven"; 
+            break;
+        case 28: 
+            htime = "twenty eight"; 
+            break;
+        case 29: 
+            htime = "twenty nine"; 
+            break;
+        case 30: 
+            htime = "half past"; 
+            break;
+        }
+        
+        return htime;
+	}
+
+}
