@@ -1,0 +1,78 @@
+package Practice;
+
+public class gridSearch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String G[]= {"1234567890","0987654321","1111111111","1111111111","2222222222"};
+		String P[]= {"876543","111111","111111"};
+		
+		System.out.println(gridSearch(G, P));
+	}
+	
+	static String gridSearch(String[] G, String[] P) {
+		String str="YES";
+		int prevIndex=-1;
+		int i=-1;
+		int strLength=0;
+		for(String str1:P)
+		{
+			
+			for(;i<G.length-1;)
+			{
+					i++;
+					
+					String str2=G[i];
+				
+					int index=str2.indexOf(str1);
+					
+					if(index!=-1)
+					{
+						if(prevIndex==-1)
+						{
+							prevIndex=index;
+							strLength=str1.length();
+							break;
+						}
+						
+						else
+						{
+//							if(prevIndex==index)
+//							{
+//								i++;
+//								break;
+//							}
+//							
+//							else
+//							{
+//								str="NO";
+//								return str;
+//							}
+							
+							String nw_str=(String) str2.subSequence(prevIndex,(prevIndex+ strLength));
+							
+							if(nw_str.equals(str1))
+							{
+								i++;
+								break;
+							}
+							
+							else
+								{
+									str="NO";
+									return str;
+								}
+						}
+						
+					}
+					
+					
+			}
+		}
+		
+		
+		return str;
+
+    }
+
+}
