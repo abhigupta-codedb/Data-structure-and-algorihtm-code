@@ -1,0 +1,56 @@
+package Practice;
+import java.util.*;
+public class jimOrders {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int orders[][]= {{1,1},{1,1}};
+		
+		for(int a:jimOrders(orders))
+			System.out.print(a+" ");
+	}
+	
+	
+	static int[] jimOrders(int[][] orders) {
+		int n=orders.length;
+		int out[]=new int[n];//sorted array
+		int f_out[]=new int[n];//output array
+		int k=0;
+		for(int i=0;i<n;i++)
+		{
+			int time=orders[i][0];
+			int cost=orders[i][1];
+			
+			out[k++]=time+cost;
+		}
+		
+		LinkedHashMap<Integer,Integer> hm=new LinkedHashMap<Integer,Integer>(); 
+
+		
+		for(int i=0;i<n;i++)
+		{
+			hm.put((i+1), out[i]);
+		}
+		System.out.println(hm);
+		Arrays.sort(out);
+		
+		int m=0;
+		for(int a:out)
+		{
+			for (Map.Entry<Integer,Integer> entry : hm.entrySet())
+			{
+				if(entry.getValue()==a)
+				{
+					int val=entry.getKey();
+					f_out[m++]=val;
+					hm.remove(entry.getKey());
+					break;
+				}
+			}
+		}
+		
+		return f_out;
+
+    }
+
+}
