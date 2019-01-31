@@ -1,0 +1,62 @@
+package Practice;
+
+import java.util.Arrays;
+
+public class gridChallengeProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String grid[]= {"abc"
+				,"hjk"
+				,"mpq"
+				,"rtv"};
+		System.out.println(grid.length);
+		System.out.println(gridChallenge(grid));
+	}
+	
+	static String gridChallenge(String[] grid) {
+
+		String str="YES";
+		int row=grid.length;
+		int col=grid[0].length();
+		char out[][]=new char[row][col];
+		int j=0;
+		
+		for(String in:grid)
+		{
+			char ch[]=in.toCharArray();
+			Arrays.sort(ch);
+			
+			for(int i=0;i<col;i++)
+			{
+				out[j][i]=ch[i];
+			}
+			
+			j++;
+		}
+		
+		for(int i=0;i<row;i++)
+		{
+			for(int k=0;k<col;k++)
+			{
+				System.out.print(out[i][k]+" ");
+				
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<col;i++)
+		{
+			for(int k=1;k<row;k++)
+			{
+				if(out[k-1][i]>out[k][i])
+					return "NO";
+			}
+		}
+		
+		
+		return str;
+
+    }
+
+}
