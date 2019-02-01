@@ -1,0 +1,52 @@
+package Practice;
+
+public class permArrays {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int A[]= {3 ,6 ,8 ,5 ,9 ,9 ,4 ,8 ,4, 7};
+		int B[]= {5 ,1 ,0 ,1 ,6 ,4 ,1 ,7 ,4 ,3};
+		
+		System.out.println(twoArrays(9, A, B));
+	}
+	
+	static String twoArrays(int k, int[] A, int[] B) {
+		String str="YES";
+		int out[]=new int[A.length];
+		int m=0;
+		
+		for(int i=0;i<A.length;i++)
+		{
+			int a=A[i];
+			
+			for(int j=0;j<B.length;j++)
+			{
+				int b=B[j];
+				
+				if(b>0)
+				{
+					if(a+b>=k)
+					{
+						out[m++]=a+b;
+						 
+						 B[j]=-1;
+						 
+						 break;
+						
+					}
+				}
+			}
+		}
+		
+		for(int a:out)
+		{
+			if(a==0)
+				str="NO";
+		}
+		
+		
+		return str;
+
+    }
+
+}
