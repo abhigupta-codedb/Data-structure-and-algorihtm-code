@@ -1,0 +1,40 @@
+package Practice;
+import java.util.*;
+public class MaxMin {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {2,3,5,9,11};
+		System.out.println(getMinimumCost(3, arr));
+	}
+	
+	static int getMinimumCost(int k, int[] arr) {
+		int fairness=Integer.MAX_VALUE;
+		Arrays.sort(arr);
+        int out[]=new int[k];
+        
+        for(int i=0;i<arr.length;i++)
+        {
+        	int m=0;
+        	int j=i;
+            
+        	if(j+k<=arr.length)
+            {
+            	for(  ;j<i+k;j++)
+                {
+                	out[m++]=arr[j];
+                	
+                }
+                
+                fairness=((out[k-1]-out[0])<fairness)?(out[k-1]-out[0]):fairness;
+                System.out.println("hello");
+            }
+            
+            
+        }
+
+        return fairness;
+
+    }
+
+}
