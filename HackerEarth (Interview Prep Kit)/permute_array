@@ -1,22 +1,24 @@
 package Practice;
-
+import java.util.*;
 public class permArrays {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int A[]= {3 ,6 ,8 ,5 ,9 ,9 ,4 ,8 ,4, 7};
-		int B[]= {5 ,1 ,0 ,1 ,6 ,4 ,1 ,7 ,4 ,3};
+		int A[]= {4 ,4 ,3 ,2 ,1 ,4 ,4 ,3 ,2 ,4};
+		int B[]= {2 ,3 ,0 ,1 ,1 ,3 ,1 ,0 ,0 ,2};
 		
-		System.out.println(twoArrays(9, A, B));
+		System.out.println(twoArrays(4, A, B));
 	}
 	
 	static String twoArrays(int k, int[] A, int[] B) {
 		String str="YES";
 		int out[]=new int[A.length];
 		int m=0;
+		
 		Arrays.sort(A);
 		Arrays.sort(B);
-		for(int i=0;i<A.length;i++)
+		
+		for(int i=A.length-1;i>=0;i--)
 		{
 			int a=A[i];
 			
@@ -24,7 +26,7 @@ public class permArrays {
 			{
 				int b=B[j];
 				
-				if(b>0)
+				if(b>=0)
 				{
 					if(a+b>=k)
 					{
@@ -44,10 +46,7 @@ public class permArrays {
 			if(a==0)
 				str="NO";
 		}
-		
-		
 		return str;
-
     }
 
 }
