@@ -3,7 +3,7 @@ package Practice;
 public class binaryHeap {
 	public static void main(String args[])
 	{
-		int arr[]= {2,9,11,3,4,13};
+		int arr[]= {2,9,11,3};
 		
 		int out[]=new int[arr.length];
 		
@@ -39,6 +39,35 @@ public class binaryHeap {
 			}
 			
 			place=root;
+		}
+	}
+	
+	static int  getMax(int arr[])
+	{
+		int ele=arr[0];
+		
+		arr[0]=arr[arr.length-1];
+		
+		return ele;
+	}
+	
+	static void percolateDown(int arr[])
+	{
+		int place=0;
+		
+		
+		while(place<=arr.length)
+		{
+			int leftSib=2*place;
+			int rightSib=2*place+1;
+			
+			int twoSwap=arr[leftSib]>arr[rightSib]?leftSib:rightSib;
+			
+			int temp=arr[twoSwap];
+			arr[twoSwap]=arr[place];
+			arr[place]=temp;
+			
+			place=twoSwap;
 		}
 	}
 }
