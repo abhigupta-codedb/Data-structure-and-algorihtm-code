@@ -1,6 +1,7 @@
 package Practice;
 
 public class binaryHeap {
+	
 	public static void main(String args[])
 	{
 		int arr[]= {2,9,11,3};
@@ -12,8 +13,12 @@ public class binaryHeap {
 			heapify(out,arr[i], i);
 		}
 		
-		for(int a :out)
-			System.out.print(a+" ");
+		int end=arr.length-1;
+		while(end>=0)
+		{
+			System.out.print(getMax(out, end)+" ");
+			percolateDown(out, end);
+		}
 	}
 	
 	static void heapify(int arr[],int ele,int place)
@@ -42,26 +47,36 @@ public class binaryHeap {
 		}
 	}
 	
-	static int  getMax(int arr[])
+	static int  getMax(int arr[], int end)
 	{
 		int ele=arr[0];
 		
-		arr[0]=arr[arr.length-1];
+		arr[0]=arr[end];
+		
+		end--;
 		
 		return ele;
 	}
 	
-	static void percolateDown(int arr[])
+	static void percolateDown(int arr[],int end)
 	{
 		int place=0;
 		
 		
-		while(place<=arr.length)
+		while(place<=end)
 		{
 			int leftSib=2*place;
 			int rightSib=2*place+1;
+			int twoSwap=0;
 			
-			int twoSwap=arr[leftSib]>arr[rightSib]?leftSib:rightSib;
+			if(leftSib<=end && rightSib<=end)
+				twoSwap=arr[leftSib]>arr[rightSib]?leftSib:rightSib;
+			
+			else if(leftSib<=end && rightSib>end)
+				twoSwap=leftSib;
+			
+			else if(rightSib<=end && leftSib>end)
+				twoSwap=rightSib;
 			
 			int temp=arr[twoSwap];
 			arr[twoSwap]=arr[place];
