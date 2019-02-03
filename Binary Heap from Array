@@ -1,0 +1,44 @@
+package Practice;
+
+public class binaryHeap {
+	public static void main(String args[])
+	{
+		int arr[]= {2,9,11,3,4,13};
+		
+		int out[]=new int[arr.length];
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			heapify(out,arr[i], i);
+		}
+		
+		for(int a :out)
+			System.out.print(a+" ");
+	}
+	
+	static void heapify(int arr[],int ele,int place)
+	{
+		if(place==0)
+		{
+			arr[0]=ele;
+			return;
+		}
+		
+		arr[place]=ele;
+		
+		while(place!=0)
+		{
+			
+			int root=place/2;
+			
+			if(arr[root]<ele)
+			{
+				int temp=arr[root];
+				arr[root]=arr[place];
+				arr[place]=temp;
+			}
+			
+			place=root;
+		}
+	}
+}
