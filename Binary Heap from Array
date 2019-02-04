@@ -4,39 +4,34 @@ public class binaryHeap {
 	
 	public static void main(String args[])
 	{
-		int arr[]= {2,9,11,3};
-		
-		int out[]=new int[arr.length];
-		
+		int arr[]= {2,9,11,3,1,6,91};
+
 		for(int i=0;i<arr.length;i++)
 		{
-			heapify(out,arr[i], i);
+			heapify(arr, i);
 		}
 		
 		int end=arr.length-1;
+		
 		while(end>=0)
 		{
-			System.out.print(getMax(out, end)+" ");
-			percolateDown(out, end);
+			System.out.print(getMax(arr, end)+" ");
+			end--;
+			
 		}
 	}
 	
-	static void heapify(int arr[],int ele,int place)
+	static void heapify(int arr[],int place)
 	{
 		if(place==0)
-		{
-			arr[0]=ele;
 			return;
-		}
-		
-		arr[place]=ele;
 		
 		while(place!=0)
 		{
 			
 			int root=place/2;
 			
-			if(arr[root]<ele)
+			if(arr[root]<arr[place])
 			{
 				int temp=arr[root];
 				arr[root]=arr[place];
@@ -55,22 +50,30 @@ public class binaryHeap {
 		
 		end--;
 		
+		percolateDown(arr, end);
+		
 		return ele;
 	}
 	
 	static void percolateDown(int arr[],int end)
 	{
+		
 		int place=0;
 		
 		
 		while(place<=end)
 		{
-			int leftSib=2*place;
-			int rightSib=2*place+1;
+			int leftSib=2*place+1;
+			int rightSib=2*place+2;
 			int twoSwap=0;
 			
 			if(leftSib<=end && rightSib<=end)
-				twoSwap=arr[leftSib]>arr[rightSib]?leftSib:rightSib;
+			{
+				if(arr[leftSib]>arr[rightSib])
+					twoSwap=leftSib;
+				else
+					twoSwap=rightSib;
+			}
 			
 			else if(leftSib<=end && rightSib>end)
 				twoSwap=leftSib;
@@ -78,11 +81,21 @@ public class binaryHeap {
 			else if(rightSib<=end && leftSib>end)
 				twoSwap=rightSib;
 			
-			int temp=arr[twoSwap];
-			arr[twoSwap]=arr[place];
-			arr[place]=temp;
+			else
+			{
+				twoSwap=-1;
+				break;
+			}
 			
-			place=twoSwap;
+			if(twoSwap!=-1)
+			{
+				int temp=arr[twoSwap];
+				arr[twoSwap]=arr[place];
+				arr[place]=temp;
+				
+				place=twoSwap;
+			}
 		}
 	}
 }
+
