@@ -1,0 +1,49 @@
+package Practice;
+import java.util.*;
+public class goodSegment {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {37,7,22,15,49,60};
+		System.out.println(getGoodSegment(arr, 3, 48));
+	}
+	
+	static int getGoodSegment(int arr[],int l,int r)
+	{
+//		Arrays.sort(arr);
+//		int max_count=0;
+//		
+//		for(int i=l;i<=r;i++)
+//		{
+//			int in_count=0;
+//		}
+		
+		int out[]=new int[100000000];
+		
+		for(int a:arr)
+			out[a]=-1;
+		
+		int max=0;
+		int count=0;
+		
+		for(int i=l;i<=r;i++)
+		{
+			if(out[i]==0)
+				count++;
+			
+			else
+			{
+				if(count>max)
+					max=count;
+				
+				count=0;
+			}
+		}
+		
+		
+		
+		return max;
+
+	}
+
+}
