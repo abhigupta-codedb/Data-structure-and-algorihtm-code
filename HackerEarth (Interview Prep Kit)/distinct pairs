@@ -1,0 +1,61 @@
+package Practice;
+
+import java.util.*;
+
+public class distPairs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {1,2,3,6,7,8,9,1};
+		
+		System.out.println(getDisPairs(arr, 10));
+	}
+	
+	static class pair
+	{
+		int x;
+		int y;
+		
+	}
+	
+	static int getDisPairs(int arr[],int k)
+	{
+		Stack<pair> ps=new Stack<>();
+//		ArrayList<pair> ap=new ArrayList<>();
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=i+1;j<arr.length;j++)
+			{
+				if(arr[i]+arr[j]==k)
+				{
+					pair p=new pair();
+					p.x=arr[i];
+					p.y=arr[j];
+					
+					ps.add(p);
+				}
+			}
+		}
+		
+//		for(pair p:ap)
+//			System.out.println(p.x+" "+p.y);
+		
+		int count=ps.size();
+		while(!ps.isEmpty())
+		{
+			pair p1=ps.pop();
+			
+			for(pair p2 :ps)
+			{
+				if(p1.x==p2.y && p1.y==p2.x)
+				{
+					count--;
+					break;
+				}
+			}
+		}
+		
+		return count;
+	}
+}
