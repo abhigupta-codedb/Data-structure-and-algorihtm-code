@@ -1,0 +1,85 @@
+package Practice;
+
+public class magicVowels {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(getSize("aeeiou"));
+	}
+	
+	static int getSize(String str)
+	{
+		
+		int out[]=new int[5];
+		char ch[]=str.toCharArray();
+		
+		int start_index=getFirstIndex(ch, 'a', 0);
+		int i;
+		for(i=start_index;i<ch.length;i++)
+		{
+			if(ch[i]=='a')
+				out[0]++;
+			else
+				break;
+		}
+		
+		start_index=getFirstIndex(ch, 'e', i);
+		int j;
+		for(j=start_index;j<ch.length;j++)
+		{
+			if(ch[j]=='e')
+				out[1]++;
+			else
+				break;
+		}
+		
+		
+		start_index=getFirstIndex(ch, 'i', j);
+		int k;
+		for(k=start_index;k<ch.length;k++)
+		{
+			if(ch[k]=='i')
+				out[2]++;
+			else
+				break;
+		}
+		
+		
+		start_index=getFirstIndex(ch, 'o', k);
+		int l;
+		for(l=start_index;l<ch.length;l++)
+		{
+			if(ch[l]=='o')
+				out[3]++;
+			else
+				break;
+		}
+		
+		
+		start_index=getFirstIndex(ch, 'u', l);
+		int m;
+		for(m=start_index;m<ch.length;m++)
+		{
+			if(ch[m]=='u')
+				out[4]++;
+			else
+				break;
+		}
+				
+		return (out[0]+out[1]+out[2]+out[3]+out[4]);
+	}
+	
+	
+	static int getFirstIndex(char ch[],char c,int start)
+	{
+		for(int i=start;i<ch.length;i++)
+		{
+			if(ch[i]==c)
+				return i;
+			
+		}
+		
+		return -1;
+	}
+
+}
