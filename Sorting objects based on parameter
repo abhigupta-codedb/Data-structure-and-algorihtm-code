@@ -1,0 +1,59 @@
+class Checker implements Comparator<Player> {
+  	// complete this method
+	
+	public static void main(String args[])
+	{
+		ArrayList<Player> arp=new ArrayList<Player>();
+		
+	
+		Player p1=new Player("bb",6);
+		Player p2=new Player("b",6);
+		
+		arp.add(p1);
+		arp.add(p2);
+		
+		Checker c=new Checker();
+		
+		c.compare(p1, p2);
+		
+	}
+	
+	public int compare(Player a, Player b) {
+
+        if(a.score<b.score)
+            return 1;
+        
+        else if(a.score == b.score)
+            return compareName(a,b,0);
+        
+        else
+            return -1;
+    
+    }
+
+    public int compareName(Player a, Player b,int i) {
+    	
+    	if(i<a.name.length() && i<b.name.length())
+
+    	{
+    		if(a.name.charAt(i)<b.name.charAt(i))
+                return -1;
+            
+            else if(a.name.charAt(i) == b.name.charAt(i))
+            {
+            	i=i+1;
+            	return compareName(a, b, i);
+            }
+            
+            else
+                return 1;
+    	}
+    	
+    	
+    	else if(i==a.name.length() && i<b.name.length())
+    		return -1;
+    	
+    	else
+    		return 1;
+    }
+}
