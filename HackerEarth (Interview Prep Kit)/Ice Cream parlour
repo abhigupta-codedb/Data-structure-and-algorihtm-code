@@ -1,0 +1,42 @@
+package Practice;
+import java.util.*;
+public class fraudlentActivity {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int cost[]= {2,2,4,3};
+		int money=4;
+		
+		whatFlavors(cost, money);
+	}
+	
+	static void whatFlavors(int[] cost, int money) {
+		
+		Map<Integer, Integer> map = new HashMap<>();
+		int index1=0;
+		int index2=0;
+	    for (int i = 0; i < cost.length; i++) {
+	        
+	    	int target=money-cost[i];
+	        
+	        if(map.containsKey(target))
+	        {
+	        	index1=i;
+	        	index2=map.get(target);
+	        }
+
+	        	map.put(cost[i], i);
+	    }
+		
+		index1+=1;
+		index2+=1;
+		
+		if(index1<index2)
+		System.out.println(index1+" "+index2);
+		
+		else
+		System.out.println(index2+" "+index1);
+
+    }
+	
+}
