@@ -1,0 +1,58 @@
+package Practice;
+import java.util.*;
+public class fraudlentActivity {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int expenditure[]= {1 ,2 ,3 ,4 ,4};
+		int d=4;
+		
+		System.out.println(activityNotifications(expenditure, d));
+	}
+	
+	static int activityNotifications(int[] expenditure, int d) {
+		Queue<Integer> qu=new LinkedList<>();
+		int count=0;
+		
+		for(int a:expenditure)
+		{
+			if(qu.size()==d)
+			{
+				double median=getMedian(qu);
+				//System.out.println(median);
+				if(a>=2*median)
+					count++;
+				
+				qu.remove();
+				//System.out.println(qu.size());
+			}
+			
+			qu.add(a);
+		}
+		
+		return count;
+    }
+	
+	static double getMedian(Queue<Integer> qu)
+	{
+		int n=qu.size();
+		int arr[]=new int[n];
+		int i=0;
+		int val=n/2;
+		double median=0;
+		
+		for(int a :qu)
+			arr[i++]=a;
+		
+		Arrays.sort(arr);
+		
+		if(n%2==0)
+			median=(arr[val]+arr[val-1])/2.0;
+		
+		else
+			median=(arr[val]);
+		
+		return median;
+	}
+		
+}
