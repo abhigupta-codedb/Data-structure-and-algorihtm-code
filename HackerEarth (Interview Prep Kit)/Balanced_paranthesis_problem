@@ -1,0 +1,80 @@
+package Practice;
+import java.util.*;
+public class stackProblem {
+	
+	public static void main(String []argh)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		while (sc.hasNext()) 
+		{
+			String input=sc.next();
+            //Complete the code
+			Stack<Character> stk=new Stack<>();
+			
+			char ch[]=input.toCharArray();
+			boolean flag=false;
+			for(char c:ch)
+			{
+				if(flag)
+					break;
+				
+				if(c=='('||c=='{'||c=='[')
+					stk.push(c);
+				
+				else
+				{
+					if(stk.isEmpty())
+					{
+						flag=true;
+						break;
+					}
+					
+					else if(c==')')
+					{
+						if(stk.pop()=='(')
+							continue;
+						
+						else
+						{
+							flag=true;
+							break;
+						}
+					}
+					
+					else if(c=='}')
+					{
+						if(stk.pop()=='{')
+							continue;
+						else
+						{
+							flag=true;
+							break;
+						}
+					}
+					
+					else if(c==']')
+					{
+						if(stk.pop()=='[')
+							continue;
+						else
+						{
+							flag=true;
+							break;
+						}
+					}
+				}
+			}
+			
+			if(!stk.empty())
+				flag=true;
+			
+			if(flag)
+				System.out.println("false");
+			else
+				System.out.println("true");
+		}
+		
+	}
+
+}
