@@ -1,0 +1,155 @@
+package priorityProblem;
+
+public class Student {
+	
+	int id;
+	String name;
+	double CGPA;
+	
+	Student(String name,double CGPA,int id)
+	{
+		this.id=id;
+		this.name=name;
+		this.CGPA=CGPA;
+	}
+	
+	int getID()
+	{
+		return this.id;
+	}
+	
+	String getName()
+	{
+		return this.name;
+	}
+	
+	double getCGPA()
+	{
+		return this.CGPA;
+	}
+
+	
+}
+
+//ANOTHER CLASS
+
+
+package priorityProblem;
+
+import java.util.Comparator;
+
+public class SortbyCGPA implements Comparator<Student> {
+
+	@Override
+	public int compare(Student st1, Student st2) {
+		// TODO Auto-generated method stub
+		if(st1.CGPA<st2.CGPA)
+			return 1;
+		
+		else if(st1.CGPA==st2.CGPA)
+			return Namecompare(st1, st2);
+		
+		else
+			return -1;
+	}
+	
+	
+	public int Namecompare(Student st1, Student st2) {
+		// TODO Auto-generated method stub
+		if(st1.name.compareTo(st2.name)>0)
+			return 1;
+		
+		else if(st1.name.compareTo(st2.name)==0)
+			return 0;
+		
+		else
+			return -1;
+	}
+	
+	
+	public int IDcompare(Student st1, Student st2) {
+		// TODO Auto-generated method stub
+		if(st1.id>st2.id)
+			return 1;
+		
+		else if(st1.id==st2.id)
+			return 0;
+		
+		else
+			return -1;
+	}
+
+}
+
+
+//DRIVER CLASS
+
+package priorityProblem;
+import java.util.*;
+
+public class Priorities  {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		List<String> list=new LinkedList<>();
+		
+		list.add("ENTER John 3.75 50");
+		list.add("ENTER Mark 3.8 24");
+		list.add("ENTER Shafaet 3.7 35");
+		list.add("SERVED");
+		list.add("SERVED");
+		list.add("ENTER Samiha 3.85 36");
+		list.add("SERVED");
+		list.add("ENTER Ashley 3.9 42");
+		list.add("ENTER Maria 3.6 46");
+		list.add("ENTER Anik 3.95 49");
+		list.add("ENTER Dan 3.95 50");
+		list.add("SERVED");
+	
+		List<Student> liststu=getStudents(list);
+		
+		for(Student st:liststu)
+			System.out.println(st.getName());
+	}
+	
+	static List<Student> getStudents(List<String> events)
+	{
+		List<Student> list=new LinkedList<Student>();
+		
+		for(String s:events)
+		{
+			String val[]=s.split(" ");
+			
+			//System.out.println(val[0]);
+			
+			if(val[0].equals("ENTER"))
+			{
+				
+				Student st=new Student(val[1],Double.parseDouble(val[2]),Integer.parseInt(val[3]));
+				list.add(st);
+			}
+			
+			else
+			{
+				if(list.size()==0)
+					continue;
+				else
+				{
+					Collections.sort(list ,new SortbyCGPA());
+					list.remove(0);
+				}
+				
+			}
+		}
+		
+		return list;
+	}
+	
+	
+	
+
+
+}
+
