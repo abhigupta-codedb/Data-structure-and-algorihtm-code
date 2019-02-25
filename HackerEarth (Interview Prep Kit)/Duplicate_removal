@@ -1,0 +1,51 @@
+package Practice;
+
+import java.io.IOException;
+import java.util.*;
+public class DuplicateRemoval {
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		Scanner sc=new Scanner(System.in);
+		ArrayList<String> a_list=new ArrayList<>();
+		Hashtable<String,Integer> ht=new Hashtable<>();
+		
+		while(sc.hasNext())
+		{
+			String s1=sc.next();
+			if(s1.equals("exit"))
+				break;
+			
+			else
+				a_list.add(s1);
+			
+		}
+		
+		
+		for(String a:a_list)
+		{
+			if(ht.containsKey(a))
+				ht.put(a, ht.get(a)+1);
+			
+			else
+				ht.put(a, 1);
+		}
+		
+		int rep_val=0;
+		int act_val=0;
+		for(Map.Entry<String, Integer> entry:ht.entrySet())
+		{
+			if(entry.getValue()>1)
+			{
+				System.out.println(entry.getKey()+"::"+entry.getValue());
+				rep_val+=entry.getValue();
+				act_val++;
+			}
+		}
+		
+		System.out.println("total size "+a_list.size());
+		System.out.println("rem after removal "+(a_list.size()-rep_val+act_val));
+}
+	
+}
