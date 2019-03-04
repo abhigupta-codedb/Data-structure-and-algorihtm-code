@@ -1,10 +1,15 @@
-	import java.util.*;
+import java.util.*;
 class Program {
   public static int[] twoNumberSum(int[] array, int targetSum) {
     // Write your code here.
 		int arr[]=new int[2];
 		
+		ArrayList<Integer> ar=new ArrayList<Integer>();
 		
+		for(int a:array)
+		{
+			ar.add(a);
+		}
 		
 		int key=-1;
 		int target=-1;
