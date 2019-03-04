@@ -2,9 +2,10 @@ import java.util.*;
 class Program {
   public static int[] twoNumberSum(int[] array, int targetSum) {
     // Write your code here.
-		int arr[]=new int[2];
+		int arr[]={};
 		
 		ArrayList<Integer> ar=new ArrayList<Integer>();
+		Arrays.sort(array);
 		
 		for(int a:array)
 		{
@@ -27,16 +28,24 @@ class Program {
 					
 		}
 		
-		if(key<target)
+		if(target!=-1)
 		{
-			arr[0]=key;
-			arr[1]=target;
-		}
 		
-		else
-		{
-			arr[0]=target;
-			arr[1]=key;
+		arr=new int[2];
+		
+		if(key<target && target !=-1)
+			{
+				arr[0]=key;
+				arr[1]=target;
+			}
+		
+			else
+			{
+				arr[0]=target;
+				arr[1]=key;
+			}
+			
+		
 		}
 		
 		return arr;
