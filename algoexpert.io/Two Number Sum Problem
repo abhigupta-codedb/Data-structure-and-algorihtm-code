@@ -1,0 +1,39 @@
+	import java.util.*;
+class Program {
+  public static int[] twoNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		int arr[]=new int[2];
+		
+		
+		
+		int key=-1;
+		int target=-1;
+		
+		for(int i=0;i<array.length;i++)
+		{
+			key=array[i];
+			int toFind=targetSum-key;
+			
+			if(ar.contains(toFind))
+			{
+				target=toFind;
+				break;
+			}
+					
+		}
+		
+		if(key<target)
+		{
+			arr[0]=key;
+			arr[1]=target;
+		}
+		
+		else
+		{
+			arr[0]=target;
+			arr[1]=key;
+		}
+		
+		return arr;
+  }
+}
