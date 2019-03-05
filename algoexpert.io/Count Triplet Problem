@@ -8,8 +8,6 @@ public class tripletProblem {
 		int arr[]= {12,3,1,2,-6,5,-8,6};
 		ArrayList<Integer[]> out=threeNumberSum(arr,0);
 		
-		System.out.println(out.size());
-		
 		for(Integer [] aa:out)
 		{
 			for(Integer a:aa)
@@ -27,17 +25,19 @@ public class tripletProblem {
 		for(int i=0;i<array.length-1;i++)
 		{
 			int current=array[i];
-			int left=array[i+1];
-			int right=array[array.length-1];
+			int left=i+1;
+			int right=array.length-1;
 			
 			while(left<right)
 			{
-				int currentSum=current+left+right;
+				int currentSum=current+array[left]+array[right];
 				
 				if(currentSum==targetSum)
 				{
 					
-					out.add(new Integer[] {current,left,right});
+					out.add(new Integer[] {current,array[left],array[right]});
+					left++;
+					right--;
 				}
 				
 				else if(currentSum>targetSum)
