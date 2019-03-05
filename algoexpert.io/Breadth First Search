@@ -1,0 +1,39 @@
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+class Program {
+  // Do not edit the class below except
+  // for the breadthFirstSearch method.
+  // Feel free to add new properties
+  // and methods to the class.
+  static class Node{
+    String name;
+    ArrayList<Node> children = new ArrayList<Node>();
+
+    public Node(String name) {
+      this.name = name;
+			
+    }
+
+    public ArrayList<String> breadthFirstSearch(ArrayList<String> array) {
+      // Write your code here.
+			ArrayDeque<Node> queue=new ArrayDeque<Node>();
+			queue.add(this);
+			while(!queue.isEmpty())
+			{
+				Node current=queue.poll();
+				array.add(current.name);
+				for(int i=0;i<current.children.size();i++){
+					queue.add(current.children.get(i));
+				}
+			}
+			
+			return array;
+    }
+
+    public Node addChild(String name) {
+      Node child = new Node(name);
+      children.add(child);
+      return this;
+    }
+  }
+}
