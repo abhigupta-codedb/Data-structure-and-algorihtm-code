@@ -1,0 +1,54 @@
+package algoExpert;
+import java.util.ArrayList;
+import java.util.Arrays;
+public class tripletProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {12,3,1,2,-6,5,-8,6};
+		ArrayList<Integer[]> out=threeNumberSum(arr,0);
+		
+		System.out.println(out.size());
+		
+		for(Integer [] aa:out)
+		{
+			for(Integer a:aa)
+				System.out.print(a+" ");
+				
+			System.out.println();
+		}
+	}
+	
+	public static ArrayList<Integer[]> threeNumberSum(int[] array, int targetSum) {
+	    // Write your code here.
+		ArrayList<Integer[]> out=new ArrayList<Integer[]>();
+		Arrays.sort(array);
+		
+		for(int i=0;i<array.length-1;i++)
+		{
+			int current=array[i];
+			int left=array[i+1];
+			int right=array[array.length-1];
+			
+			while(left<right)
+			{
+				int currentSum=current+left+right;
+				
+				if(currentSum==targetSum)
+				{
+					
+					out.add(new Integer[] {current,left,right});
+				}
+				
+				else if(currentSum>targetSum)
+					right--;
+				else
+					left++;
+				
+			}
+		}
+		
+		return out;
+	  }
+
+}
