@@ -1,0 +1,126 @@
+package algoExpert;
+
+public class BSTCons {
+	
+	static class BST {
+	    public int value;
+	    public BST left;
+	    public BST right;
+
+	    public BST(int value) {
+	      this.value = value;
+	      this.left=null;
+	      this.right=null;
+	    }
+
+	    public BST insert(int value) {
+	      // Write your code here.
+	      // Do not edit the return statement of this method.
+	      BST node=this;
+	      while(true)
+	      {
+	    	  
+	    	  if(value<node.value)
+	    	  {
+	    		  if(node.left==null)
+	    		  {
+	    			  BST bst=new BST(value);
+	    			  node.left=bst;
+	    			  break;
+	    		  }
+	    		  
+	    		  else
+	    			  node=node.left;
+	    	  }
+	    	  
+	    	  else
+	    	  {
+	    		  if(node.right==null)
+	    		  {
+	    			  BST bst=new BST(value);
+	    			  node.right=bst;
+	    			  break;
+	    		  }
+	    		  
+	    		  else
+	    			  node=node.right;
+	    	  }
+	    	  
+	    	  
+	      }
+	      return this;
+	    }
+
+	    public boolean contains(int value) {
+	      // Write your code here.
+	    	BST node=this;
+	    	boolean flag=false;
+	    	
+	    	while(node!=null)
+	    	{
+	    		if(value==node.value)
+	    		{
+	    			flag=true;
+	    			break;
+	    		}
+	    		
+	    		else if(value<node.value)
+	    			node=node.left;
+	    		
+	    		else
+	    			node=node.right;
+	    	}
+	    	
+	    	
+	    	return flag;
+	    }
+
+	    public BST remove(int value) {
+	      // Write your code here.
+	      // Do not edit the return statement of this method.
+	      BST node=this;
+	      
+	      while(node.value!=value)
+	      {
+	    	  if(value==node.value)
+	    		break;
+	    		
+	    	  else if(value<node.value)
+	    		node=node.left;
+	    		
+	    	  else
+	    		node=node.right;
+	      }
+	      
+	      if(node.left==null && node.right==null)
+	    	  node=null;
+	      
+	      else if(node.left!=null && node.right==null)
+	    	  node=node.left;
+	      
+	      else if(node.left==null && node.right!=null)
+	    	  node=node.right;
+	      
+	      //Both child are present.
+	      else
+	      {
+	    	  BST node2=node.right;
+	    	  
+	    	  while(node2.left!=null)
+	    		  node2=node2.left;
+	    	  
+	    	  node.value=node2.value;
+	    	  
+	    	  if(node2.right==null)
+	    		  node2=null;
+	    	  
+	    	  else
+	    		  node2=node2.right;
+	    	  
+	      }
+	      
+	      return this;
+	    }
+	  }
+
+}
