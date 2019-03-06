@@ -1,0 +1,65 @@
+package algoExpert;
+
+import java.util.*;
+public class smallestDiff {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+	    // Write your code here.
+		Arrays.sort(arrayOne);
+		Arrays.sort(arrayTwo);
+		
+//		int i=0;
+//		int j=0;
+//		
+//		while(i<arrayOne.length || j<arrayTwo.length)
+//		{
+//			if(Math.abs(arrayOne[i]-arrayTwo[j])==0)
+//			{
+//				break;
+//			}
+//			
+//			else
+//			{
+//				if(arrayOne[i]<arrayTwo[j])
+//				{
+//					i++;
+//				}
+//				
+//				else
+//					j++;
+//			}
+//		}
+		
+		int glbMin=Integer.MAX_VALUE;
+		int locMin=Integer.MAX_VALUE;
+		int a=-1;
+		int b=-1;
+		
+		for(int i=0;i<arrayOne.length;i++)
+		{
+			
+			for(int j=0;j<arrayTwo.length;j++)
+			{
+				if(Math.abs(arrayOne[i]-arrayTwo[j])<locMin)
+				{
+					locMin=Math.abs(arrayOne[i]-arrayTwo[j]);
+					
+					if(locMin<glbMin)
+					{
+						glbMin=locMin;
+						a=i;
+						b=j;
+					}
+				}
+			}
+		}
+		
+		return new int[] {arrayOne[a],arrayTwo[b]};
+	  }
+
+}
