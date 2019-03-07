@@ -1,0 +1,28 @@
+class Program {
+  public static boolean validateBst(BST tree) {
+    // Write your code here.
+		return validateBST(tree,Integer.MIN_VALUE,Integer.MAX_VALUE);
+  }
+	
+	static boolean validateBST(BST node,int minValue,int maxValue)
+	  {
+		 if(node==null)
+			 return true;
+		 else if(node.value<minValue || node.value>=maxValue)
+			 return false;
+		 
+		 boolean validateleft=validateBST(node.left, minValue, node.value);
+		 
+		 return validateleft && validateBST(node.right, node.value, maxValue);
+	  }
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
