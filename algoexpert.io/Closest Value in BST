@@ -1,0 +1,33 @@
+class Program {
+  public static int findClosestValueInBst(BST tree, int target) {
+    // Write your code here.
+		BST node=tree;
+		int diff=Integer.MAX_VALUE;
+		int value=-1;
+		while(node!=null)
+		{
+			if(Math.abs(node.value-target)<diff)
+			{
+				diff=Math.abs(node.value-target);
+				value=node.value;
+			}
+			
+			if(target<node.value)
+				node=node.left;
+			else
+				node=node.right;
+		}
+		
+		return value;
+  }
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
