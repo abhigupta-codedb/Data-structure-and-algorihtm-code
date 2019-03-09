@@ -1,0 +1,84 @@
+package arrayStrings;
+
+public class oneAway {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(onStep("pale","ple"));
+		System.out.println(onStep("pales","pale"));
+		System.out.println(onStep("pale","bale"));
+		System.out.println(onStep("pale","bake"));
+		
+	}
+	
+	static boolean onStep(String str1,String str2)
+	{
+		//replace character
+		if(str1.length()==str2.length())
+		{
+			if(str1.equals(str2))
+				return true;
+			
+			int out_count=getCount(str1, str2);
+			
+			if(out_count==2)
+				return true;
+			
+			else
+				return false;
+		}
+		
+		
+		else if(Math.abs(str1.length()-str2.length())==1)
+		{
+			int out_count=getCount(str1, str2);
+			
+			if(out_count==1)
+				return true;
+			
+			else
+				return false;
+		}
+		
+		
+		else
+			return false;
+	}
+	
+	static int getCount(String str1,String str2)
+	{
+		int arr[]=new int[Character.valueOf('z')-Character.valueOf('a')+1];
+		
+		for(char c:str1.toCharArray())
+		{
+			int val=c-'a';
+			arr[val]++;
+		}
+		
+		for(char c:str2.toCharArray())
+		{
+			int val=c-'a';
+			
+			if(arr[val]>0)
+				arr[val]--;
+			
+			else
+				arr[val]++;
+		}
+		
+		//counting occurences of 1.
+		int count=0;
+		for(int a:arr)
+		{
+			if(count>2)
+				break;
+			
+			if(a==1)
+				count++;
+		}
+		
+		return count;
+	}
+
+}
