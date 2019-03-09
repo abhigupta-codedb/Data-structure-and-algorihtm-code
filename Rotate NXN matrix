@@ -1,0 +1,77 @@
+package arrayStrings;
+
+public class rotateMatrix {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		intializeMatrix(6);
+	}
+	
+	public static void rotateMatrix2(int [][]arr,int size)
+	{
+		System.out.println("Before Initialization ");
+		printMatrix(arr, size);
+		
+		int last=size-1;
+		int level=0;
+		int totNumOfLevel=size/2;
+		
+		while(level<totNumOfLevel)
+		{
+			for(int i=level;i<last;i++)
+			{
+				//arr[level][i] - arr[i][last]
+				int temp=arr[level][i];
+				arr[level][i]=arr[i][last];
+				arr[i][last]=temp;
+				
+				//arr[level][i] - arr[last][last-i+level]
+				temp=arr[level][i];
+				arr[level][i]=arr[last][last-i+level];
+				arr[last][last-i+level]=temp;
+				
+				//arr[level][i] - arr[last-i+level][level]
+				temp=arr[level][i];
+				arr[level][i]=arr[last-i+level][level];
+				arr[last-i+level][level]=temp;
+			}
+			++level;
+			--last;
+		}
+		
+		System.out.println("After Initialization ");
+		printMatrix(arr, size);
+		 
+	}
+	
+	
+	static void printMatrix(int arr[][],int size)
+	{
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+			{
+				if(arr[i][j]<10)
+					System.out.print(arr[i][j]+"     ");
+				
+				else
+					System.out.print(arr[i][j]+"    ");
+			}
+			System.out.println();
+		}
+	}
+	
+	static void intializeMatrix(int size)
+	{
+		
+		int arr[][]=new int[size][size];
+		int count=0;
+		for(int i=0;i<size;i++)
+		{
+			for(int j=0;j<size;j++)
+				arr[i][j]=count++;
+		}
+		
+		rotateMatrix2(arr, size);
+	}
+}
