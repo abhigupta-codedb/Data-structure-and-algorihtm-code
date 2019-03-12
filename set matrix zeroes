@@ -1,0 +1,65 @@
+package arrayStrings;
+
+class setZeroes {
+	
+	public static void main(String args[])
+	{
+		int mat[][]= {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+		
+		setZeroes1(mat);
+	}
+	
+    public static void setZeroes1(int[][] matrix) {
+        
+        int row=matrix.length;
+        int col=matrix[0].length;
+        
+        //finding and marking entries with zero to highest value.
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+               if(matrix[i][j]==0)
+               {
+                   //marking entry with zero to some highest value.
+                   matrix[i][j]=Integer.MAX_VALUE;
+               }
+            }
+        }
+        
+              
+        //Setting marked values row and column to zero. 
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+               if(matrix[i][j]==Integer.MAX_VALUE)
+               {
+                   makeZeroes(i,j,matrix,row,col);
+               }
+            }
+        }
+        
+        //print matrix.
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+               System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    
+    //setting corresponding row and column to zero.
+    static void makeZeroes(int row,int col,int[][] matrix,int rowSize,int colSize)
+    {
+        //setting corresponding row to zero.
+        for(int i=0;i<colSize;i++)
+            matrix[row][i]=0;
+        
+        //setting corresponding column to zero.
+        for(int i=0;i<rowSize;i++)
+            matrix[i][col]=0;
+    }
+}
