@@ -1,0 +1,129 @@
+package Practice;
+import java.util.ArrayList;
+public class gameOfLife {
+	    
+	    static class Cord
+	    {
+	        int x;
+	        int y;
+	        int live;
+	    }
+	    
+	    public static void main(String args[])
+	    {
+	    	int board[][]={{0,1,0},{0,0,1},{1,1,1},{0,0,0}};
+	    	
+	    	gameOfLife(board);
+	    }
+	    
+	    public static void gameOfLife(int[][] board) {
+	       
+	        int row=board.length;
+	        int col=board[0].length;
+	        
+	        //for storing state of every cell.
+	        ArrayList<Cord> ar=new ArrayList<Cord>();
+	        
+	        for(int i=0;i<row;i++)
+	        {
+	            for(int j=0;j<col;j++)
+	            {
+	                
+	                    Cord c=new Cord();
+	                    c.x=i;
+	                    c.y=j;
+	                    
+	                    int live_cells=0;
+	                    
+	                    //north
+	                    if(i-1>=0)
+	                    {
+	                       if(board[i-1][j]>=1)
+	                           live_cells++;
+	                    }
+	                    
+	                    //south
+	                    if(i+1<row)
+	                    {
+	                       if(board[i+1][j]>=1)
+	                           live_cells++;
+	                    }
+	                    
+	                    //east
+	                    if(j+1<col)
+	                    {
+	                       if(board[i][j+1]>=1)
+	                           live_cells++;
+	                    }
+	                    
+	                    //west
+	                    if(j-1>=0)
+	                    {
+	                       if(board[i][j-1]>=1)
+	                           live_cells++;
+	                    }
+	                    
+	                    //north-east
+	                    if( (i-1 >= 0) && (j+1 < col) )
+	                    {
+	                        if(board[i-1][j+1]>=1)
+	                            live_cells++;
+	                    }
+	                    
+	                    
+	                    //north-west
+	                    if( (i-1 >= 0) && (j-1 >= 0) )
+	                    {
+	                        if(board[i-1][j-1]>=1)
+	                            live_cells++;
+	                    }
+	                    
+	                    
+	                    //south-east
+	                    if( (i+1< row) && (j+1 < col) )
+	                    {
+	                        if(board[i+1][j+1]>=1)
+	                            live_cells++;
+	                    }
+	                    
+	                    //south-west
+	                    if( (i+1< row) && (j-1 >= 0) )
+	                    {
+	                        if(board[i+1][j-1]>=1)
+	                            live_cells++;
+	                    }
+	                    
+	                    
+	                    if(board[i][j]==1 && live_cells<2)
+	                        c.live=0;
+	                    
+	                    else if( board[i][j]==1 && (live_cells==2 || live_cells==3))
+	                        c.live=1;
+	                    
+	                    else if( board[i][j]==1 && live_cells>3)
+	                        c.live=0;
+	                    
+	                    else if( board[i][j]==0 && live_cells==3)
+	                        c.live=1;
+	                    
+	                    ar.add(c);
+	                }    
+	        }
+	        
+	        //changing the status of each cells
+	        for(Cord c:ar)
+	        {
+	        	board[c.x][c.y]=c.live;
+	        }
+	        
+	        //print matrix.
+	        for(int i=0;i<row;i++)
+	        {
+	        	for(int j=0;j<col;j++)
+	        		System.out.print(board[i][j]+" ");
+	        	
+	        	System.out.println();
+	        }
+	    }
+	
+}
