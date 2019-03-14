@@ -1,0 +1,71 @@
+package Practice;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+public class fourNumSum {
+
+	static class Pair
+	{
+		int x;
+		int y;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int array[]= {7,6,4,-1,1,2};
+		ArrayList<Integer[]> out=fourNumberSum(array, 16);
+		
+		for(Integer [] arr:out)
+		{
+			for(int a:arr)
+				System.out.print(a+" ");
+			System.out.print(" , ");
+		}
+	}
+	
+	public static ArrayList<Integer[]> fourNumberSum(int[] array, int targetSum) {
+	    // Write your code here.
+		ArrayList<Integer[]> out=new ArrayList<>();
+		
+		HashMap<Pair,Integer> hm=new HashMap<Pair,Integer>();
+		java.util.Arrays.sort(array);
+		
+		for(int i=0;i<array.length;i++)
+		{
+			for(int j=i+1;j<array.length;j++)
+			{
+				Pair p=new Pair();
+				p.x=array[i];
+				p.y=array[j];
+				
+				hm.put(p, p.x+p.y);
+			}
+		}
+		
+		for(Map.Entry<Pair, Integer> entry1:hm.entrySet())
+		{
+			int toFind=targetSum-entry1.getValue();
+			
+			for(Map.Entry<Pair, Integer> entry2:hm.entrySet())
+			{
+				if(entry2.getValue()==toFind)
+				{
+					Pair p1=entry1.getKey();
+					Pair p2=entry2.getKey();
+					
+					
+					if((p1.x==p2.x || p1.x==p2.y) || (p1.y==p2.x || p1.y==p2.y))
+						continue;
+					else
+					{
+						out.add(new Integer[] {p1.x,p1.y,p2.x,p2.y});
+						
+					}
+				}
+			}
+		}
+		
+		return out;
+	  }
+
+}
