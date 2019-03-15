@@ -26,6 +26,7 @@ public class subArraySort {
 		
 		if(Unsorted)
 		{
+			start=start-1;
 			int outarr[]=getSortedArray(start,array.length,array);
 			int end=array.length-1;
 			int k=outarr.length-1;
