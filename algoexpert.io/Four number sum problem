@@ -1,0 +1,81 @@
+package arrayStrings;
+
+import java.util.*;
+import java.util.Map.Entry;
+
+public class fourNumSum2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int array[]= {7,6,4,-1,1,2};
+		ArrayList<Integer[]> out=fourNumberSum(array, 16);
+		
+		for(Integer [] arr:out)
+		{
+			for(int a:arr)
+				System.out.print(a+" ");
+			System.out.println("");
+		}
+	}
+	
+	public static ArrayList<Integer[]> fourNumberSum(int[] array, int targetSum)
+	{
+		HashMap<Integer,ArrayList<Integer[]>> hm=new HashMap<Integer,ArrayList<Integer[]>>();
+		ArrayList<Integer[]> out=new ArrayList<Integer[]>();
+		
+		//iterating through each value in array.
+		for(int i=0;i<array.length;i++)
+		{
+			int num=array[i];
+			
+			//For every next number after "i" in array checking if the difference is in the HashMap.
+			for(int j=i+1;j<array.length;j++)
+			{
+				int toFind=targetSum-(num+array[j]);
+				if(hm.containsKey(toFind))
+				{
+					ArrayList<Integer[]> getList=hm.get(toFind);
+					
+					for(Integer [] a:getList)
+					{
+						int num1=a[0];
+						int num2=a[1];
+						
+						out.add(new Integer [] {num1,num2,num,array[j]});
+					}
+				}
+			}
+			
+			//FOR EVERY NUMBER BEFORE "i", CHECKING IF IT'S SUM WITH "i" isALREADY IN HASHMAP, 
+			//IF IT'S THERE THEN JUST APPENDING NEW SETS OF
+			//PAIRS TO IT ELSE MAKING NEW ENTRY IN HASHMAP WITH SUM OF TWO NUMBERS AS KEY.
+			for(int k=i-1;k>=0 && i<array.length-1;k--)
+			{
+				int key=array[i]+array[k];
+				ArrayList<Integer[]> ar=new ArrayList<Integer[]>();
+				
+				if(hm.containsKey(key))
+				{
+					ar=hm.get(key);
+					
+					ar.add(new Integer[] {array[i],array[k]});
+					
+					hm.put(key,ar);
+				}
+				
+				else
+				{
+					ar.add(new Integer[] {array[i],array[k]});
+					hm.put(key,ar);
+				}
+			}
+			
+			
+		}
+		
+		System.out.println("hashMap size : "+hm.size());
+		
+		return out;
+	}
+
+}
