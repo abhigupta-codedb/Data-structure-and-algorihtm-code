@@ -1,0 +1,78 @@
+package arrayStrings;
+
+public class subArraySort {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {1,2,4,7,10,11,7,12,6,7,16,18,19};
+		
+		int out[]=subarraySort(arr);
+		
+		System.out.println(out[0]+" "+out[1]);
+	}
+	
+	public static int[] subarraySort(int[] array) {
+	    // Write your code here.
+		boolean Unsorted=false;
+		int start=0; 
+		for(start=1;start<array.length;start++)
+		{
+			if(array[start]<array[start-1])
+			{
+				Unsorted=true;
+				break;
+			}
+		}
+		
+		if(Unsorted)
+		{
+			int outarr[]=getSortedArray(start,array.length,array);
+			int end=array.length-1;
+			int k=outarr.length-1;
+			
+			while(k>0)
+			{
+				if(array[end]==outarr[k])
+				{
+					end--;
+					k--;
+				}
+				
+				else
+					break;
+			}
+			
+			//At this point we have both start and end index.
+			//Now we have to find out position of min element in already sorted part.
+			int minElement=outarr[0];
+			
+			for(int j=0;j<=start;j++)
+			{
+				if(minElement<array[j])
+				{
+					start=j;
+					break;
+				}
+			}
+			
+			return new int [] {start,end};
+		}
+		
+		else
+			return new int [] {-1,-1};
+	  }
+	
+	static int[] getSortedArray(int start,int end,int []array)
+	{
+		int output[]=new int[end-start];
+		
+		int j=0;
+		for(int i=start;i<end;i++)
+			output[j++]=array[i];
+		
+		java.util.Arrays.sort(output);
+		
+		return output; 
+	}
+
+}
