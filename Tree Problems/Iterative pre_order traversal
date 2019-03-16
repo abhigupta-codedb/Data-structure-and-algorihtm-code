@@ -1,0 +1,58 @@
+package Trees;
+import java.util.Stack;
+public class preOrder {
+
+	public static void main(String args[])
+	{
+		binaryTreeNode btn=new binaryTreeNode(1);
+		btn.left=new binaryTreeNode(2);
+		btn.right=new binaryTreeNode(3);
+		btn.left.left=new binaryTreeNode(4);
+		btn.left.right=new binaryTreeNode(5);
+		btn.right.right=new binaryTreeNode(7);
+		btn.right.left=new binaryTreeNode(6);
+		
+		preOrderTraversal_Iterative(btn);
+		System.out.println();
+		preOrderTraversal_Recursion(btn);
+	}
+	
+	
+	static void preOrderTraversal_Recursion(binaryTreeNode node)
+	{
+		if(node!=null)
+		{
+			System.out.print(node.data+" ");
+			preOrderTraversal_Recursion(node.left);
+			preOrderTraversal_Recursion(node.right);
+		}
+		
+		return;
+	}
+	
+	
+	static void preOrderTraversal_Iterative(binaryTreeNode node)
+	{
+		if(node==null)
+			return;
+		
+		Stack<binaryTreeNode> stk=new Stack<binaryTreeNode>();
+		stk.push(node);
+		
+		while(!stk.isEmpty())
+		{
+			binaryTreeNode temp=stk.pop();
+			
+			System.out.print(temp.data+" ");
+			
+			if(temp.right!=null)
+				stk.push(temp.right);
+			
+			if(temp.left!=null)
+				stk.push(temp.left);
+				
+		}
+		
+		
+	}
+}
