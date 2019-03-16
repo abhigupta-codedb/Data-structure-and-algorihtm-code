@@ -1,0 +1,42 @@
+package Trees;
+
+public class binaryTreeNode {
+	
+	int data;
+	binaryTreeNode left;
+	binaryTreeNode right;
+	boolean visited;
+	
+	binaryTreeNode(int value)
+	{
+		this.data=value;
+		this.left=null;
+		this.right=null;
+		this.visited=false;
+	}
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public binaryTreeNode getLeft() {
+		return left;
+	}
+
+	public void setLeft(binaryTreeNode left) {
+		this.left = left;
+	}
+
+	public binaryTreeNode getRight() {
+		return right;
+	}
+
+	public void setRight(binaryTreeNode right) {
+		this.right = right;
+	}
+	
+}
