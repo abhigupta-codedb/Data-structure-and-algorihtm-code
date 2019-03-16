@@ -1,0 +1,48 @@
+package Trees;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class level_OrderTraversal {
+	
+	
+	public static void main(String args[])
+	{
+		binaryTreeNode btn=new binaryTreeNode(1);
+		btn.left=new binaryTreeNode(2);
+		btn.right=new binaryTreeNode(3);
+		btn.left.left=new binaryTreeNode(4);
+		btn.left.right=new binaryTreeNode(5);
+		btn.right.right=new binaryTreeNode(7);
+		btn.right.left=new binaryTreeNode(6);
+		
+		levelOrderTraversal_Iterative(btn);
+		
+	}
+	
+	
+	static void levelOrderTraversal_Iterative(binaryTreeNode node)
+	{
+		if(node==null)
+			return;
+		
+		Queue<binaryTreeNode> q=new LinkedList<binaryTreeNode>();
+		q.add(node);
+		
+		while(!q.isEmpty())
+		{
+			binaryTreeNode temp=q.remove();
+			
+			System.out.print(temp.data+" ");
+			
+			if(temp.left!=null)
+				q.add(temp.left);
+			
+			if(temp.right!=null)
+				q.add(temp.right);
+				
+		}
+		
+		
+	}
+}
