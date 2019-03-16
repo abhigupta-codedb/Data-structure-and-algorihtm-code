@@ -1,0 +1,64 @@
+package Trees;
+
+import java.util.Stack;
+
+public class inOrder {
+
+	public static void main(String args[])
+	{
+		binaryTreeNode btn=new binaryTreeNode(1);
+		btn.left=new binaryTreeNode(2);
+		btn.right=new binaryTreeNode(3);
+		btn.left.left=new binaryTreeNode(4);
+		btn.left.right=new binaryTreeNode(5);
+		btn.right.right=new binaryTreeNode(7);
+		btn.right.left=new binaryTreeNode(6);
+		
+		inOrderTraversal_Iterative(btn);
+		System.out.println();
+		inOrderTraversal_Recursion(btn);
+	}
+	
+	
+	static void inOrderTraversal_Recursion(binaryTreeNode node)
+	{
+		if(node!=null)
+		{
+			inOrderTraversal_Recursion(node.left);
+			System.out.print(node.data+" ");
+			inOrderTraversal_Recursion(node.right);
+		}
+		
+		return;
+	}
+	
+	
+	static void inOrderTraversal_Iterative(binaryTreeNode node)
+	{
+		if(node==null)
+			return;
+		
+		Stack<binaryTreeNode> stk=new Stack<binaryTreeNode>();
+		binaryTreeNode temp=node;
+		
+		while(temp!=null || stk.size()>0)
+		{
+			
+			while(temp!=null)
+			{
+				stk.push(temp);
+				temp=temp.left;
+			}
+			
+			temp=stk.pop();
+			
+			System.out.print(temp.data+" ");
+			
+			temp=temp.right;
+				
+		}
+		
+		
+	}
+	
+}
