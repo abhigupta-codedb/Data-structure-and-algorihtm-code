@@ -1,0 +1,65 @@
+package Trees;
+
+import java.util.Stack;
+
+public class postOrder {
+
+	public static void main(String args[])
+	{
+		binaryTreeNode btn=new binaryTreeNode(1);
+		btn.left=new binaryTreeNode(2);
+		btn.right=new binaryTreeNode(3);
+		btn.left.left=new binaryTreeNode(4);
+		btn.left.right=new binaryTreeNode(5);
+		btn.right.right=new binaryTreeNode(7);
+		btn.right.left=new binaryTreeNode(6);
+		
+		postOrderTraversal_Iterative(btn);
+		System.out.println();
+		postOrderTraversal_Recursion(btn);
+	}
+	
+	
+	static void postOrderTraversal_Recursion(binaryTreeNode node)
+	{
+		if(node!=null)
+		{
+			postOrderTraversal_Recursion(node.left);
+			postOrderTraversal_Recursion(node.right);
+			System.out.print(node.data+" ");
+		}
+		
+		return;
+	}
+	
+	//getting reverse post order traversal by implementing pre order traversal  starting from from right node. 
+	//similar to pre oreder using two stack.
+	static void postOrderTraversal_Iterative(binaryTreeNode node)
+	{
+		if(node==null)
+			return;
+		
+		Stack<binaryTreeNode> stk=new Stack<binaryTreeNode>();
+		Stack<Integer> outstk=new Stack<Integer>();
+		
+		stk.push(node);
+		
+		while(!stk.isEmpty())
+		{
+			binaryTreeNode temp=stk.pop();
+			
+			outstk.push(temp.data);
+			
+			if(temp.left!=null)
+				stk.push(temp.left);
+			
+			if(temp.right!=null)
+				stk.push(temp.right);
+				
+		}
+		
+		while(!outstk.isEmpty())
+			System.out.print(outstk.pop()+" ");
+	}
+
+}
