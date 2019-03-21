@@ -1,0 +1,50 @@
+package LeetCode;
+import java.util.ArrayList;
+import java.util.Collections;
+public class min_Path_Sum {
+
+	static ArrayList<Integer> out=new ArrayList<Integer>();
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int grid[][]= {{0,1},{1,0}};
+		
+		System.out.println(minPathSum(grid));
+	}
+	
+	
+     static int minPathSum(int[][] grid) {
+        
+        int row=grid.length;
+        int col=grid[0].length;
+        
+        nextPath(grid,0,0,row-1,col-1,0);
+        
+        for(int a:out)
+        	System.out.print(a+" ");
+        
+        System.out.println();
+        
+        return Collections.min(out);
+    }
+    
+    
+    static void nextPath(int[][] grid,int next_X,int next_Y,int fin_X,int fin_Y,int sum) {
+        
+        sum+=grid[next_X][next_Y];
+        
+        if(next_X==fin_X && next_Y==fin_Y)
+        {
+            out.add(sum);
+            return;
+        }
+        
+        //going down
+        if(next_X+1<=fin_X)
+            nextPath(grid,next_X+1,next_Y,fin_X,fin_Y,sum);
+        //going right
+        if(next_Y+1<=fin_Y)
+            nextPath(grid,next_X,next_Y+1,fin_X,fin_Y,sum);
+    }
+
+}
