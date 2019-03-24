@@ -1,0 +1,39 @@
+package arrayStrings;
+import java.util.HashMap;
+public class ceaserCipher {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(caesarCypherEncryptor("abc", 52));
+	}
+	
+	public static String caesarCypherEncryptor(String str, int key) {
+	    // Write your code here.
+		String out="";
+		HashMap<Integer,Character> hm=new HashMap<>();
+		int place=1;
+		for(int i=97;i<=122;i++)
+		{
+			hm.put(place++,(char) i);
+		}
+		
+		for(char c:str.toCharArray())
+		{
+			int val=c+key;
+			
+			if(val<=122)
+				val=val-96;
+			
+			else 
+			{
+				val=(val-122)%26;
+			}
+			
+			out+=hm.get(val);
+		}
+		
+		
+		return out;
+	  }
+
+}
