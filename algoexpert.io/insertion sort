@@ -1,0 +1,54 @@
+package arrayStrings;
+
+public class insertionSort {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {8,7,6,5,4,3,2,1};
+		
+		for(int a:getSorted2(arr))
+			System.out.print(a+" ");
+	}
+	
+	static int [] getSorted(int arr[])
+	{
+		for(int i=1;i<arr.length;i++)
+		{
+			int j=i;
+			
+			while(j>0)
+			{
+				if(arr[j]<arr[j-1])
+				{
+					int temp=arr[j];
+					arr[j]=arr[j-1];
+					arr[j-1]=temp;
+				}
+				j--;
+			}
+		}
+		
+		return arr;
+	}
+	
+	
+	static int [] getSorted2(int arr[])
+	{
+		for(int i=1;i<arr.length;i++)
+		{
+			int num=arr[i];
+			int j=i-1;
+			
+			while(j>=0 && arr[j]>num)
+			{
+				arr[j+1]=arr[j];
+				j--;
+			}
+			
+			arr[j+1]=num;
+		}
+		
+		return arr;
+	}
+
+}
