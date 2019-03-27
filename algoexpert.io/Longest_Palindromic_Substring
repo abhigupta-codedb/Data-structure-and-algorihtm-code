@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+class Program {
+  public static String longestPalindromicSubstring(String str) {
+    // Write your code here.
+		ArrayList<String> ans=getAllSubstring(str);
+		String maxString="";
+		
+		for(String s:ans)
+		{
+			if(isPalindrome(s))
+			{
+				if(s.length()>maxString.length())
+					maxString=s;
+			}
+		}
+		
+		return maxString;
+  }
+	
+	public static ArrayList<String> getAllSubstring(String str)
+	{
+		ArrayList<String> out=new ArrayList<String>();
+		
+		char ch[]=str.toCharArray();
+		
+		for(int i=0;i<ch.length;i++)
+		{
+			String c=Character.toString(ch[i]);
+			out.add(c);
+			for(int j=i+1;j<ch.length;j++)
+			{
+				c+=ch[j];
+				out.add(c);
+			}
+		}
+		
+		return out;
+	}
+	
+	public static boolean isPalindrome(String str)
+	{
+		String orgString=str;
+		StringBuilder sbr=new StringBuilder(str);
+		
+		sbr.reverse();
+		
+		return sbr.toString().equals(str)?true:false;
+	}
+}
