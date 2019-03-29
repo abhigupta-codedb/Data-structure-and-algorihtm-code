@@ -1,0 +1,43 @@
+package Practice;
+
+public class kadanesAlgo_Dynamic_prog {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]={-10, -2, -9, -4, -8, -6, -7, -1, -3, -5};
+				   
+		
+		System.out.println(getSum(arr));
+	}
+	
+	
+	static int getSum(int array[])
+	{
+		int sumArray[]=new int[array.length];
+		sumArray[0]=array[0];
+		int maxSum=sumArray[0];
+		
+		for(int i=1;i<array.length;i++)
+		{
+			int val=sumArray[i-1]+array[i];
+			
+			if(sumArray[i-1]+array[i]>array[i])
+			{
+				sumArray[i]=val;
+			}
+			
+			else
+				sumArray[i]=array[i];
+			
+			if(sumArray[i]>maxSum)
+				maxSum=sumArray[i];
+		}
+		
+		for(int a:sumArray)
+			System.out.print(a+" ");
+		System.out.println();
+		return maxSum;
+		
+	}
+
+}
