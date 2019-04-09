@@ -1,0 +1,33 @@
+package algoExpert;
+
+import java.util.ArrayList;
+
+class bstTraversal {
+  public static ArrayList<Integer> inOrderTraverse(BST tree, ArrayList<Integer> array) {
+    // Write your code here.
+	  
+	  return array;
+  }
+
+  public static ArrayList<Integer> preOrderTraverse(BST tree, ArrayList<Integer> array) {
+    // Write your code here.
+	  
+	  return array;
+  }
+
+  public static ArrayList<Integer> postOrderTraverse(BST tree, ArrayList<Integer> array) {
+    // Write your code here.
+	  
+	  return array;
+  }
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
