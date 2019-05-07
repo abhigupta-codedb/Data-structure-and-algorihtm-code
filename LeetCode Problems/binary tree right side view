@@ -1,0 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+class Solution {
+    
+    static class nodeLevel
+	{
+		TreeNode node;
+		int level;
+	}
+	
+    public List<Integer> rightSideView(TreeNode root) {
+        Queue<nodeLevel> qu=new LinkedList<nodeLevel>();
+		List<Integer> list=new LinkedList<Integer>();
+		
+		nodeLevel nl=new nodeLevel();
+		int level=0;
+		nl.node=root;
+		nl.level=level;
+		qu.add(nl);
+		
+		while(!qu.isEmpty())
+		{
+			nodeLevel nodeL=qu.remove();
+			
+			if(nodeL.node.left!=null)
+			{
+				nodeLevel nl_new=new nodeLevel();
+				nl_new.node=nodeL.node.left;
+				nl_new.level=nodeL.level+1;
+				qu.add(nl_new);
+			}
+			
+			if(nodeL.node.right!=null)
+			{
+				nodeLevel nl_new=new nodeLevel();
+				nl_new.node=nodeL.node.right;
+				nl_new.level=nodeL.level+1;
+				qu.add(nl_new);
+			}
+			
+			nodeLevel nextNode=qu.peek();
+			
+			if(nextNode==null)
+				list.add(nodeL.node.val);
+			
+			else if(nodeL.level!=nextNode.level)
+				list.add(nodeL.node.val);
+		}
+		
+		return list;
+    }
+}
