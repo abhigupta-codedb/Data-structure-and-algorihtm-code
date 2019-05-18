@@ -1,0 +1,131 @@
+Manhattan Matrix
+You are given with a matrix of dimensions N X M. Each element of the matrix A(i,j), is an integer between 0-9. You are provided with a starting point
+(sx,sy).Your task is to answer Q queries. Each query comprises of a point (xi,yi). Your task is to find the minimum number of moves required to reach(xi,yi)  
+starting from (sx,sy). Output -1 if it is not possible to reach  from (sx,sy).
+A move from (x1,y1) to (x2,y2) is allowed if the manhattan distance between (x1,y1) and (x2,y2) is equal to A(x1,y1).
+
+INPUT FORMAT:
+
+First line contains number of test cases .
+First line of each test case contains two integers  and .
+Next  lines contain  space separated integers each corresponding to .
+Next line contains the starting point  separated by a space.
+Next line contains a single integer  denoting number of queries.
+Next  lines contains two space separated integers .
+
+OUTPUT FORMAT:
+
+For each query, output the minimum number of moves required to reach  starting from  in a new line. Output  if it is not possible to reach  from .
+
+CONSTRAINTS
+
+Sample Input
+1
+4 4
+1 2 1 0
+0 1 2 3
+3 3 1 5
+0 0 1 0
+2 3
+5
+1 1
+4 1
+4 4
+2 4
+3 2
+Sample Output
+2
+-1
+2
+2
+1
+Explanation
+Query 1: (2,3)->(3,2)->(1,1). Therefore 2 moves.
+Query 2: No path to reach (4,1). Therefore output is -1.
+Query 3: (2,3)->(4,3)->(4,4). Therefore 2 moves.
+Query 4: (2,3)->(3,2)->(2,4). Therefore 2 moves.
+Query 5: (2,3)->(3,2). Therefore 1 move.
+
+
+
+
+package LeetCode;
+import java.io.*;
+import java.util.*;
+public class manhattan {
+
+	static class coord
+	{
+		int x;
+		int y;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter wr = new PrintWriter(System.out);
+        int T = Integer.parseInt(br.readLine().trim());
+        for(int t_i=0; t_i<T; t_i++)
+        {
+        	String []values=br.readLine().split(" ");
+        	int N=Integer.parseInt(values[0]);
+        	int M=Integer.parseInt(values[1]);
+            int[][] A = new int[N][M];
+            for(int i_A=0; i_A<N; i_A++)
+            {
+            	String[] arr_A = br.readLine().split(" ");
+            	for(int j_A=0; j_A<arr_A.length; j_A++)
+            	{
+            		A[i_A][j_A] = Integer.parseInt(arr_A[j_A]);
+            	}
+            }
+            String values2[]=br.readLine().split(" ");
+            int sx=Integer.parseInt(values2[0]);
+            int sy=Integer.parseInt(values2[1]);
+            int Q = Integer.parseInt(br.readLine().trim());
+            
+            ArrayList<coord> ar=new ArrayList<>();
+            while(Q>0)
+            {
+            	String[] arr_x = br.readLine().split(" ");
+            	
+            	coord c=new coord();
+            	c.x=Integer.parseInt(arr_x[0]);
+            	c.y=Integer.parseInt(arr_x[1]);
+            	
+            	ar.add(c);
+            	
+            	Q--;
+            }
+
+            int[] out_ = solve(A,sy,sx,ar);
+            for(int i_out_=0; i_out_<out_.length; i_out_++)
+            {
+            	System.out.print(" " + out_[i_out_]);
+            }
+            System.out.println("");
+         }
+
+         wr.close();
+         br.close();
+    }
+	static int[] solve(int[][] A,int sy, int sx,ArrayList<coord> ar){
+        // Write your code here
+		int out[]= {};
+		
+		for(coord c:ar)
+		{
+			int nextx=c.x;
+			int nexty=c.y;
+			
+			
+		}
+
+		return out;
+    }
+	
+	
+	
+}
+
+
