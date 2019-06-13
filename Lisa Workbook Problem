@@ -1,0 +1,56 @@
+package Practice;
+
+public class lisaWorkbook {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//System.out.println(SpecialProblem(4, 5, 6, 3));
+		int arr[]= {4,2,6,1,10};
+		System.out.println(workbook(5, 3, arr));
+		
+	}
+	
+	static int workbook(int n, int k, int[] arr) {
+		int pageStart=1;
+		int sProb=0;
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			int val=arr[i];
+			int pageReq=val/k;
+			
+			if(val%k!=0)
+			{
+				pageReq+=1;
+			}
+			
+			int pageEnd=pageStart+pageReq-1;
+			
+			sProb+=SpecialProblem(pageStart, pageEnd, val, k);
+			
+			pageStart=pageEnd+1;
+		}
+		return sProb;
+    }
+	
+	static int SpecialProblem(int pageStart,int pageEnd,int problems,int k)
+	{
+		int probNumber=1;
+		int specialProblems=0;
+		for(int i=pageStart;i<=pageEnd;i++)
+		{
+			for(int j=1;(j<=k && probNumber<=problems); j++)
+			{
+				if(i==probNumber)
+					specialProblems++;
+				
+				probNumber++;
+			}
+		}
+		
+		return specialProblems;
+		
+	}
+
+}
