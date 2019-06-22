@@ -1,0 +1,22 @@
+class Program {
+	public static int numberOfWaysToMakeChange(int n, int[] denoms) {
+		// Write your code here.
+		int arr[]=new int[n+1];
+		arr[0]=1;
+		
+		for(int val:denoms)
+		{	
+			for(int i=0;i<arr.length;i++)
+			{
+				if(val<=i)
+				{
+					arr[i]+=arr[i-val];
+				}
+			}
+			
+		}
+		
+		return arr[n];
+		
+	}
+}
