@@ -1,0 +1,189 @@
+1> To count no. of apperances of characters in a String 
+final int SIZE=26;
+		int index=0;
+		
+      	int list[]=new int [SIZE];
+      	
+      	for(char x :str.toCharArray())
+      		list[x-'a']++;
+->creates a array of all alphabets(26) and at each array values
+from (0-26) corresponding (a-z) stores count how many time each 
+character coming(Works fine if only all characters are small or 
+all are captial.)
+________________________________________________________________
+
+2> Use of HashMap/HashTable/LinkedHashMap for Storing count of
+corresponding characters in a String
+method-1(HashMap)
+//		HashMap<String,Integer> hmap=new HashMap<String,Integer>();
+//		
+//		for(char a:str.toCharArray())
+//		{
+//			String temp=a+"";
+//			
+//			if(!hmap.containsKey(a))
+//				hmap.put(temp,1);
+//			
+//			else
+//				hmap.put(temp,hmap.get(temp)+1);
+//		}
+//		
+//		for (Map.Entry<String,Integer> entry : hmap.entrySet()) {
+//		    System.out.println(entry.getKey()+" : "+entry.getValue());
+//		}
+---------------(Order does not remains same so use LinkedHashMap)------------
+method-2(HashTable)
+//		Hashtable<Character,Integer> ht=new Hashtable<Character,Integer>();
+//		
+//		for(char a:str.toCharArray())
+//		{
+//			
+//			if(!ht.containsKey(a))
+//				ht.put(a,1);
+//			else
+//				ht.put(a,ht.get(a)+1);
+//			
+//		}
+//		
+//		System.out.println(ht.toString());
+---------------(Order does not remains same so use LinkedHashMap)------------
+method-3(LinkedHashMap)
+LinkedHashMap<Character,Integer> lhm = new LinkedHashMap<Character,Integer>();
+		
+		for(char a:str.toCharArray())
+			{
+				
+				if(!lhm.containsKey(a))
+					lhm.put(a,1);
+				else
+					lhm.put(a,lhm.get(a)+1);
+				
+			}
+		
+		
+		
+		for (Map.Entry<Character,Integer> entry : lhm.entrySet()) 
+		{
+			if(entry.getValue()==1)
+				return entry.getKey();
+		}
+		
+      	return str.charAt(0);
+---------------(Order remains same best for storing count corres. to char AT their occurences)------------
+___________________________________________________________________________________________________________
+3>copy content of one array to another
+ 	int a[]={10,20,30,40,50};
+        int b[]=new int[a.length];
+        
+        //copying one array to another
+        b=Arrays.copyOf(a,a.length);
+	//another method
+	b=a.clone();
+_____________________________________________________________________________________________________________
+4>Reverse Sort a Array
+Collections.sort(arraylist, Collections.reverseOrder());
+_____________________________________________________________________________________________________________
+5>Reverse a String
+StringBuilder sbr=new StringBuilder();
+sbr.append(out_str);
+sbr=sbr.reverse();
+______________________________________________________________________________________________________________
+6> JAGGED ARRAYS
+those 2Darrays in which we have to define no. of rows such that rows remains same for whole 2 D array and size of
+each row can be diffrent
+int arr[][]=new int [2][]//declaring arrays of size 2
+arr[0]=new int[1]//size of row 0 is 1 
+arr[1]=new int[2]//size of row 1 is 2
+_______________________________________________________________________________________________________________
+7> List of List=[ [1,2,3,] , [4,5] , [6]...]
+syntax:List<List <Integer>> list=new ArrayList<List <Integer>>();
+______________________________________________________________________________________________________________
+8> Code for placing a String att all possible locations of String
+----------code with help of arraylist-----------------------------------
+public static ArrayList<String> merge(ArrayList<String> list, String c) {
+    ArrayList<String> res = new ArrayList<>();
+    // Loop through all the string in the list
+    for (String s : list) {
+        // For each string, insert the last character to all possible positions
+        // and add them to the new list
+        for (int i = 0; i <= s.length(); ++i) {
+            String ps = new StringBuffer(s).insert(i, c).toString();
+            res.add(ps);
+        }
+    }
+    return res;
+}
+__________________________________________________________________________________________________________________
+9> to find all prime no.s in range of 10^6 we used most efficient way
+--> sieve of eratosthenes which is (nlog(log n))
+--> 1/2+1/3+1/5+1/7...to n prime no.s ==(log(log n))
+_______________________________________________________________________________________________________________
+10> Modulo Arithmatic operations
+-->(a*b)%m = (a%m * b%m)%m
+-->(a+b)%m = (a%m + b%m)%m
+-->(a-b)%m = ((a%m - b%m)+m)%m (m is added to make sure that (a-b) do  not become negative)
+--> (a/b)%m= (a%m * modInverse(b,m))%m
+________________________________________________________________________________________________________________
+11>GCD algorithim(only this technique to be used for taking out gcd)
+Euclid Algorithim states that gcd(a,b)=gcd(b,(a%b)) where a>b whose complexity is log(max(a,b)).
+____________________________________________________________________________________________________________________
+12>Extended GCD ALGO CODE
+since a(x)+b(y)=GCD(a,b) it is used to get value of x,y for which this eqn holds true.
+	private static Triplet gcd_extender(int a,int b)
+	{
+		Triplet myAns=new Triplet();
+		
+		if(b==0)
+		{
+			myAns.gcd=a;
+			myAns.x=1;
+			myAns.y=0;
+			
+			return myAns;
+		}
+		
+		
+		Triplet smallAns = gcd_extender(b,a%b);
+
+		
+		
+		myAns.gcd = smallAns.gcd;
+		myAns.x  = smallAns.y;
+		myAns.y = (smallAns.x - ((a/b)*(smallAns.y)));
+		return myAns;
+	}
+
+}
+
+class Triplet
+{
+	int gcd;
+	int x;
+	int y;
+
+}
+_____________________________________________________________________________________________________________________
+13> Multiplicative Modulo Inverse( (A*B) mod m=1 means for given A,M it gives corresponding B value. which is actually
+value of X in extended euclidian algorithm).
+uses Extended euclidian inside and returns the value of x .
+____________________________________________________________________________________________________________________
+14>print time instance:
+		Calendar now = Calendar.getInstance();
+		Date date = (Date) now.getTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm ");
+		String dateTime = sdf.format(date);
+		
+		System.out.println(dateTime);
+___________________________________________________________________________________________
+15> For taking any input from console directly:
+	while(sc.hasNext())
+		{
+			String s1=sc.next();
+			if(s1.equals("exit"))
+				break;
+			
+			else
+				{your logic};
+			
+		}
+______________________________________________________________________________________________________________________
