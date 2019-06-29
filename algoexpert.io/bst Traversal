@@ -1,24 +1,76 @@
-package algoExpert;
-
 import java.util.ArrayList;
-
-class bstTraversal {
+import java.util.Stack;
+import java.util.Collections;
+class Program {
   public static ArrayList<Integer> inOrderTraverse(BST tree, ArrayList<Integer> array) {
-    // Write your code here.
-	  
-	  return array;
+    // Write your code here
+		Stack<BST> stk=new Stack<>();
+		BST temp=tree;
+		
+		while(temp!=null || stk.size()>0)
+		{
+			
+			while(temp!=null)
+			{
+				stk.push(temp);
+				temp=temp.left;	
+			}
+			
+			temp=stk.pop();
+			
+			array.add(temp.value);
+			
+			temp=temp.right;
+		}
+		
+		
+		return array;
   }
 
   public static ArrayList<Integer> preOrderTraverse(BST tree, ArrayList<Integer> array) {
     // Write your code here.
-	  
-	  return array;
+		Stack<BST> stk=new Stack<>();
+		stk.push(tree);
+		
+		while(!stk.isEmpty())
+		{
+			BST node=stk.pop();
+			
+			array.add(node.value);
+			
+			if(node.right!=null)
+				stk.add(node.right);
+			
+			if(node.left!=null)
+				stk.add(node.left);
+			
+		}
+		
+		return array;
   }
 
   public static ArrayList<Integer> postOrderTraverse(BST tree, ArrayList<Integer> array) {
     // Write your code here.
-	  
-	  return array;
+		Stack<BST> stk=new Stack<>();
+		stk.push(tree);
+		
+		while(!stk.isEmpty())
+		{
+			BST node=stk.pop();
+			
+			array.add(node.value);
+			
+			if(node.left!=null)
+				stk.add(node.left);
+			
+			if(node.right!=null)
+				stk.add(node.right);
+			
+		}
+		
+		Collections.reverse(array);
+		
+		return array;
   }
 
   static class BST {
