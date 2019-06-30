@@ -1,0 +1,109 @@
+package Practice;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+public class zigZagTraversal {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Tree tr=new Tree(1);
+		tr.left=new Tree(2);
+		tr.right=new Tree(3);
+		tr.left.left=new Tree(4);
+		tr.left.left.right=new Tree(8);
+		tr.left.right=new Tree(5);
+		
+		tr.right.left=new Tree(6);
+		tr.right.left.left=new Tree(9);
+		tr.right.left.right=new Tree(10);
+		tr.right.right=new Tree(7);
+		
+		zigZagTravel(tr);
+	}
+	
+	//zigzag Travesal using two Stack..
+	static void zigZagTravel(Tree root)
+	{
+		Stack<Tree> currentStack=new Stack<>();
+		Stack<Tree> nextStack=new Stack<>();
+		
+		currentStack.push(root);
+		boolean leftToRight=true;
+		
+		while(!currentStack.isEmpty())
+		{
+			
+			Tree node=currentStack.pop();
+			
+			System.out.print(node.value+" ");
+			
+			if(leftToRight)
+			{
+				if(node.left!=null)
+					nextStack.push(node.left);
+				
+				if(node.right!=null)
+					nextStack.push(node.right);
+			}
+			
+			if(!leftToRight)
+			{
+				if(node.right!=null)
+					nextStack.push(node.right);
+				
+				if(node.left!=null)
+					nextStack.push(node.left);
+			}
+			
+			
+			if(currentStack.isEmpty())
+			{
+				Stack<Tree> temp=currentStack;
+				currentStack=nextStack;
+				nextStack=temp;
+				
+				leftToRight=!leftToRight;
+			}
+			
+		}
+		
+	}
+	
+	
+	static void levelOrderTraversal(Tree root)
+	{
+		Queue<Tree> qu=new LinkedList<>();
+		
+		qu.add(root);
+		
+		while(!qu.isEmpty())
+		{
+			Tree temp=qu.remove();
+			
+			System.out.print(temp.value+" ");
+			
+			if(temp.left!=null)
+				qu.add(temp.left);
+			
+			if(temp.right!=null)
+				qu.add(temp.right);
+		}
+		
+	}
+	
+	
+	
+	static class Tree
+	{
+		int value;
+		Tree left;
+		Tree right;
+		
+		Tree(int value)
+		{
+			this.value=value;
+		}
+	}
+	
+
+}
