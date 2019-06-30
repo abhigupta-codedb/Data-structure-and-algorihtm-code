@@ -1,0 +1,88 @@
+package Practice;
+
+public class minMaxStack {
+
+	public static void main(String args[])
+	{
+		MinMaxStack mstack=new MinMaxStack();
+		
+		mstack.push(5);
+		System.out.println("min : "+mstack.getMin()+" max : "+mstack.getMax()+" peek : "+mstack.peek());
+		mstack.push(7);
+		System.out.println("min : "+mstack.getMin()+" max : "+mstack.getMax()+" peek : "+mstack.peek());
+		mstack.push(2);
+		System.out.println("min : "+mstack.getMin()+" max : "+mstack.getMax()+" peek : "+mstack.peek());
+		System.out.println("pop : "+mstack.pop()+" pop : "+mstack.pop());
+		System.out.println("min : "+mstack.getMin()+" max : "+mstack.getMax()+" peek : "+mstack.peek());
+	}
+	
+	
+//	min_max Class construction using 3 arrays
+//	at each input value min and max array is 
+//	getting changed.
+	static class MinMaxStack 
+	{
+		int stack[]=new int[20];
+		int min[]=new int[20];
+		int max[]=new int[20];
+		int start=0;
+		
+		public Integer peek() {
+			// Write your code here.
+			return stack[start-1];
+		}
+		
+	    public Integer pop() {
+	      // Write your code here.
+			int val=stack[start-1];
+			start-=1;
+			return val;
+	    }
+
+    
+	    public void push(Integer number) {
+	      // Write your code here.
+	      if(start==0)
+	      {
+	    	stack[start]=number;
+	    	min[start]=number;
+	    	max[start]=number;
+	    	
+	    	
+	      }
+	      
+	      else
+	      {
+	    	 stack[start]=number;
+	    	 
+	    	 if(number>max[start-1])
+	    		 max[start]=number;
+	    	 else
+	    		 max[start]=max[start-1];
+	    	 
+	    	 if(number<min[start-1])
+	    		 min[start]=number;
+	    	 else
+	    		 min[start]=min[start-1];
+	    	 
+	      }
+	      
+	      start++;
+	    
+	    }
+
+    
+	    public Integer getMin() {
+	      // Write your code here.
+				return min[start-1];
+	    }
+
+    
+	    public Integer getMax() {
+	      // Write your code here.
+				return max[start-1];
+	    }
+    
+  }
+
+}
