@@ -1,0 +1,71 @@
+package Practice;
+
+import java.io.IOException;
+
+public class sortedMatrix {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int matrix[][]= {
+			    {1, 4, 7, 12, 15, 1000},
+			    {2, 5, 19, 31, 32, 1001},
+			    {3, 8, 24, 33, 35, 1002},
+			    {40, 41, 42, 44, 45, 1003},
+			    {99, 100, 103, 106, 128, 1004},
+			  };
+		
+		for(int a:searchInSortedMatrix(matrix,1))
+			System.out.print(a+" ");
+	}
+	
+	public static int[] searchInSortedMatrix(int[][] matrix, int target) {
+	    // Write your code here.
+		
+		for(int i=0;i<matrix.length;i++)
+		{
+			int arr[]=new int[matrix[i].length];
+			int k=0;
+			for(int j=0;j<matrix[i].length;j++)
+				arr[k++]=matrix[i][j];
+			
+			
+			int position=getPosition(0, matrix[i].length-1,target,arr);
+			
+			if(position!=-1)
+			{
+				int ans[]= {i,position};
+				
+				return ans;
+			}
+		}
+		
+		int ans[]= {-1,-1};
+		return ans;
+	
+	}
+	
+	
+	public static int getPosition(int start,int end,int key,int arr[])
+	{
+		if(start>end)
+			return -1;
+		
+		while(start<=end)
+		{
+			int mid=(start+end)/2;
+			
+			if(arr[mid]==key)
+				return mid;
+			
+			else if(key<arr[mid])
+				end=mid-1;
+			
+			else
+				start=mid+1;
+		}
+		
+		return -1;
+	}
+	
+
+}
