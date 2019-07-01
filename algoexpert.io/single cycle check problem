@@ -1,0 +1,27 @@
+class Program {
+  public static boolean hasSingleCycle(int[] arr) {
+    // Write your code here.
+		int i=0;
+		int elementVisited=0;
+		
+		while(elementVisited<arr.length)
+		{
+			if(i==0 && elementVisited>0)
+				return false;
+			
+			elementVisited++;
+			
+			i=nextStep(i,arr[i],arr.length);
+			
+		}
+		
+		return i==0;
+  }
+	
+	static int nextStep(int i,int val,int size)
+	{
+		int next=(i+val)%size;
+		
+		return next<0?(next+size):next;
+	}
+}
