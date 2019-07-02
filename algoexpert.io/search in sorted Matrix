@@ -1,10 +1,8 @@
 package Practice;
 
-import java.io.IOException;
-
 public class sortedMatrix {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		int matrix[][]= {
 			    {1, 4, 7, 12, 15, 1000},
@@ -14,11 +12,34 @@ public class sortedMatrix {
 			    {99, 100, 103, 106, 128, 1004},
 			  };
 		
-		for(int a:searchInSortedMatrix(matrix,1))
+		for(int a:searchInSortedMatrix2(matrix,96))
 			System.out.print(a+" ");
 	}
 	
-	public static int[] searchInSortedMatrix(int[][] matrix, int target) {
+	
+	public static int[] searchInSortedMatrix2(int[][] matrix, int target){
+	    // Write your code here.
+		
+		int row=0;
+		int col=matrix[0].length-1;
+		
+		while(row<matrix.length  && col>=0)
+		{
+			if(matrix[row][col]<target)
+				row++;
+			
+			else if(matrix[row][col]>target)
+				col--;
+			
+			else
+				return new int [] {row,col};
+		}
+		
+		return new int [] {-1,-1};
+	}
+	
+	
+	public static int[] searchInSortedMatrix(int[][] matrix, int target){
 	    // Write your code here.
 		
 		for(int i=0;i<matrix.length;i++)
@@ -29,7 +50,7 @@ public class sortedMatrix {
 				arr[k++]=matrix[i][j];
 			
 			
-			int position=getPosition(0, matrix[i].length-1,target,arr);
+			int position = getPosition(0, matrix[i].length-1,target,arr);
 			
 			if(position!=-1)
 			{
@@ -43,7 +64,6 @@ public class sortedMatrix {
 		return ans;
 	
 	}
-	
 	
 	public static int getPosition(int start,int end,int key,int arr[])
 	{
