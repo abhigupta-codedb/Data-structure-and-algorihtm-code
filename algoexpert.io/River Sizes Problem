@@ -1,0 +1,71 @@
+package Practice;
+import java.util.ArrayList;
+public class riverSizes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[][]= { {1,0,0,1,0},
+					   {1,0,1,0,0}, 
+					   {0,0,1,0,1}, 
+					   {1,0,1,0,1}, 
+					   {1,0,1,1,0} };
+		
+		for(int a:getriverSizes(arr))
+			System.out.print(a+" ");
+	}
+	
+	public static ArrayList<Integer> getriverSizes(int[][] matrix) {
+	    // Write your code here.
+		int row=matrix.length;
+		int col=matrix[0].length;
+		ArrayList<Integer> ar=new ArrayList<>();
+	
+		for(int i=0;i<row;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				if(matrix[i][j]==1)
+				{
+					int value=getNeighbours(matrix, row, col, i, j, 1);
+					ar.add(value);
+				}
+			}
+		}
+		
+		return ar;
+			
+	  }
+	
+	public static int getNeighbours(int[][] matrix, int row, int col, int x,int y, int steps) {
+	    // Write your code here.
+		
+		matrix[x][y]=0;
+		
+		if(y+1<col && matrix[x][y+1]==1)
+		{
+			steps++;
+			steps=getNeighbours(matrix, row, col, x, y+1, steps);
+		}
+		
+		if(y-1>=0 && matrix[x][y-1]==1)
+		{	
+			steps++;
+			steps=getNeighbours(matrix, row, col, x, y-1, steps);
+		}
+		
+		if(x+1<row && matrix[x+1][y]==1)
+		{	
+			steps++;
+			steps=getNeighbours(matrix, row, col, x+1, y, steps);
+		}
+		
+		if(x-1>=0 && matrix[x-1][y]==1)
+		{	
+			steps++;
+			steps=getNeighbours(matrix, row, col, x-1, y, steps);
+		}
+			
+		return steps;	
+	  }
+
+}
