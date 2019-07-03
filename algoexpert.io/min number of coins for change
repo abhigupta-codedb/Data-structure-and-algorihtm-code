@@ -1,0 +1,36 @@
+package Practice;
+import java.util.Arrays;
+public class minNumberCoins {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]={2,1};
+		System.out.println(getDenominations(3, arr));
+	}
+	
+	//minimum number of coins for a given amount.
+	static int getDenominations(int n,int denom[])
+	{
+		
+		int arr[]=new int[n+1];
+		Arrays.fill(arr, Integer.MAX_VALUE-1);
+		
+		arr[0]=0;
+		
+		for(int a:denom)
+		{
+			for(int i=1;i<n+1;i++)
+			{
+				if(a<=i)
+				{
+					arr[i]=Math.min(arr[i], 1+arr[i-a]);	
+				}
+			}
+		}
+		
+		return arr[n]==Integer.MAX_VALUE-1?-1:arr[n];
+	}
+	
+	
+
+}
