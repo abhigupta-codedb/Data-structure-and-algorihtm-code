@@ -1,0 +1,124 @@
+package Practice;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class minHeapConstruction {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41};
+		ArrayList<Integer> arl=new ArrayList<Integer>();
+		
+		for(int a:arr)
+			arl.add(a);
+		
+		
+		MinHeap mp=new MinHeap(arl);
+		
+		System.out.println("\npeek value");
+		System.out.println(mp.peek());
+		
+	}
+	
+	static class MinHeap {
+		
+	    ArrayList<Integer> heap = new ArrayList<Integer>();
+
+	    public MinHeap(ArrayList<Integer> array) {
+	      heap = buildHeap(array);
+	      
+	      for(int a:heap)
+				System.out.print(a+" ");
+	    }
+
+	    public ArrayList<Integer> buildHeap(ArrayList<Integer> array) {
+	      // Write your code here.
+	    	int firstIndex=(array.size()-2)/2;
+	    	
+	    	for(int i=firstIndex;i>=0;i--)
+	    		siftDown(i, array.size()-1, array);
+	    	
+	    	return array;
+	    }
+
+	    public void siftDown(int currentIdx, int endIdx, ArrayList<Integer> heap) {
+	      // Write your code here.
+	    	
+	    	while(currentIdx<endIdx && currentIdx!=-1)
+	    	{
+	    		int left=currentIdx*2+1;
+	    		int right=currentIdx*2+2;
+	    		
+	    		int indexToSwap=-1;
+	    		
+	    		if(left<=endIdx && right<=endIdx)
+	    		{
+	    			indexToSwap=heap.get(left)<heap.get(right)?left:right;
+	    			
+	    			indexToSwap=heap.get(indexToSwap)<heap.get(currentIdx)?indexToSwap:-1;
+	    		}
+	    		
+	    		else if(left<=endIdx && right>endIdx)
+	    			indexToSwap=heap.get(left)<heap.get(currentIdx)?left:-1;
+	    		
+	    		else if(left>endIdx && right<=endIdx)
+	    			indexToSwap=heap.get(right)<heap.get(currentIdx)?right:-1;
+	    		
+	    		if(indexToSwap!=-1)
+	    			swap(heap, currentIdx, indexToSwap);
+	    		
+	    		currentIdx=indexToSwap;
+	    	}
+	    }
+
+	    public void siftUp(int currentIdx, ArrayList<Integer> heap) {
+	      // Write your code here.
+	    	if(currentIdx==0)
+	    		return;
+	    	
+	    	while(currentIdx!=0)
+	    	{
+	    		int rootIdx=currentIdx/2;
+	    		if(heap.get(currentIdx)<heap.get(rootIdx))
+	    		{
+	    			//swap value of root and child.
+	    			swap(heap, currentIdx, rootIdx);
+	    		}
+	    		currentIdx=rootIdx;
+	    	}
+	    }
+
+	    public int peek() {
+	      // Write your code here.
+	      return heap.get(0);
+	    }
+
+	    public int remove() {
+	      // Write your code here.
+	      int val=heap.get(0);
+	      swap(heap, 0, heap.size()-1);
+	      heap.remove(heap.size()-1);
+	      
+	      siftDown(0, heap.size()-1, heap);
+	      
+	      return val;
+	     }
+
+	    public void insert(int value) {
+	      // Write your code here.
+	    	heap.add(value);
+	    	siftUp(heap.size()-1, heap);
+	    }
+	    
+	    public static void swap(ArrayList<Integer> heap,int currentIdx,int nextIdx)
+	    {
+	    	
+	    	int temp=heap.get(currentIdx);
+	    	heap.set(currentIdx, heap.get(nextIdx));
+	    	heap.set(nextIdx, temp);
+	    }
+	  
+	}
+
+}
