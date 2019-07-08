@@ -1,0 +1,69 @@
+package Practice;
+import java.util.HashMap;
+public class suffixTree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	static class TrieNode 
+	{
+	    HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();   
+	}
+
+	  
+	static class SuffixTrie 
+{
+	    TrieNode root = new TrieNode();
+	    char endSymbol = '*';
+
+	    public SuffixTrie(String str) {
+	      populateSuffixTrieFrom(str);
+	    }
+
+	    public void populateSuffixTrieFrom(String str) {
+	    	// Write your code here.
+	    	for(int i=0;i<str.length();i++)
+	    		insertSubstringStartingAt(i, str);
+	    }
+	    
+	   public void insertSubstringStartingAt(int i,String str)
+	   {
+		   TrieNode temp=root;
+	    	
+	    	for(int j=i;j<str.length();j++)
+	    	{
+	    		char c=str.charAt(j);
+	    		if(!temp.children.containsKey(c))
+	    		{
+	    			TrieNode newNode=new TrieNode();
+		    		
+		    		temp.children.put(c,newNode);
+	    		}
+	    		
+	    			temp=temp.children.get(c);
+	    	}
+	    	
+	    	temp.children.put(endSymbol, null);
+	   }
+	    
+
+	    public boolean contains(String str) {
+	      // Write your code here.
+	    	TrieNode temp=root;
+	    	
+	    	for(char c:str.toCharArray())
+	    	{
+	    		if(!temp.children.containsKey(c))
+	    			return false;
+	    		
+	    		temp=temp.children.get(c);
+	    	}
+	    	
+	    	return temp.children.containsKey(endSymbol)?true:false;
+	    }
+	   
+}
+
+}
