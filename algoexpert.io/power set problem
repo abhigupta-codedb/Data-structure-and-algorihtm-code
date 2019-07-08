@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+class Program {
+  public static ArrayList<ArrayList<Integer>> powerset(ArrayList<Integer> array) {
+    // Write your code here.
+		ArrayList<ArrayList<Integer>> flist=new ArrayList<ArrayList<Integer>>();
+	
+		flist.add(new ArrayList<Integer>());
+		
+		for(int a:array)
+		{
+			int len=flist.size();
+			for(int i=0;i<len;i++)
+			{
+				ArrayList<Integer> currentList=new ArrayList<Integer>(flist.get(i));
+				currentList.add(a);
+				
+				flist.add(currentList);
+			}
+		}
+		
+		return flist;
+  }
+}
