@@ -1,0 +1,109 @@
+package Practice;
+import java.util.Arrays;
+import java.util.Hashtable;
+public class largestRangeProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {19, -1, 18, 17, 2, 10, 3, 12, 5, 16, 4, 11, 8, 7, 6, 15, 12, 12, 2, 1, 6, 13, 14};
+		
+		//int arr[]= {2,3,4,5,9,10,11,12,13,14,15};
+		
+		Arrays.sort(arr);
+		
+		for(int a:arr)
+			System.out.print(a+" ");
+		
+		System.out.println("Ans: ");
+		for(int a:largestRange2(arr))
+			System.out.print(a+" ");
+	}
+	
+  //time complexity:O(n) space complexity: O(n)
+	public static int[] largestRange2(int[] array) {
+	    // Write your code here.
+			
+		Hashtable<Integer,Boolean> ht=new Hashtable<>();
+		
+		for(int a:array)
+			ht.put(a, false);
+		
+		int fleft=0,fright=0,fsize=0;
+		
+		for(int i=0;i<array.length;i++)
+		{
+			
+			if(ht.get(array[i])==true)
+				continue;
+			
+			ht.put(array[i], true);
+			
+			int val1=array[i]-1;
+			int val2=array[i]+1;
+			int left=array[i],right=array[i],size=1;
+			
+			while(ht.containsKey(val1))
+			{
+				ht.put(val1, true);
+				left=val1;
+				size++;
+				val1=val1-1;
+			}
+			
+			while(ht.containsKey(val2))
+			{
+				ht.put(val2, true);
+				right=val2;
+				size++;
+				val2=val2+1;
+			}
+			
+			if(size>fsize)
+			{
+				fsize=size;
+				fleft=left;
+				fright=right;
+			}
+			
+			
+		}
+		
+		return new int[] {fleft,fright};	
+	  }
+	
+	//Time Complexity:o(nlogn) Space Complexity:o(1)
+	public static int[] largestRange(int[] array) {
+	    // Write your code here.
+			
+			
+			int fleft=0,fright=0,fsize=0;
+			int left=0,right=0,size=1;
+			
+			for(int i=1;i<array.length;i++)
+			{		
+				if(Math.abs(array[i]-array[i-1])==1||Math.abs(array[i]-array[i-1])==0)
+				{
+					right++;
+					size++;
+					
+					if(size>fsize)
+					{
+						fleft=left;
+						fright=right;
+						fsize=size;
+					}
+				}
+				
+				else
+				{
+					left=i;
+					right=i;
+					size=1;
+				}
+			}
+			
+			
+			return new int [] {array[fleft],array[fright]};
+	  }
+
+}
