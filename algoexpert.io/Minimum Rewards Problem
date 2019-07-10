@@ -1,0 +1,134 @@
+package Practice;
+import java.util.Arrays;
+import java.util.ArrayList;
+public class minRewardsProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {8,4,2,1,3,6,7,9,5};
+		
+		System.out.println(minRewards1(arr));
+	}
+	
+	//Naive Solution(Time O(n^2) Space O(n))
+	public static int minRewards1(int[] scores) {
+	    	// Write your code here.
+			int rewards[]=new int[scores.length];
+			Arrays.fill(rewards, 1);
+			
+			rewards[0]=1;
+			
+			for(int i=1;i<scores.length;i++)
+			{
+				int j=i-1;
+				
+				if(scores[i]>scores[j])
+					rewards[i]=rewards[i-1]+1;
+				
+				else
+				{
+					while(j>=0 && scores[j]>scores[j+1])
+					{
+						rewards[j]=Math.max(rewards[j], rewards[j+1]+1);
+						
+					}
+					
+					j-=1;
+				}
+			}
+			
+			return Arrays.stream(rewards).sum();
+			
+	  }
+	
+	//Solution 3 (Time O(N) space O(N))
+	public static int minRewards3(int[] scores) {
+    	// Write your code here.
+		int rewards[]=new int[scores.length];
+		Arrays.fill(rewards, 1);
+		
+		rewards[0]=1;
+		
+		//left to right.
+		for(int i=1;i<scores.length;i++)
+		{
+			if(scores[i]>scores[i-1])
+				rewards[i]=rewards[i-1]+1;
+		}
+		
+		//right to left.
+		for(int i=scores.length-2;i>=0;i--)
+		{
+			if(scores[i]>scores[i+1])
+				rewards[i]=Math.max(rewards[i], rewards[i+1]+1);
+		}
+		
+		return Arrays.stream(rewards).sum();
+		
+  }
+	
+	
+	//Solution 2 (Time O(N) space O(N))
+	public static int minRewards2(int[] scores) {
+    	// Write your code here.
+		int rewards[]=new int[scores.length];
+		Arrays.fill(rewards, 1);
+		
+		ArrayList<Integer> local_min_indices=getLocalMinIndicies(scores);
+		
+		for(int a:local_min_indices)
+			exportFormLocalMinIndices(a,scores,rewards);
+		
+		return Arrays.stream(rewards).sum();
+		
+  }
+
+	private static void exportFormLocalMinIndices(int leftMinIndex, int[] scores, int[] rewards) {
+		// TODO Auto-generated method stub
+		int leftIndex=leftMinIndex-1;
+		
+		while(leftIndex>=0 && scores[leftIndex]>scores[leftIndex+1])
+		{
+			rewards[leftIndex]=Math.max(rewards[leftIndex], rewards[leftIndex+1]+1);
+		}
+		
+		int rightIndex=leftMinIndex+1;
+		
+		while(rightIndex<scores.length && scores[rightIndex]> scores[rightIndex-1])
+		{
+			rewards[rightIndex]=rewards[rightIndex-1]+1;
+		}
+	}
+
+	
+	//Provides local minimum Points in an array.
+	private static ArrayList<Integer> getLocalMinIndicies(int [] scores) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Integer> locMinIndicies=new ArrayList<Integer>();
+		
+		if(scores.length==1)
+		{
+			locMinIndicies.add(0);
+			return locMinIndicies;
+		}
+		
+		for(int i=0;i<scores.length;i++)
+		{
+			if(i==0 && scores[i]<scores[i+1])
+				locMinIndicies.add(i);
+			
+			if( i==scores.length-1 && scores[scores.length-1]<scores[scores.length-2] )
+				locMinIndicies.add(scores.length-1);
+			
+			if(i==0 || i==scores.length-1)
+				continue;
+			
+			if(scores[i]<scores[i-1] && scores[i]<scores[i+1])
+				locMinIndicies.add(i);
+		}
+		
+		return locMinIndicies;
+	}
+	
+}
