@@ -1,0 +1,61 @@
+package Practice;
+
+public class searchForRange {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int array[]= {0,1,21,33,45,45,45,45,45,45,45,67};
+		
+		for(int a:getExtremes(array, 45))
+			System.out.print(a+" ");
+	}
+		
+		static int[] getExtremes(int array[],int target)	
+		{
+			int finalRange[]= {-1,-1};
+			
+			alteredSearch(array, target, 0, array.length-1, finalRange, true);
+			alteredSearch(array, target, 0, array.length-1, finalRange, false);
+			
+			return finalRange;
+		}
+		
+		
+		static void alteredSearch(int array[],int target,int left,int right,int finalRange[],boolean goleft)	
+		{
+					if(left>right)
+						return;
+					
+				
+					int mid=(left+right)/2;
+					
+					if(target<array[mid])
+						alteredSearch(array, target, left, mid-1, finalRange, goleft); 
+					
+					else if(target>array[mid])
+						alteredSearch(array, target, mid+1, right, finalRange, goleft);
+					
+					else
+					{
+						if(goleft)
+						{
+							if(mid==0 || array[mid-1]!=array[mid])
+								finalRange[0]=mid;
+							else
+								alteredSearch(array, target, left, mid-1, finalRange, goleft);
+						}
+						
+						else
+						{
+							if(mid==array.length-1 || array[mid]!=array[mid+1])
+								finalRange[1]=mid;
+							else
+								alteredSearch(array, target, mid+1, right, finalRange, goleft);
+						}
+					}
+				
+			
+			
+		}
+	
+}
