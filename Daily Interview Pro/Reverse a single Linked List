@@ -1,0 +1,60 @@
+package Practice;
+
+public class reverseLinkedList {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList ll=new LinkedList(4);
+		ll.next=new LinkedList(3);
+		ll.next.next=new LinkedList(9);
+		ll.next.next.next=new LinkedList(11);
+		
+		printList(ll);
+		
+		
+		
+		System.out.println("After revrese: ");
+		printList(reverseList(ll));
+	}
+	
+	
+	static class LinkedList{
+		int value;
+		LinkedList next;
+		
+		LinkedList(int val)
+		{
+			this.value=val;
+			this.next=null;
+		}
+		
+	}
+	
+	
+	static LinkedList reverseList(LinkedList list)
+	{
+		LinkedList current=list;
+		LinkedList prev=null;
+		LinkedList next=null;
+		
+		while(current!=null)
+		{
+			next=current.next;
+			current.next=prev;
+			prev=current;
+			current=next;
+		}
+		
+		return prev;
+	}
+	
+	static void printList(LinkedList ll)
+	{
+		while(ll!=null)
+		{
+			System.out.print(ll.value+" ");
+			ll=ll.next;
+		}
+	}
+
+}
