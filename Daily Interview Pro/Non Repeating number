@@ -1,0 +1,71 @@
+package Practice;
+import java.util.Hashtable;
+import java.util.Map.Entry;
+import java.util.Arrays;
+public class nonRepeatingNum {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {4,3,2,4,1,1,3,2,5};
+		
+	
+		System.out.println(getSoln1(arr));
+		System.out.println(getSoln2(arr));
+	}
+	
+	//Time:O(n) Space:O(n)
+	static int getSoln1(int arr[])
+	{
+		int nonRepNum=Integer.MIN_VALUE;
+		
+		Hashtable<Integer,Integer> ht=new Hashtable<>();
+		
+		for(int a:arr)
+		{
+			if(ht.containsKey(a))
+			{
+				ht.put(a, ht.get(a)+1);
+			}
+			
+			else
+				ht.put(a, 1);
+		}
+		
+		
+		for(Entry<Integer, Integer> entry:ht.entrySet())
+		{
+			if(entry.getValue()==1)
+			{
+				nonRepNum=entry.getKey();
+				break;
+			}
+		}
+		
+		return nonRepNum;
+	}
+	
+	//Time:O(nlogn) Space:O(1)
+	static int getSoln2(int arr[])
+	{
+		Arrays.sort(arr);
+		boolean flag=false;
+		int i;
+		
+		for(i=0;i<arr.length-1;)
+		{
+			if(arr[i]!=arr[i+1])
+			{
+				flag=true;
+				break;
+			}
+			
+			i+=2;
+		}
+		
+		if(flag==false && arr[i]!=arr[i-1])
+			return arr[i];
+		
+		return arr[i];
+	}
+
+}
