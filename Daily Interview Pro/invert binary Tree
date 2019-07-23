@@ -1,0 +1,64 @@
+
+public class invertBinaryTree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		BinaryTree root=new BinaryTree(1);
+		root.left=new BinaryTree(2);
+		root.right=new BinaryTree(3);
+		root.left.left=new BinaryTree(4);
+		root.left.right=new BinaryTree(5);
+		root.right.left=new BinaryTree(6);
+		root.right.right=new BinaryTree(7);
+		
+		inorderTraversal(root);
+		
+		invertTree(root);
+		
+		System.out.println("After invert: ");
+		inorderTraversal(root);
+	}
+	
+	static class BinaryTree
+	{
+		int val;
+		BinaryTree left;
+		BinaryTree right;
+		
+		BinaryTree(int data)
+		{
+			this.val=data;
+		}
+	}
+	
+	static void invertTree(BinaryTree root)
+	{
+		if(root.left==null && root.right==null || root==null)
+			return;
+		
+		BinaryTree temp;
+		
+		if(root.left!=null || root.right!=null)
+		{
+			temp=root.left;
+			root.left=root.right;
+			root.right=temp;
+		}
+		
+		invertTree(root.left);
+		invertTree(root.right);
+	}
+	
+	
+	static void inorderTraversal(BinaryTree root)
+	{
+		if(root!=null)
+		{
+			inorderTraversal(root.left);
+			System.out.print(root.val+" ");
+			inorderTraversal(root.right);
+		}
+	}
+
+}
