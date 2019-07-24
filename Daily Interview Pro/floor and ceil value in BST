@@ -1,0 +1,67 @@
+
+public class floorAndCeilOfBst {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BST root=new BST(9);
+		root.left=new BST(6);
+		root.right=new BST(14);
+		root.left.left=new BST(3);
+		root.left.right=new BST(7);
+		root.right.left=new BST(10);
+		root.right.left.right=new BST(11);
+		root.right.left.right.left=new BST(10);
+		
+		int ans[]=new int[2];
+		
+		findCeilFloor(root,13,ans);
+		
+		System.out.println("floor : "+ans[0]);
+		System.out.println("ceil : "+ans[1]);
+	}
+	
+	
+	static class BST
+	{
+		int data;
+		BST left;
+		BST right;
+		
+		BST(int val)
+		{
+			this.data=val;
+		}
+	}
+	
+	static int[] findCeilFloor(BST root,int k,int []ans)
+	{
+		BST temp=root;
+		
+		while(temp!=null)
+		{
+			
+			if(temp.data==k)
+			{
+				ans[0]=temp.data;
+				ans[1]=temp.data;
+				break;
+			}
+			
+			else if(k>temp.data)
+			{
+				ans[0]=temp.data;
+				temp=temp.right;
+			}
+			
+			else
+			{
+				ans[1]=temp.data;
+				temp=temp.left;
+			}
+		}
+		
+		return ans;
+			
+	}
+
+}
