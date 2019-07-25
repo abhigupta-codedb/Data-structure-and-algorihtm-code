@@ -1,0 +1,47 @@
+import java.util.Arrays;
+public class pythagorusTriplets {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {3, 5, 12, 5, 13};
+		
+		System.out.println("doTripletsExists: "+doTripletsExists(arr));
+		
+	}
+	
+	
+	static boolean doTripletsExists(int arr[])
+	{
+		for(int i=0;i<arr.length;i++)
+			arr[i]*=arr[i];
+		
+		Arrays.sort(arr);
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			int first=arr[i];
+			int left=i+1;
+			int right=arr.length-1;
+			
+			while(left<right)
+			{
+				int sum=first+arr[left];
+				
+				if(sum==arr[right])
+				{
+					return true;
+				}
+				
+				else if(sum>arr[right])
+					right--;
+				
+				else
+					left++;
+			}
+			
+		}
+		
+		return false;
+	}
+
+}
