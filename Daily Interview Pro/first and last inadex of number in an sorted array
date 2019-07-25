@@ -1,0 +1,55 @@
+
+public class firstLastIndiciesOfElement {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {1,3,3,5,7,8,9,9,9,15};
+		int target=16;
+		int ans[]=new int[2];
+		
+		getIndicies(arr, 0, arr.length, ans, target, true);
+		getIndicies(arr, 0, arr.length, ans, target, false);
+		
+		if(ans[0]==0 && ans[1]==0)
+		{
+			ans[0]=ans[1]=-1;
+		}
+		
+		System.out.println("leftmost index :"+ans[0]+" rightmost index :"+ans[1]);
+	}
+	
+	
+	static void getIndicies(int arr[],int start,int end,int ans[],int k,boolean goLeft)
+	{
+		if(end>start)
+		{
+			int mid=(start+end)/2;
+			
+			if(arr[mid]==k)
+			{
+				if(goLeft)
+				{
+					ans[0]=mid;
+					getIndicies(arr, start, mid-1, ans, k, goLeft);
+				}
+				
+				else
+				{
+					ans[1]=mid;
+					getIndicies(arr, mid+1, end, ans, k, goLeft);
+				}
+				
+				
+			}
+			
+			else if(k>arr[mid])
+				getIndicies(arr, mid+1, end, ans, k, goLeft);
+			
+			else
+				getIndicies(arr, start, mid-1, ans, k, goLeft);
+		}
+		
+		
+	}
+
+}
