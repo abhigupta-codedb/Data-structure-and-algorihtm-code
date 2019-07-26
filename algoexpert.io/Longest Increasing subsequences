@@ -1,0 +1,77 @@
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+public class longestIncreasingSubsequence {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//int array[]= {0,8,4,12,2,10,6,14,1,9,5,13,3,11,7,15};
+		int array1[]= {5,7,-24,10,12,2,3,12,5,6,35};
+				
+		System.out.println("LIS elements: ");
+		for(int a:getLIS(array1))
+			System.out.print(a+" ");
+	}
+	
+	
+	
+	//implementing logic of LIS with Dynamic Programming O(n^2).
+	static ArrayList<Integer> getLIS(int arr[])
+	{
+		int array[]=arr;
+		ArrayList<Integer> outlist=new ArrayList<>();
+		int length[]=new int[array.length];
+		int prevIndex[]=new int[array.length];
+		
+		length[0]=1;
+		prevIndex[0]=-1;
+		for(int i=1;i<array.length;i++)
+		{
+			int val=array[i];
+			int maxLength=1;
+			int index=-1;
+			
+			for(int j=i-1;j>=0;j--)
+			{
+				if(val>array[j] && length[j]+1>length[i] && length[j]+1>maxLength)
+				{
+					maxLength=length[j]+1;
+					index=j;
+				}
+					
+			}
+			
+			length[i]=maxLength;
+			prevIndex[i]=index;
+		}
+				
+		//getting maximum length subsequence.
+		int max=Integer.MIN_VALUE;
+		int maxIndex=-1;
+		for(int i=0;i<length.length;i++)
+		{
+			if(length[i]>max)
+			{
+				max=length[i];
+				maxIndex=i;
+			}
+		}
+		
+		//getting elements of maximum length subsequence.
+		while(maxIndex!=-1)
+		{
+			outlist.add(array[maxIndex]);
+			
+			if(maxIndex==0)
+				break;
+			
+			maxIndex=prevIndex[maxIndex];
+		}
+	
+		Collections.reverse(outlist);
+		
+		return outlist;
+		
+	}
+
+}
