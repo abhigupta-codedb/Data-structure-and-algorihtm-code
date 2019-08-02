@@ -9,7 +9,7 @@ public class pythagorusTriplets {
 		
 	}
 	
-	
+	//time : O(n^2) space : O(1)
 	static boolean doTripletsExists(int arr[])
 	{
 		for(int i=0;i<arr.length;i++)
@@ -40,6 +40,32 @@ public class pythagorusTriplets {
 			}
 			
 		}
+		
+		return false;
+	}
+	
+	//time : O(n^2) space : O(n)
+	static boolean doTripletsExists2(int arr[])
+	{
+		HashSet<Integer> hset=new HashSet<Integer>();
+		
+		for(int a:arr)
+		{
+			if(!hset.contains(a*a))
+				hset.add(a*a);
+		}
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=i+1;j<arr.length;j++)
+			{
+				
+				if(hset.contains((int)(Math.pow(arr[i],2)+Math.pow(arr[j], 2)) ))
+					return true;
+				
+			}
+		}
+		
 		
 		return false;
 	}
