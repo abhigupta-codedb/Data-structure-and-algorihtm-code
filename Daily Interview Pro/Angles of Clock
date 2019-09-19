@@ -1,0 +1,42 @@
+Hi, here's your problem today. This problem was recently asked by Microsoft:
+
+Given a time in the format of hour and minute, calculate the angle of the hour and minute hand on a clock.
+
+def calcAngle(h, m):
+  # Fill this in.
+
+print calcAngle(3, 30)
+# 75
+print calcAngle(12, 30)
+# 165
+
+=====Solution=========
+//O(1) time.
+//O(1) space.
+public class findAngels {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(getAngels(3,30));
+	}
+	
+	static double getAngels(int hh,int mm) {
+		
+		int hoursAngle=hh*30;
+		int minAngel=mm*6;
+		
+		//angels hh will travel in mm minutes.
+		double hoursTravel=mm*0.5;
+		
+		double angel=0;
+		
+		if(minAngel-hoursAngle>0) 
+			angel=minAngel-hoursAngle-hoursTravel;
+		
+		else
+			angel=hoursAngle-minAngel+hoursTravel;
+		
+		return (360-angel)<angel?(360-angel):angel;
+	}
+
+}
