@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+class Program {
+  public static int productSum(ArrayList<Object> array) {
+    // Write your code here.
+		return getProductSum(array,1);
+  }
+	
+	static int getProductSum(ArrayList<Object> arr,int multiplier) {
+		int sum=0;
+		for(Object obj:arr) {
+			
+			if(obj instanceof ArrayList) {
+				sum+=getProductSum((ArrayList)obj, multiplier+1);
+			}
+			
+			else
+				sum+=(int)obj;
+			 
+		}
+		
+		return sum*multiplier;
+	}
+}
