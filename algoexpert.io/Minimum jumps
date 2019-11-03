@@ -1,0 +1,42 @@
+package Practice;
+
+public class minJumps {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {3,4,2,1,2,3,7,1,1,1,3};
+		
+		getJumps(arr);
+	}
+	
+	
+	static int getJumps(int arr[]) {
+		int jumps[]=new int[arr.length];
+		
+		jumps[0]=0;
+		
+		for(int i=1; i < arr.length ; i++){
+            jumps[i] = Integer.MAX_VALUE-1;
+        }
+		
+		for(int i=1; i < arr.length; i++){
+            
+			for(int j=0; j < i; j++){
+                
+            	if(arr[j] + j >= i)
+                {               
+                	if(jumps[i] > jumps[j] + 1)
+                	{
+                        jumps[i] = jumps[j] + 1;
+                    }
+                }
+            }
+        }
+		
+		for(int a:jumps)
+			System.out.print(a+" ");
+		
+		return jumps[arr.length-1];      
+	}
+
+}
