@@ -1,0 +1,54 @@
+package Practice;
+
+public class levenshteinDis {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(levDistance("abc", "yabd"));
+	}
+	
+	
+	static int levDistance(String str1,String str2) {
+		int edit[][]=new int[str1.length()+1][str2.length()+1];
+		
+		for(int j=0;j<str2.length()+1;j++){
+			edit[0][j]=j;
+		}
+		
+		for(int i=0;i<str1.length()+1;i++) {
+			edit[i][0]=i;
+		}
+		
+		for(int i=1;i<str1.length()+1;i++) {
+			
+			for(int j=1;j<str2.length()+1;j++){
+				
+				if(str1.charAt(i-1)==str2.charAt(j-1))
+					edit[i][j]=edit[i-1][j-1];
+				
+				else
+					edit[i][j]=1+Math.min(edit[i-1][j-1], Math.min(edit[i][j-1], edit[i-1][j]) );
+			
+			}
+			
+		}
+			
+		return edit[str1.length()][str2.length()];
+	}
+	
+	
+	static void display(int edit[][]) {
+		int n=edit.length;
+		int m=edit[0].length;
+		
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<m;j++){
+				System.out.print(edit[i][j]+" ");
+			}
+			
+			System.out.println();
+		}
+		
+	}
+
+}
