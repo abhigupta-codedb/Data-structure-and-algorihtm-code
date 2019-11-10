@@ -1,0 +1,44 @@
+package Practice;
+import java.util.HashMap;
+import java.util.Map.Entry;
+public class Longest_Subtring_Without_Duplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(longestSubstringWithoutDuplication("abccdeaabbcddef"));
+		//
+	}
+	
+	
+	public static String longestSubstringWithoutDuplication(String str) {
+	    // Write your code here
+		
+		HashMap<Character,Integer> hmap=new HashMap<>();
+		char ch[]=str.toCharArray();
+		
+		String out="";
+		String curr="";
+		
+		int startIndex=0;
+		
+		for(int i=0;i<ch.length;i++) {
+			
+			if(curr.indexOf(ch[i])!=-1)
+				startIndex=hmap.get(ch[i])+1;
+			
+			
+			hmap.put(ch[i], i);
+			curr=str.substring(startIndex, i+1);
+			
+			if(curr.length()>out.length())
+				out=curr;	
+		}	
+		
+		for(Entry<Character, Integer> entry:hmap.entrySet()) {
+			System.out.println(entry.getKey()+" "+entry.getValue());
+		}
+		
+		return out;
+	  }
+
+}
