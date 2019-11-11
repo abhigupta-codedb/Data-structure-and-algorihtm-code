@@ -1,0 +1,44 @@
+package Practice;
+
+public class shiftedBinarySearch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int array[]={23,11,1,5};
+		System.out.println(getshiftedBinarySearch(array, 33));;
+	}
+	
+	public static int getshiftedBinarySearch(int[] array, int target) {
+	    // Write your code here.
+		
+		return getIndex(array, 0, array.length-1, target);
+	  }
+	
+	static int getIndex(int arr[],int left,int right,int target) {
+		
+		if(left>right)
+			return -1;
+		
+		int mid=(left+right)/2;
+		
+		if(arr[mid]==target)
+			return mid;
+		
+		else if( arr[left]<arr[mid]) {
+			if(target>=arr[left] && target<=arr[mid])
+				return getIndex(arr, left, mid, target);
+			else
+				return getIndex(arr, mid+1, right, target);
+		}
+		
+		else
+		{
+			if(target>arr[mid] && target<=arr[right])
+				return getIndex(arr, mid+1, right, target);
+			else
+				return getIndex(arr, left, mid-1, target);
+		}
+		
+	}
+
+}
