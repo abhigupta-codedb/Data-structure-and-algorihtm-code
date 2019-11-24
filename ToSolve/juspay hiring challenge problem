@@ -1,0 +1,68 @@
+package Practice;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.Map.Entry;
+public class JusPayProblem1 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int v=sc.nextInt();
+		
+		int vertices[]=new int[v];
+		for(int i=0;i<v;i++) {
+			vertices[i]=sc.nextInt();
+		}
+		
+		int e=sc.nextInt();
+		
+		HashMap<Integer,Set<Integer>>hm=new HashMap<>();
+		
+		for(int a:vertices)
+			hm.put(a, null);
+		
+		
+		for(int i=0;i<e;i++) {
+			String str=sc.nextLine();
+			System.out.println(str);
+			String line[]=str.split(" ");
+			
+			int node=Integer.parseInt(line[0]);
+			Set<Integer> values=hm.get(node);
+			
+			for(int j=1;j<line.length;j++) {
+				values.add( Integer.parseInt(line[j]) );
+			}
+			
+			hm.put(node,values);
+			
+		}
+		
+		int start=sc.nextInt();
+		int end=sc.nextInt();
+		
+		for(Entry<Integer,Set<Integer>> entry:hm.entrySet()) {
+			System.out.println(entry.getKey());
+			System.out.println(entry.getValue().toString());
+		}
+		
+		System.out.println("start "+start);
+		System.out.println("End "+end);
+	}
+
+}
+
+
+//---------input---------//
+4
+2 5
+7 9
+4
+2 9
+7 2
+7 9
+9 5
+7
+9
