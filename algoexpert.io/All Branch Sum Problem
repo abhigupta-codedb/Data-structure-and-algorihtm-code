@@ -1,0 +1,70 @@
+package Practice;
+
+import java.util.List;
+import java.util.LinkedList;
+
+public class branchSumProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BinaryTree bt=new BinaryTree(1);
+		bt.left=new BinaryTree(2);
+		bt.right=new BinaryTree(3);
+		
+		bt.left.left=new BinaryTree(4);
+		bt.left.left.left=new BinaryTree(8);
+		bt.left.left.right=new BinaryTree(9);
+		bt.left.right=new BinaryTree(5);
+		bt.left.right.right=new BinaryTree(10);
+		
+		bt.right.left=new BinaryTree(6);
+		bt.right.right=new BinaryTree(7);
+		
+		List<Integer> out=branchSums(bt);
+		
+		for(int a:out) {
+			System.out.print(a+" ");
+		}
+
+	}
+	
+	public static class BinaryTree {
+	    int value;
+	    BinaryTree left;
+	    BinaryTree right;
+
+	    BinaryTree(int value) {
+	      this.value = value;
+	      this.left = null;
+	      this.right = null;
+	    }
+	  }
+
+	  public static List<Integer> branchSums(BinaryTree root) {
+	    // Write your code here.
+		  List<Integer> out=new LinkedList<Integer>();
+		  
+		  getSum(root,out,0);
+	  
+		  return out;
+	  }
+	  
+	  
+	  static void getSum(BinaryTree root,List<Integer> out,int sum) {
+		  
+		  if(root==null)
+			  return;
+		  
+		  if(root.left==null && root.right==null)
+		  {
+			  sum+=root.value;
+			  out.add(sum);
+			  return;
+		  }
+		  
+		  getSum(root.left,out,sum+root.value);
+		  
+		  getSum(root.right,out,sum+root.value);
+	  }
+
+}
