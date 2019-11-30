@@ -1,0 +1,23 @@
+public class FunctionalExamples{
+    public static void main(String[] args){
+    
+        List<Integer> numList=Arrays.asList(10,20,30,40,50);
+        
+        System.out.println("===For Each===");
+        numList.stream().forEach(num->System.out.println(num));
+        System.out.println("===For Each Alternative===");
+        numList.stream().forEach(num->System.out::println(num));
+        
+        System.out.println("==Map===");
+        List<Integer> newList=numList.stream().map(n->n*2).collect(Collectors.toList());
+        System.out.println(newList);
+        
+        System.out.println("==Filter===");
+        List<Integer>filteredList=numList.stream().filter(n->n>30).collect(Collectors.toList());
+        System.out.println(filteredList);
+        
+        System.out.println("==Chaining===");
+        List<Integer>chainedList=numList.stream().map(n->n*2).filter(n->n>30).collect(Collectors.toList());
+        System.out.println(chainedList);
+    }
+}
