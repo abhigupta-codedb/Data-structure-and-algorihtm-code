@@ -11,6 +11,7 @@ public class JusPayProblem1 {
 		Scanner sc=new Scanner(System.in);
 		int v=sc.nextInt();
 		
+		//vertices array for storing vertices.
 		int vertices[]=new int[v];
 		for(int i=0;i<v;i++) {
 			vertices[i]=sc.nextInt();
@@ -23,20 +24,32 @@ public class JusPayProblem1 {
 		for(int a:vertices)
 			hm.put(a, null);
 		
-		
+		sc.nextLine();
 		for(int i=0;i<e;i++) {
 			String str=sc.nextLine();
-			System.out.println(str);
 			String line[]=str.split(" ");
 			
 			int node=Integer.parseInt(line[0]);
-			Set<Integer> values=hm.get(node);
+			Set<Integer> values=new HashSet<Integer>();
 			
 			for(int j=1;j<line.length;j++) {
 				values.add( Integer.parseInt(line[j]) );
 			}
 			
-			hm.put(node,values);
+			Set<Integer> oldValues=hm.get(node);
+			
+			if(oldValues==null)
+				hm.put(node, values);
+			else
+			{
+				for(Integer a:values)
+					oldValues.add(a);
+				
+				hm.put(node, oldValues);
+			}
+			
+			
+//			hm.put(node,values);
 			
 		}
 		
@@ -44,25 +57,15 @@ public class JusPayProblem1 {
 		int end=sc.nextInt();
 		
 		for(Entry<Integer,Set<Integer>> entry:hm.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue().toString());
+			System.out.print(entry.getKey());
+			System.out.print("-"+entry.getValue());
+			System.out.println();
 		}
 		
 		System.out.println("start "+start);
 		System.out.println("End "+end);
+		
+		sc.close();
 	}
 
 }
-
-
-//---------input---------//
-4
-2 5
-7 9
-4
-2 9
-7 2
-7 9
-9 5
-7
-9
