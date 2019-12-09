@@ -1,0 +1,66 @@
+package Practice;
+import java.util.*;
+import java.util.Map.Entry;
+public class AnagramsInString {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		find_anagrams("acdbacdacb","abc");
+	}
+	
+	static ArrayList<Integer> find_anagrams(String str, String toFind) {
+		ArrayList<Integer> list=new ArrayList<>();
+		int size=toFind.length();
+		Hashtable<Character,Integer> m_table=getTable(str.substring(0,size));
+		Hashtable<Character,Integer> toFind_table=getTable(toFind);
+		
+		if(isTableEqual(m_table,toFind_table))
+			list.add(0);
+		int toRemove=0;
+		for(int i=size;i<str.length();i++) {
+			char c=str.charAt(size);
+			m_table.remove(str.charAt(toRemove));
+			
+			if(m_table.contains(c))
+				m_table.put(c, m_table.get(c)+1);
+			
+			else
+				m_table.put(c, 1);
+			
+			if(isTableEqual(m_table,toFind_table))
+				list.add(i);
+			
+			}
+		
+		
+		return list;
+	}
+	
+	static Hashtable<Character,Integer> getTable(String s) {
+		Hashtable<Character,Integer> ht=new Hashtable<>();
+		for(Character c:s.toCharArray()) {
+			if(ht.contains(c))
+				ht.put(c, ht.get(c)+1);
+			
+			else
+				ht.put(c, 1);
+		}
+		return ht;
+	}
+	
+	static boolean isTableEqual(Hashtable<Character,Integer> ht1,Hashtable<Character,Integer> ht2) {
+		if(ht1.size()==ht2.size())
+		{
+			for(Entry<Character,Integer> entry:ht1.entrySet()) {
+				if(ht2.contains(entry.getKey()) && (entry.getValue()==ht2.get(entry.getKey())))
+						continue;
+				else
+					return false;
+			}
+			
+			return true;
+		}
+			return false;
+	}
+
+}
