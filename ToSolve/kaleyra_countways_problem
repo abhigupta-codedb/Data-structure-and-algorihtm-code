@@ -1,0 +1,82 @@
+package Practice;
+
+import java.io.*;
+import java.util.*;
+
+
+public class countWays {
+    public static void main(String[] args) throws IOException {
+    	   
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			int T=Integer.parseInt(br.readLine().trim());
+			
+			for(int i=0;i<T;i++) {
+				int N=Integer.parseInt(br.readLine().trim());
+				
+				long out=CountWays(N);
+				
+				System.out.println(out);
+				
+				br.close();
+			}
+    		
+    	   System.out.println(CountWays(2));
+    }
+    static long CountWays(int N){
+        // Write your code here
+        long ways=0;
+        long a=0;
+        long b=0;
+        
+        ArrayList<Long> ar1=new ArrayList<Long>();
+        ArrayList<Long> ar2=new ArrayList<Long>();
+        for(int i=1;i<=N;i++){
+            for(int j=1;j<=N;j++){
+                for(int k=1;k<=N;k++){
+                    a=i+2*j+k;
+                    ar1.add(a);
+                }
+            }
+        }
+        
+        Collections.sort(ar1);
+        System.out.println(ar1);
+        
+        
+        for(int i=0;i<ar1.size();i++) {
+        	long element=ar1.get(i);
+        	
+        	for(int j=0;j<ar1.size();j++) {
+        		long next=ar1.get(j);
+        		
+        		if(next%element==0)
+        			ways++;
+        	}
+        }
+        
+//        for(int x=1;x<=N;x++){
+//            for(int y=1;y<=N;y++){
+//                for(int z=1;z<=N;z++){
+//                    b=x+y+2*z;
+//                    ar2.add(b);
+//                }
+//            }            
+//        }
+//        
+//        Collections.sort(ar2);
+//        System.out.println(ar2);
+//        
+//        for(long a2:ar2) {
+//        	
+//        	for(long a1:ar1) {
+//        		if(a1%a2==0)
+//        			ways++;
+//        	}
+//        }
+        
+        
+        
+        return ways;
+    }
+}
+
