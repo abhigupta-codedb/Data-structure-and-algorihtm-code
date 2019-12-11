@@ -1,0 +1,33 @@
+package Practice;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class powerFunction {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String line[]=br.readLine().split(" ");
+		int num=Integer.parseInt(line[0]);
+		int pow=Integer.parseInt(line[1]);
+		
+		System.out.println(getPower(num,pow,num));
+	}
+	
+	static long getPower(int num,int pow,long ans) {
+		
+		if(pow==0)
+			return ans;
+		
+		if(pow==1){
+			ans= ans*num;
+			return ans;
+		}
+		ans=ans*ans;
+		pow=pow%2;
+		return getPower(num, pow, ans);
+	}
+
+}
