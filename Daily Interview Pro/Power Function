@@ -9,25 +9,36 @@ public class powerFunction {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String testCases=br.readLine();
+		int T=Integer.parseInt(testCases.trim());
+		while(T>0) {
 		String line[]=br.readLine().split(" ");
 		int num=Integer.parseInt(line[0]);
 		int pow=Integer.parseInt(line[1]);
 		
-		System.out.println(getPower(num,pow,num));
+		System.out.println("ANS=> "+getPower(num,pow));
+		T--;
+		}
+
+		br.close();
 	}
 	
-	static long getPower(int num,int pow,long ans) {
+	static long getPower(int num,int pow) {
+		long value=0;
+		long ans=1;
+		int times=pow/2;
+		value=num*num;
 		
-		if(pow==0)
-			return ans;
-		
-		if(pow==1){
-			ans= ans*num;
-			return ans;
+		while(times>0) {
+			ans*=value;
+			times--;
 		}
-		ans=ans*ans;
-		pow=pow%2;
-		return getPower(num, pow, ans);
+		
+		if(pow%2!=0)
+			ans*=num;
+		
+		return ans; 
 	}
 
 }
+
