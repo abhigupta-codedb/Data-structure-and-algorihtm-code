@@ -1,0 +1,87 @@
+package Practice;
+
+public class squareRoot {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int num=5;
+		int value=getSquareRootInteger(num);
+		int diff=num-(value*value);
+		if(diff==0){
+			System.out.println(value);
+		}
+		else{
+			double newNum=num;
+			double newValue=value;
+			for(double d=0.001;newValue*newValue<=newNum;) {
+				if(newValue*newValue<=newNum) {
+					newValue=newValue+d;
+					d+=0.001;
+				}
+				else
+					break;		
+			}
+			System.out.println(newValue);
+		}
+		
+	}
+	
+	static double getSquareRoot(int num) {
+		 double left=0;
+		 double right=num;
+		 double result=0;
+		 
+		 while(left<right) {
+			 double mid=(left+right)/2;
+			 double val=mid*mid;
+			 result=mid;
+			 
+			 if(val==num)
+			 {
+				result=mid;
+				break;
+			 }
+			 else if(val<num)
+				 left=mid+0.001;
+			 else
+				 right=mid-0.001;
+		 }
+		 
+		 String str=String.valueOf(result);
+		 StringBuilder sbr=new StringBuilder(str);
+		 
+		 if(sbr.length()>=5) {
+			 if(Character.getNumericValue(str.charAt(4))>=5)
+			 {
+				 sbr.insert(4,(Character.getNumericValue(str.charAt(4))+1));
+			 }
+			 
+			 result=Double.parseDouble(sbr.substring(0,5));
+		 }
+		 
+		 return result;
+	}
+	
+	static int getSquareRootInteger(int num) {
+		int left=0;
+		int right=num;
+		int res=num;
+		while(left<right) {
+			int mid=(left+right)/2;
+			int val=mid*mid;
+			if(mid<res)
+				res=mid;
+			if(val==num) {
+				res=mid;
+				break;
+			}
+			else if(val>num) {
+				right=mid-1;
+			}
+			else
+				left=mid+1;
+		}
+		return res;
+	}
+
+}
