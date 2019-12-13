@@ -4,25 +4,8 @@ public class squareRoot {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int num=5;
-		int value=getSquareRootInteger(num);
-		int diff=num-(value*value);
-		if(diff==0){
-			System.out.println(value);
-		}
-		else{
-			double newNum=num;
-			double newValue=value;
-			for(double d=0.001;newValue*newValue<=newNum;) {
-				if(newValue*newValue<=newNum) {
-					newValue=newValue+d;
-					d+=0.001;
-				}
-				else
-					break;		
-			}
-			System.out.println(newValue);
-		}
+
+		System.out.println(getSquareRootInteger(5));
 		
 	}
 	
@@ -62,26 +45,39 @@ public class squareRoot {
 		 return result;
 	}
 	
-	static int getSquareRootInteger(int num) {
+	static double getSquareRootInteger(int num) {
 		int left=0;
 		int right=num;
 		int res=num;
 		while(left<right) {
 			int mid=(left+right)/2;
 			int val=mid*mid;
-			if(mid<res)
-				res=mid;
+			
 			if(val==num) {
 				res=mid;
 				break;
 			}
-			else if(val>num) {
-				right=mid-1;
+			else if(val<num) {
+				left=mid+1;
+				res=mid;
 			}
 			else
-				left=mid+1;
+				right=mid-1;
 		}
-		return res;
+		
+		double increment=0.1;
+		double newRes=res;
+		for(int i=0;i<3;i++) {
+			
+			while(newRes*newRes<=num) {
+				newRes=newRes+increment;
+			}
+			
+			newRes=newRes-increment;
+			increment=increment/10;
+		}
+		
+		return newRes;
 	}
 
 }
