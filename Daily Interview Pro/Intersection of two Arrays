@@ -1,0 +1,42 @@
+package Practice;
+
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+public class intersectionProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int arr1[]= {1,2,2,1};
+		int arr2[]= {2,2};
+		
+		if(getINtersection(arr1, arr2).size()==0)
+			System.out.println("No Intersection");
+		else {
+			for(int a:getINtersection(arr1, arr2))
+				System.out.print(a+" ");
+		}
+	}
+	
+	static ArrayList<Integer> getINtersection(int arr1[],int arr2[]){
+		Set<Integer> set1=new HashSet<>();
+		ArrayList<Integer> out=new ArrayList<>();
+		
+		if(arr1.length==0 || arr2.length==0)
+			return out;
+		
+		for(int a:arr1) {
+			set1.add(a);
+		}
+		
+		for(int a:arr2) {
+			if(set1.contains(a) && !out.contains(a))
+				out.add(a);
+		}
+		
+		return out;
+	}
+	
+
+}
