@@ -1,0 +1,60 @@
+package Practice;
+import java.util.Arrays;
+public class tripletsProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {2, 1, -5, 4};
+		for(int a:getTriplets(arr,-1)) {
+			System.out.print(a+" ");
+		}
+	}
+	
+	
+	static int[] getTriplets(int arr[],int target){
+		
+		int out[]=new int[4];
+		Arrays.sort(arr);
+		
+		for(int i=0;i<arr.length;i++) {
+			int next=i+1;
+			int last=arr.length-1;
+			
+			while(next<last) {
+				
+				int sum=arr[i]+arr[next]+last;
+				
+				if(sum==target) {
+					out[0]=arr[i];
+			   		out[1]=arr[next];
+					out[2]=arr[last];
+					out[3]=sum;
+					
+					return out;
+				}
+				
+				if(closeToTarget(target,out[3],sum)) {
+					out[0]=arr[i];
+					out[1]=arr[next];
+					out[2]=arr[last];
+					out[3]=sum;
+				}
+				
+				else if(sum>target)
+					last--;
+				
+				else if(sum<target)
+					next++;
+			}
+			
+			
+		}
+		
+		return out;
+	}
+	
+	static boolean closeToTarget(int target,int oldSum,int newSum) {
+		return (target-oldSum)>(target-newSum)?true:false;
+	}
+
+}
